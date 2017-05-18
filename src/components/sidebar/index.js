@@ -1,5 +1,5 @@
-import WSidebar from './sidebar'
-WSidebar.install = Vue => {
-  Vue.component(WSidebar.name, WSidebar)
+import Sidebar from './sidebar'
+Sidebar.install = Vue => {
+  Vue.component(Sidebar.name, Sidebar)
 }
-export default WSidebar
+export default Sidebar

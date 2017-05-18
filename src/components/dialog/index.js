@@ -1,7 +1,7 @@
-import WDialogCustomer from './customer'
-WDialogCustomer.install = Vue => {
-  Vue.component(WDialogCustomer.name, WDialogCustomer)
+import Dialog from './dialog'
+Dialog.install = Vue => {
+  Vue.component(Dialog.name, Dialog)
 }
 export default {
-  WDialogCustomer
+  Dialog
 }

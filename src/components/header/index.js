@@ -1,5 +1,5 @@
-import WHeader from './header'
-WHeader.install = Vue => {
-  Vue.component(WHeader.name, WHeader)
+import Header from './header'
+Header.install = Vue => {
+  Vue.component(Header.name, Header)
 }
-export default WHeader
+export default Header

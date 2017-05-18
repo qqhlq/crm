@@ -1,13 +1,5 @@
 @import './core/var';
 @import './mixins/clearfix';
-@import './box';
-@import './table';
-@import './tabs';
-@import './form';
-@import './breadcrumb';
-@import './message-box';
-@import './dialog';
-@import './tooltip';
 
 // 修复某些 webkit 浏览器中 placeholder 出现偏上现象
 ::-webkit-input-placeholder {

@@ -1,8 +1,8 @@
 {
-  "name": "dsp_customer_boss",
+  "name": "crm",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "aaronhsieh <aaron.s.hsieh@gmail.com>",
+  "author": "wesdom front_end>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

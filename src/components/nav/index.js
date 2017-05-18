@@ -1,11 +1,8 @@
-import WNav from './nav'
-import WNavItem from './nav-item'
+import Nav from './nav'
 
-WNav.install = Vue => {
-  Vue.component(WNav.name, WNav)
-}
-WNavItem.install = Vue => {
-  Vue.component(WNavItem.name, WNavItem)
+Nav.install = Vue => {
+  Vue.component(Nav.name, Nav)
 }
 
-export { WNav, WNavItem }
+
+export { WNav }
