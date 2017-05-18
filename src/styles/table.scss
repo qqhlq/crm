@@ -1,0 +1,72 @@
+.w-table {
+
+  // 表格查询条件
+  &__query {
+
+    // 下拉选择框
+    &__item--select,
+    &__item--select .el-form-item__content,
+    &__item--select .el-select {
+      width: 160px;
+    }
+
+    // 输入框
+    &__item--input,
+    &__item--input .el-form-item__content,
+    &__item--input .el-input {
+      width: 160px;
+    }
+
+    // 日期控件
+    &__item--datepicker,
+    &__item--datepicker .el-form-item__content,
+    &__item--datepicker .el-date-editor {
+      width: 208px;
+    }
+  }
+
+  // 实际表格
+  &__main {
+    margin-top: 4px;
+  }
+
+  // 分页
+  &__pagination {
+    @include clearfix;
+
+    padding: 16px 0px;
+
+    > div {
+      float: right;
+    }
+  }
+}
+
+// 小尺寸设备显示
+@media (max-width: 768px) {
+  .w-table {
+    &__query {
+
+      // 下拉选择框
+      &__item--select,
+      &__item--select .el-form-item__content,
+      &__item--select .el-select {
+        width: 100%;
+      }
+
+      // 输入框
+      &__item--input,
+      &__item--input .el-form-item__content,
+      &__item--input .el-input {
+        width: 100%;
+      }
+
+      // 日期控件
+      &__item--datepicker,
+      &__item--datepicker .el-form-item__content,
+      &__item--datepicker .el-date-editor {
+        width: 100%;
+      }
+    }
+  }
+}

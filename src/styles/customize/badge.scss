@@ -1,0 +1,5 @@
+
+// 修复下拉框中 badge 对齐偏上问题
+.el-badge__content {
+  vertical-align: text-top;
+}

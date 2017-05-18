@@ -1,0 +1,11 @@
+
+// 更改 message 框中的 close 按钮大小
+.el-message__closeBtn {
+  line-height: 16px;
+  font-size: 12px;
+}
+
+// 修改圆角
+.el-message {
+  border-radius: 4px;
+}

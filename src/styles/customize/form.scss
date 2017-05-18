@@ -1,0 +1,10 @@
+.el-form-item {
+  margin-bottom: 20px;
+}
+
+// 设置表单项标题字体颜色和高度
+.el-form-item__label {
+  color: $color-light-black;
+  font-size: 13px;
+  padding-right: 16px;
+}

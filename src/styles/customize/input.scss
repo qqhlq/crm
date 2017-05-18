@@ -1,0 +1,9 @@
+
+// 统一设置 input 和 textarea padding
+.el-input__inner,
+.el-textarea__inner {
+  padding: 4px 8px;
+}
+.el-textarea__inner {
+  padding: 6px 8px;
+}

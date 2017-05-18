@@ -1,0 +1,136 @@
+@import "./function/index";
+
+// 竖向导航
+// -----------------------------------------------------------------------------
+
+// 默认主题一级导航，无背景，鼠标移动上去字体为蓝色
+.el-menu-item:hover,
+.el-submenu__title:hover {
+  background: none;
+  color: $color-primary;
+}
+
+// 默认主题一级导航选中状态，蓝字，背景 extra-light-gray
+.el-menu-item.is-active {
+  background: $color-extra-light-gray;
+  color: $color-primary;
+}
+
+// 默认主题二级导航去除背景色
+.el-submenu .el-menu {
+  background: none;
+}
+
+// 默认主题二级导航鼠标浮动上去，蓝字，无背景色
+.el-submenu .el-menu-item:hover {
+  background: none;
+  color: $color-primary;
+}
+
+.el-submenu .el-menu-item.is-active:hover {
+  background: $color-extra-light-gray;
+}
+
+// 黑色主题修改导航项文字颜色
+.el-menu--dark .el-menu-item, .el-menu--dark .el-submenu__title {
+  color: $color-extra-light-black;
+}
+
+// 黑色主题一级导航，无背景，鼠标移动上去文字为白色
+.el-menu--dark .el-menu-item:hover,
+.el-menu--dark .el-submenu__title:hover {
+  background: none;
+  color: $color-white;
+}
+
+// 黑色主题一级导航选中状态
+.el-menu--dark .el-menu-item.is-active,
+.el-menu--dark .el-menu-item.is-active:hover {
+  background: shade($color-base-black, 20%);
+  color: $color-white;
+}
+
+// 黑色主题二级导航调整背景色
+.el-menu--dark .el-submenu .el-menu {
+  background: shade($color-base-black, 5%);
+}
+
+// 黑色主题二级导航鼠标浮动上去，白字，无背景色
+.el-menu--dark .el-submenu .el-menu .el-menu-item:hover {
+  background: none;
+  color: $color-white;
+}
+.el-menu--dark .el-submenu .el-menu .el-menu-item.is-active:hover {
+  background: shade($color-base-black, 20%);
+  color: $color-white;
+}
+
+// 横向导航
+// -----------------------------------------------------------------------------
+
+// 调整横向导航 padding 为 24px
+.el-menu--horizontal .el-menu-item, .el-submenu__title {
+  padding: 0 24px;
+}
+
+// 默认主题去处底部横线
+.el-menu--horizontal .el-menu-item,
+.el-menu--horizontal .el-submenu .el-submenu__title,
+.el-menu--horizontal > .el-menu-item:hover,
+.el-menu--horizontal > .el-submenu:hover .el-submenu__title,
+.el-menu--horizontal > .el-submenu.is-active .el-submenu__title  {
+  border-bottom: 0;
+}
+
+// 默认主题去除小三角
+.el-menu--horizontal .el-submenu .el-submenu__icon-arrow {
+  display: none;
+}
+
+// 默认主题调整下拉窗边框颜色
+.el-menu--horizontal .el-submenu > .el-menu {
+  border: $color-light-gray;
+}
+
+// 默认主题链接去除下划线
+.el-menu--horizontal .el-menu-item a,
+.el-menu--horizontal .el-menu-item a:hover {
+  text-decoration: none;
+}
+
+// 默认主题选中状态去除背景
+.el-menu--horizontal .el-menu-item.is-active {
+  background: none;
+}
+
+// 默认主题，二级菜单选中状态一级菜单字体变成蓝色
+.el-menu--horizontal .el-submenu.is-active .el-submenu__title {
+  color: $color-primary;
+}
+
+// 黑色主题，选中状态去除背景色
+.el-menu--horizontal.el-menu--dark .el-menu-item.is-active,
+.el-menu--horizontal.el-menu--dark .el-menu-item.is-active:hover {
+  background: none;
+}
+
+// 黑色主题下拉菜单项背景色
+.el-menu--horizontal.el-menu--dark .el-submenu .el-menu,
+.el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item {
+  background: $color-base-black;
+}
+
+// 黑色主题下拉菜单项鼠标浮动上去去除背景色
+.el-menu--horizontal.el-menu--dark .el-submenu .el-menu .el-menu-item:hover {
+  background: none;
+}
+
+// 默认主题，二级菜单选中状态一级菜单字体变成蓝色
+.el-menu--horizontal.el-menu--dark .el-submenu.is-active .el-submenu__title {
+  color: $color-white;
+}
+
+// 黑色主题下拉菜单项选中状态字体为白色
+.el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active {
+  color: $color-white;
+}

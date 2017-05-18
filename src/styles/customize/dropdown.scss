@@ -1,0 +1,21 @@
+
+// 调整下拉菜单选择框 border-radius
+.el-select-dropdown {
+  border-radius: 4px;
+}
+
+// 重置下拉框边框颜色
+.el-dropdown-menu {
+  border: 1px solid $color-light-gray;
+  border-radius: 4px;
+}
+
+// 调整下拉项字体颜色
+.el-dropdown-menu__item:not(.is-disabled) {
+  color: $color-light-black;
+}
+
+// 调整下拉选项分割线颜色
+.el-dropdown-menu__item--divided {
+  border-color: $color-light-gray;
+}

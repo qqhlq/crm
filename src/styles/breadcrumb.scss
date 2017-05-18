@@ -1,0 +1,15 @@
+.w-breadcrumb {
+  margin: 16px;
+}
+
+// 小尺寸设备
+@media (max-width: 500px) {
+  .w-breadcrumb {
+    display: none;
+  }
+}
+@media (max-device-width: 768px) {
+  .w-breadcrumb {
+    display: none;
+  }
+}

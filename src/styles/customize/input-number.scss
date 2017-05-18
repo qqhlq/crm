@@ -1,0 +1,7 @@
+
+// 修复计数器本身 css disabled 样式错误
+.el-input-number.is-disabled {
+  .el-input-number__increase:hover ~ .el-input .el-input__inner {
+    border-color: $color-light-gray;
+  }
+}

@@ -1,0 +1,409 @@
+@charset "UTF-8";
+:root{
+    /* Transition
+  -------------------------- */
+    /* Colors
+  -------------------------- */
+    /* Link
+  -------------------------- */
+    /* Border
+  -------------------------- */
+    /* Box-shadow
+  -------------------------- */
+    /* Fill
+  -------------------------- */
+    /* Font
+  -------------------------- */
+    /* Size
+  -------------------------- */
+    /* z-index
+  -------------------------- */
+    /* Disable base
+  -------------------------- */
+    /* Icon
+  -------------------------- */
+    /* Checkbox
+  -------------------------- */
+    /* Radio
+  -------------------------- */
+    /* Select
+  -------------------------- */
+    /* Alert
+  -------------------------- */
+    /* Message Box
+  -------------------------- */
+    /* Message
+  -------------------------- */
+    /* Notification
+  -------------------------- */
+    /* Input
+  -------------------------- */
+    /* Cascader
+  -------------------------- */
+    /* Group
+  -------------------------- */
+    /* Tab
+  -------------------------- */
+    /* Button
+  -------------------------- */
+    /* cascader
+  -------------------------- */
+    /* Switch
+ -------------------------- */
+    /* Dialog
+ -------------------------- */
+    /* Table
+ -------------------------- */
+    /* Pagination
+ -------------------------- */
+    /* Popover
+ -------------------------- */
+    /* Tooltip
+  -------------------------- */
+    /* Tag
+  -------------------------- */
+    /* Dropdown
+  -------------------------- */
+    /* Badge
+  -------------------------- */
+    /* Card
+  --------------------------*/
+    /* Slider
+  --------------------------*/
+    /* Steps
+  --------------------------*/
+    /* Menu
+  --------------------------*/
+    /* Rate
+  --------------------------*/
+    /* DatePicker
+  --------------------------*/
+    /* Loading
+  --------------------------*/
+    /* Scrollbar
+  --------------------------*/
+    /* Carousel
+  --------------------------*/
+    /* Collapse
+  --------------------------*/
+}
+
+.el-step{
+    position: relative;
+    vertical-align: top;
+}
+
+.el-step:last-child .el-step__main{
+    padding-right: 0;
+}
+
+.el-step.is-vertical{}
+
+.el-step.is-vertical .el-step__head, .el-step.is-vertical .el-step__main{
+    display: inline-block;
+}
+
+.el-step.is-vertical .el-step__main{
+    padding-left: 10px;
+}
+
+.el-step.is-horizontal{
+    display: inline-block;
+}
+
+.el-step__line{
+    display: inline-block;
+    position: absolute;
+    border-color: inherit;
+    background-color: #DDDDDD;
+}
+
+.el-step__line.is-vertical{
+    width: 2px;
+    box-sizing: border-box;
+    top: 32px;
+    bottom: 0;
+    left: 15px;
+}
+
+.el-step__line.is-horizontal{
+    top: 15px;
+    height: 2px;
+    left: 32px;
+    right: 0;
+}
+
+.el-step__line.is-icon{}
+
+.el-step__line.is-icon.is-horizontal{
+    right: 4px;
+}
+
+.el-step__line-inner{
+    display: block;
+    border-width: 1px;
+    border-style: solid;
+    border-color: inherit;
+    transition: all 150ms;
+    width: 0;
+    height: 0;
+}
+
+.el-step__icon{
+    display: block;
+    line-height: 28px;
+}
+
+.el-step__icon > * {
+    line-height: inherit;
+    vertical-align: middle;
+}
+
+.el-step__head{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: transparent;
+    text-align: center;
+    line-height: 28px;
+    font-size: 28px;
+    vertical-align: top;
+    transition: all 150ms;
+}
+
+.el-step__head.is-finish{
+    color: #3388FF;
+    border-color: #3388FF;
+}
+
+.el-step__head.is-error{
+    color: #F64D46;
+    border-color: #F64D46;
+}
+
+.el-step__head.is-success{
+    color: #57D92b;
+    border-color: #57D92b;
+}
+
+.el-step__head.is-wait{
+    color: #DDDDDD;
+    border-color: #DDDDDD;
+}
+
+.el-step__head.is-process{
+    color: #DDDDDD;
+    border-color: #DDDDDD;
+}
+
+.el-step__head.is-text{
+    font-size: 14px;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.el-step__head.is-text.is-finish{
+    color: #fff;
+    background-color: #3388FF;
+    border-color: #3388FF;
+}
+
+.el-step__head.is-text.is-error{
+    color: #fff;
+    background-color: #F64D46;
+    border-color: #F64D46;
+}
+
+.el-step__head.is-text.is-success{
+    color: #fff;
+    background-color: #57D92b;
+    border-color: #57D92b;
+}
+
+.el-step__head.is-text.is-wait{
+    color: #DDDDDD;
+    background-color: #fff;
+    border-color: #DDDDDD;
+}
+
+.el-step__head.is-text.is-process{
+    color: #fff;
+    background-color: #DDDDDD;
+    border-color: #DDDDDD;
+}
+
+.el-step__main{
+    white-space: normal;
+    padding-right: 10px;
+    text-align: left;
+}
+
+.el-step__title{
+    font-size: 14px;
+    line-height: 32px;
+    display: inline-block;
+}
+
+.el-step__title.is-finish{
+    font-weight: 700;
+    color: #3388FF;
+}
+
+.el-step__title.is-error{
+    font-weight: 700;
+    color: #F64D46;
+}
+
+.el-step__title.is-success{
+    font-weight: 700;
+    color: #57D92b;
+}
+
+.el-step__title.is-wait{
+    font-weight: 400;
+    color: rgb(151, 164, 190);
+}
+
+.el-step__title.is-process{
+    font-weight: 700;
+    color: #99AECC;
+}
+
+.el-step__description{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+}
+
+.el-step__description.is-finish{
+    color: #3388FF;
+}
+
+.el-step__description.is-error{
+    color: #F64D46;
+}
+
+.el-step__description.is-success{
+    color: #57D92b;
+}
+
+.el-step__description.is-wait{
+    color: #DDDDDD;
+}
+
+.el-step__description.is-process{
+    color: rgb(131, 142, 165);
+}
+:root{
+    /* Transition [已修改]
+  -------------------------- */
+    /* Colors [已修改]
+  -------------------------- */
+    /* 暂时忽略 */
+    /* 暂时忽略 */
+    /* 暂时忽略 */
+    /* color(var(--color-base-black) s(26%) l(80%)); 暂时忽略 */
+    /* Link
+  -------------------------- */
+    /* 暂时忽略 */
+    /* 暂时忽略 */
+    /* Border [已修改]
+  -------------------------- */
+    /* Box-shadow [已修改]
+  -------------------------- */
+    /* Fill [已修改]
+  -------------------------- */
+    /* Font [已修改]
+  -------------------------- */
+    /* Size [已修改]
+  -------------------------- */
+    /* 暂时忽略 */
+    /* z-index [已修改]
+  -------------------------- */
+    /* 暂时忽略 */
+    /* 暂时忽略 */
+    /* 暂时忽略 */
+    /* Disable base [已修改]
+  -------------------------- */
+    /* Icon [已修改]
+  -------------------------- */
+    /* Checkbox [已修改]
+  -------------------------- */
+    /* Radio [已修改]
+  -------------------------- */
+    /* Select [已修改]
+  -------------------------- */
+    /* 暂时忽略 */
+    /* 暂时忽略 */
+    /* 暂时忽略 */
+    /* Alert [已修改]
+  -------------------------- */
+    /* Message Box [已修改]
+  -------------------------- */
+    /* Message [后续修改（关闭图标太大）]
+  -------------------------- */
+    /* Notification [后续修改（关闭图标太大）]
+  -------------------------- */
+    /* Input [已修改]
+  -------------------------- */
+    /* 疑似废弃 */
+    /* 疑似废弃 */
+    /* Cascader [已修改]
+  -------------------------- */
+    /* 暂时忽略 */
+    /* 暂时忽略 */
+    /* 暂时忽略 */
+    /* Group [暂时忽略]
+  -------------------------- */
+    /* Tab [已修改]
+  -------------------------- */
+    /* 暂时忽略 */
+    /* 暂时忽略 */
+    /* 疑似废弃 */
+    /* 暂时忽略 */
+    /* 暂时忽略 */
+    /* Button [已修改]
+  -------------------------- */
+    /* 疑似废弃 */
+    /* 疑似废弃 */
+    /* 疑似废弃 */
+    /* Switch [已修改]
+ -------------------------- */
+    /* Dialog [后续修改（关闭图标太大）]
+ -------------------------- */
+    /* Table [已修改]
+ -------------------------- */
+    /* Pagination [已修改]
+ -------------------------- */
+    /* Popover [已修改]
+ -------------------------- */
+    /* Tooltip [已修改]
+  -------------------------- */
+    /* Tag [已修改]
+  -------------------------- */
+    /* Dropdown [已修改]
+  -------------------------- */
+    /* Badge [已修改]
+  -------------------------- */
+    /* Card [已修改]
+  --------------------------*/
+    /* Slider [已修改]
+  --------------------------*/
+    /* Steps [已修改]
+  --------------------------*/
+    /* 暂时忽略 */
+    /* Menu [暂时忽略]
+  --------------------------*/
+    /* Rate [暂时忽略]
+  --------------------------*/
+    /* DatePicker [暂时忽略]
+  --------------------------*/
+    /* Loading
+  --------------------------*/
+    /* Scrollbar
+  --------------------------*/
+    /* Carousel [暂时忽略]
+  --------------------------*/
+    /* Collapse [已修改]
+  --------------------------*/
+}

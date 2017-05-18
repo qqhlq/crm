@@ -1,0 +1,9 @@
+
+// 修改进行中步骤的颜色
+.el-step__head.is-text.is-process {
+  background-color: $color-extra-light-black;
+  border-color: $color-extra-light-black;
+}
+.el-step__head.is-process {
+  color: $color-extra-light-black;
+}

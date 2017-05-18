@@ -1,0 +1,23 @@
+.el-tree {
+  .el-tree-node__label {
+    font-size: 13px;
+  }
+
+  // 调整树形下拉框选项鼠标移动上去背景色
+  .el-tree-node__content:hover {
+    background-color: $color-dark-white;
+  }
+
+  // 修复树形下拉框上下不居中
+  .el-tree-node__expand-icon,
+  .el-tree-node__label,
+  .el-tree-node__content > .el-checkbox {
+    vertical-align: inherit;
+  }
+
+  // 调整树形下拉框选项高度为 40px
+  .el-tree-node__content {
+    height: 40px;
+    line-height: 40px;
+  }
+}

@@ -1,0 +1,10 @@
+.el-button {
+
+  // 修复 plain 按钮 disabled 状态下的边框
+  &.is-disabled.is-plain {
+    border-color: $color-light-gray;
+    &:hover {
+      border-color: $color-light-gray;
+    }
+  }
+}

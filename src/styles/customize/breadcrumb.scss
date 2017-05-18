@@ -1,0 +1,6 @@
+
+// 调整面包屑当页面字体颜色
+.el-breadcrumb__item:last-child .el-breadcrumb__item__inner,
+.el-breadcrumb__item:last-child .el-breadcrumb__item__inner:hover {
+  color: $color-light-black;
+}

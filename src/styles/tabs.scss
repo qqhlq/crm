@@ -1,0 +1,15 @@
+.w-tabs {
+  background: $color-white;
+  border-radius: 4px;
+  margin-top: 20px;
+
+  .el-tabs__header {
+    margin-bottom: 20px;
+  }
+  .el-tabs__content {
+    padding: 0 16px;
+  }
+  .el-tab-pane {
+    margin-bottom: 30px;
+  }
+}
