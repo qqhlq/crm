@@ -1,5 +1,5 @@
-import Header from './header'
-Header.install = Vue => {
-  Vue.component(Header.name, Header)
+import BHeader from './header'
+BHeader.install = Vue => {
+  Vue.component(BHeader.name, BHeader)
 }
-export default Header
+export default BHeader

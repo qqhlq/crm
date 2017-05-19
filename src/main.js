@@ -11,6 +11,7 @@ import api from './plugins/api'
 import formater from './plugins/formater'
 import verifier from './plugins/verifier'
 import utils from './plugins/utils'
+import BHeader from './components/header'
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -19,13 +20,7 @@ Vue.use(api)
 Vue.use(formater)
 Vue.use(verifier)
 Vue.use(utils)
-Vue.use(WHeader)
-Vue.use(WSidebar)
-Vue.use(dialog.WDialogCustomer)
-Vue.use(WNav)
-Vue.use(WNavItem)
-Vue.use(WTableDropdown)
-Vue.use(WTableCaret)
+Vue.use(BHeader)
 
 new Vue({
   el: '#app',

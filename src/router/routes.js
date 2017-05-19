@@ -1,7 +1,7 @@
 import Group from 'views/group'
 export default [
   {
-    path: 'group',
+    path: '/boss/new/CRM/group',
     name: 'Group',
     component: Group
   }
