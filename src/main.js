@@ -1,4 +1,6 @@
 import './assets/libs/font-awesome-4.7.0/css/font-awesome.min.css'
+import 'element-ui/lib/theme-default/index.css'
+import './styles/crm/index.scss'
 import './styles/index.scss'
 import Vue from 'vue'
 import VueResource from 'vue-resource'
@@ -12,6 +14,7 @@ import formater from './plugins/formater'
 import verifier from './plugins/verifier'
 import utils from './plugins/utils'
 import BHeader from './components/header'
+import TreeDrop from './components/treeDrop'
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -21,6 +24,7 @@ Vue.use(formater)
 Vue.use(verifier)
 Vue.use(utils)
 Vue.use(BHeader)
+Vue.use(TreeDrop)
 
 new Vue({
   el: '#app',

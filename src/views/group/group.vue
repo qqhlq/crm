@@ -1,9 +1,18 @@
 <<template>
-  <p>123</p>
+  <div class="gruop">
+    <tree-drop></tree-drop>
+  </div>
 </template>
+<script>
 
-<<script>
 export default {
   name: 'Group'
 }
 </script>
+
+<style scoped>
+  .tree-drop-down-box {
+    width: 460px;
+    height: 176px;
+  }
+</style>
