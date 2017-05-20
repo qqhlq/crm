@@ -1,4 +1,5 @@
-.el-tree {
+.tree-drop-down-box{
+  .el-tree {
     border: none;
   }
 
@@ -6,6 +7,7 @@
     opacity: 0;
     z-index: -999;
   }
+
   .el-tree-node__children {
 
     .el-checkbox{
@@ -22,6 +24,7 @@
       display: none;
     }
   }
+
   .el-tree-node__expand-icon {
     margin-right: -15px !important;
     border: none;
@@ -63,13 +66,16 @@
       border-color: #26c562;
     }
   }
+
   .el-checkbox__input{
     vertical-align: -1px;
 
     &.is-checked {
+
       .el-checkbox__inner {
         background-color: #26c562;
         border-color: #26c562;
       }
     }
   }
+}
