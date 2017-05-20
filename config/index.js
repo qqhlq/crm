@@ -23,14 +23,14 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    host: 'http://dev-www.wead.cc',
-    port: 8083,
+    host: 'http://dev-b.wesdom.cc',
+    port: 8089,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
       '**/*.do': {
-        target: 'http://dev-www.wead.cc/',
+        target: 'http://dev-b.wesdom.cc',
         changeOrigin: true
       }
 
