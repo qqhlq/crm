@@ -10,7 +10,7 @@
   let id = 1000
 
   export default {
-    name: 'TreeDrop',
+    name: 'BTreeDrop',
     data() {
       return {
         data: [{

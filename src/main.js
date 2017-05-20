@@ -13,7 +13,7 @@ import api from './plugins/api'
 import formater from './plugins/formater'
 import verifier from './plugins/verifier'
 import BHeader from './components/header'
-import TreeDrop from './components/treeDrop'
+import BTreeDrop from './components/treeDrop'
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -23,7 +23,7 @@ Vue.use(api)
 Vue.use(formater)
 Vue.use(verifier)
 Vue.use(BHeader)
-Vue.use(TreeDrop)
+Vue.use(BTreeDrop)
 
 new Vue({
   el: '#app',
