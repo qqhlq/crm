@@ -1,6 +1,6 @@
 import './assets/libs/font-awesome-4.7.0/css/font-awesome.min.css'
 import 'element-ui/lib/theme-default/index.css'
-import './styles/crm/index.scss'
+import './styles/treeDrop.scss'
 import './styles/index.scss'
 import Vue from 'vue'
 import VueResource from 'vue-resource'
