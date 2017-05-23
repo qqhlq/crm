@@ -1,13 +1,12 @@
-<<template>
+<template>
   <div class="gruop">
     <b-table></b-table>
   </div>
 </template>
 <script>
-
-export default {
-  name: 'Group'
-}
+  export default {
+    name: 'Group'
+  }
 </script>
 
 <style scoped>
