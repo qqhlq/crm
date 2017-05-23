@@ -4,4 +4,7 @@
  * 2. 使用常量定义。变量名全部大写
  */
 
-
+// 公有池表格
+export const OPEN_TABLE_LIST_TYPE = 'open/OPEN_TABLE_LIST_TYPE'
+export const OPEN_TABLE_LIST_STATE = 'open/OPEN_TABLE_LIST_STATE'
+export const OPEN_TABLE_LIST_AUTHORITY = 'open/OPEN_TABLE_LIST_AUTHORITY'
