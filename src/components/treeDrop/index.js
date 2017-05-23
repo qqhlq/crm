@@ -1,5 +1,5 @@
-import TreeDrop from './treeDrop'
-TreeDrop.install = Vue => {
-  Vue.component(TreeDrop.name, TreeDrop)
+import BTreeDrop from './treeDrop'
+BTreeDrop.install = Vue => {
+  Vue.component(BTreeDrop.name, BTreeDrop)
 }
-export default TreeDrop
+export default BTreeDrop
