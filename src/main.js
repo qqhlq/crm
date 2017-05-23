@@ -14,6 +14,7 @@ import formater from './plugins/formater'
 import verifier from './plugins/verifier'
 import BHeader from './components/header'
 import BTreeDrop from './components/treeDrop'
+import BTable from './components/table'
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -24,6 +25,7 @@ Vue.use(formater)
 Vue.use(verifier)
 Vue.use(BHeader)
 Vue.use(BTreeDrop)
+Vue.use(BTable)
 
 new Vue({
   el: '#app',

@@ -1,6 +1,6 @@
 <<template>
   <div class="gruop">
-    <b-tree-drop></b-tree-drop>
+    <b-table></b-table>
   </div>
 </template>
 <script>
