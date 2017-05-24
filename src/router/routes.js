@@ -1,5 +1,6 @@
 import Group from 'views/group'
 import Indexv from 'views/indexv'
+import BProcessBar from 'components/processBar'
 export default [
   {
     path: '/group',
@@ -10,5 +11,10 @@ export default [
     path: '/index',
     name: 'Indexv',
     component: Indexv
+  },
+  {
+    path: '/processbar',
+    name: 'BProcessBar',
+    component: BProcessBar
   }
 ]
