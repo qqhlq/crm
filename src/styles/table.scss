@@ -1,8 +1,46 @@
-.table-header {
+.table {
+  width: 1200px;
+  height: 80px;
+  margin: 0 auto;
+  background: #fff;
+  font-weight: 300;
+}
 
-  .table-header-authority {
-    input {
-      border: none;
-    }
+
+.table-header-authority {
+  height: 80px;
+  line-height: 80px;
+  margin-left: 20px;
+  float: left;
+
+  input {
+    border: none;
+    width: 87px;
+    font-size: 16px;
+    padding-right: 0px !important;
   }
+
+  .el-input__icon{
+    color: #525666 !important;
+
+  }
+}
+.el-select-dropdown__list {
+  width: 140px;
+
+  li {
+    padding: 8px 20px;
+  }
+}
+.btn-green-mid {
+  width: 90px;
+  height: 40px;
+  color: #fff;
+  background: #29CC29;
+  font-size: 14px;
+  padding: 10px 17px;
+  float: right;
+  margin: 20px 30px 20px 0px;
+  border-radius: 3px;
+  cursor: pointer;
 }

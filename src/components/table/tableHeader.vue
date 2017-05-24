@@ -29,7 +29,7 @@
           </li>
       </ul>
       <div v-if="tableType === 0 && tableState === 0 && authority === 0" class="table-header-authority">
-         <el-select v-model="value" placeholder="请选择">
+         <el-select v-model="value" placeholder="请选择" @change="tableSelectChange">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -40,7 +40,11 @@
       </div>
       <span v-if="tableType === 1 && tableState === 0">私人池</span>
       <span v-if="tableType === 0 && tableState === 0 && authority !== 0 ">全部</span>
+      <div class="btn-green-mid">
+        新建客户
+      </div>
   </div>
+
 </template>
 
 <script>
@@ -48,18 +52,47 @@
 
   export default {
     name: 'BTableHeader',
+    data () {
+      return {
+        options: [
+          {
+            value: 0,
+            label: '全部'
+          },
+          {
+            value: 1,
+            label: '销售组'
+          },
+          {
+            value: 2,
+            label: '渠道组'
+          },
+          {
+            value: 3,
+            label: '商务组'
+          }
+        ],
+        value: 0
+      }
+    },
     computed: {
       ...mapGetters({
         tableType: 'openList/tableType',
         authority: 'openList/authority',
-        tableState: 'openList/tableState',
-        options: 'openList/tableOptions',
-        value: 'openList/tableValue'
+        tableState: 'openList/tableState'
       })
     },
+
+/*    methods: {
+      ...mapActions({
+        change: 'openList/tableSelectChange'
+      }),
+    }*/
+
+    methods: {
+      tableSelectChange () {
+
+      }
+    }
   }
 </script>
-
-<style>
-
-</style>
