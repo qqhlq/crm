@@ -19,6 +19,7 @@ import BTable from './components/table'
 import BProcessBar from './components/processBar'
 import BComplexDrop from './components/complexDrop'
 import BModaler from './components/modaler'
+import BLoadSelect from './components/loadSelect'
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -34,6 +35,7 @@ Vue.use(BTable)
 Vue.use(BProcessBar)
 Vue.use(BComplexDrop)
 Vue.use(BModaler)
+Vue.use(BLoadSelect)
 
 new Vue({
   el: '#app',

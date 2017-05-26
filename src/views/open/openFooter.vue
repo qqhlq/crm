@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'BTableFooter'
+  name: 'OpenFooter'
 }
 </script>
 

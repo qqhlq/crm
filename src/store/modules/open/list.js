@@ -21,7 +21,7 @@ let state = {
     {
       value: 3,
       label: '商务组'
-    },
+    }
   ],
   tableValue: 0
 
@@ -41,16 +41,25 @@ let mutations = {
    * 设置更改表格类型 0未公有池 1为私有池
    * @param {Object} payload 表格类型
    */
-  [types.OPEN_TABLE_LIST_TYPE](state, payload) {
-    state.tableType = payload
-  },
-  [types.OPEN_TABLE_LIST_STATE](state, payload) {
-    state.tableState = payload
+  [types.OPEN_TABLE_LIST_SELECT_CHANGE](state, payload) {
+    state.tableValue = payload
   }
 }
 
 let actions = {
 
+  /**
+   * 更新分组下拉框状态
+   * @param {Object} payload {
+   * }
+   */
+  async tableSelectChange({ commit }, payload) {
+    commit(types.OPEN_TABLE_LIST_SELECT_CHANGE, payload)
+  },
+
+  async getList({ commit }, param) {
+    return await Vue.wGet('/admin/letter/backlog.do', param)
+  }
 
 }
 
