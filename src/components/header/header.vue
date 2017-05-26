@@ -10,12 +10,12 @@
               <div class="navContent-a" ref="navContentAs">
                   <div :class="navContentAPosition ? 'navContentaWrapTop' : 'navContentaWrapBottom'">
                     <div v-for="(menu,index) in data.data.menus">
-                      <a @mouseenter="mouseenterNavContentUl(getChildrenNavContentUl(index))" @mouseleave="mouseleaveNavContentUl(getChildrenNavContentUl(index))" href="javascript:void(0);">{{menu.label}}</a>
+                      <a @mouseenter="mouseenterNavContentUl(index)" @mouseleave="mouseleaveNavContentUl(index)" href="javascript:void(0);">{{menu.label}}</a>
                     </div>
                   </div>
               </div>
               <div class="navContent-ul">
-                <div @mouseenter="mouseenterNavContentUl($event.currentTarget)" @mouseleave="mouseleaveNavContentUl($event.currentTarget)" v-for="(menu,index) in data.data.menus" :style="computeNavContentUlStyle(index)" :ref="computeNavContentUlRef(index)">
+                <div v-for="(menu,index) in data.data.menus" @mouseenter="mouseenterNavContentUl(index)" @mouseleave="mouseleaveNavContentUl(index)" :class="{navContentUl: computeBoolean(index)} " :style="computeNavContentUlStyle(index)" :ref="computeNavContentUlRef(index)">
                     <ul>
                       <li v-for="child in menu.children">
                         <a :href="child.url">{{child.label}}</a>
@@ -34,7 +34,7 @@
               </a>
               <div>
                 <ul>
-                  <li><span class="stationMail-news" id="stationMail-news" style="display: none"></span><a href="javascript:void(0)" id="station-mail-out">站内信</a></li>
+                  <li @click="nolyStationMailIn($event)"><span class="stationMail-news" id="stationMail-news" style="display: none"></span><a href="javascript:void(0)" id="station-mail-out">站内信</a></li>
                   <li><a href="/boss/new/system/mail-list" id="addressBook">通讯录</a></li>
                   <li><a href="javascript:void(0)" id="changePwd">修改密码</a></li>
                   <li><a href="javascript:void(0)" id="logout">退出</a></li>
@@ -46,6 +46,8 @@
   </header>
 </template>
 <script>
+  import { mapGetters, mapActions } from 'vuex'
+
   export default {
     name: 'BHeader',
     data() {
@@ -56,8 +58,24 @@
         // 导航接口
         url: 'http://dev-b.wesdom.cc/admin/user/list_menus.do',
 
-        // 一级导航位置(0:1-6一级菜单,1:7-12一级菜单)
-        navContentAPosition: true
+        // 一级导航位置(true:1-6一级菜单,false:7-12一级菜单)
+        navContentAPosition: true,
+
+        // 二级导航是否显示 true：显示， false：不显示
+        navContentUlInOut: {
+          0: true,
+          1: true,
+          2: true,
+          3: true,
+          4: true,
+          5: true,
+          6: true,
+          7: true,
+          8: true,
+          9: true,
+          10: true,
+          11: true
+        }
       }
     },
     mounted () {
@@ -65,55 +83,64 @@
       if(this.data.data.menus.length >= 6) {
         this.$refs.navMore.style.visibility = 'visible'
       }
+
+      // 隐藏所有二级导航
+      this.navContentUlAllIn()
     },
     methods: {
+      ...mapActions({
+        // 打开站内信
+        stationMailIn: 'stationMailIn'
+      }),
 
-      // 计算二级菜单样式
+      // 打开站内信，避免冒泡
+      nolyStationMailIn(event) {
+        event.stopPropagation()
+        this.stationMailIn()
+      },
+
+      // 计算布尔值
+      computeBoolean(index) {
+        return (index in this.navContentUlInOut)  &&  Boolean(this.navContentUlInOut[index])
+      },
+
+      // 隐藏所有二级导航
+      navContentUlAllIn() {
+        for(var i in this.data.data.menus) {
+          this.navContentUlInOut[i] = true
+        }
+        console.log(this.navContentUlInOut)
+        return this.navContentUlInOut
+      },
+
+      // 计算二级导航样式
       computeNavContentUlStyle(index) {
         return 'left:' + ((index%6*110) - 22) + 'px'
       },
 
-      // 计算二级菜单的ref
+      // 计算二级导航的ref
       computeNavContentUlRef(index) {
         return 'navContentUl' + index
       },
 
-      // 获取相应子级菜单
-      getChildrenNavContentUl(index) {
-        return this.$refs['navContentUl' + index][0]
-      },
-
       // 一、二级菜单mouseenter/mouseleave分别弹出隐藏二级菜单
-      mouseenterNavContentUl(el) {
-        return el.style.display = 'block'
+      mouseenterNavContentUl(index) {
+        return this.navContentUlInOut[index] = false
+        //  this.navContentUlInOut
       },
-      mouseleaveNavContentUl(el) {
-        return el.style.display = 'none'
+      mouseleaveNavContentUl(index) {
+        return this.navContentUlInOut[index] = true
+        //  this.navContentUlInOut
       },
 
       // 更多点击事件
       moreNavContentUl(event){
-
-        this.$refs.navContentAs.children[0].style.top= -this.navContentAPosition*52 + 'px'
-
         if(this.navContentAPosition) {
           this.navContentAPosition = false
 
         } else {
           this.navContentAPosition = true
-          console.log(this.$refs.navContentAs.children[0])
         }
-
-        // function showPics(index) {
-        //   // var nowTop = -index*52;
-        //   // $aWrap.children('div').stop(true,false).animate({"top":nowTop},300);
-        //   //     if(index === 0) {
-        //   //         index ===1;
-        //   //     } else {
-        //   //         index ===0;
-        //   //     }
-        //   //     return index;
-        // }
       }
     }
   }
@@ -122,9 +149,17 @@
 <style>
   .navContentaWrapTop {
     transition: top .5s;
+    top: 0px;
   }
   .navContentaWrapBottom {
     transition: top .5s;
+    top: -52px;
   }
+
+  .navContentUl {
+    display: none;
+  }
+
+
 </style>
 

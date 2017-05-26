@@ -1,0 +1,222 @@
+@import './core/var';
+
+/*站内信内容*/
+.stationMail {
+    background: #FFF;
+    width: 280px;
+    height: 100%;
+    min-height: 538px;
+    position: absolute;
+    top: 50px;
+    right: -280px;
+    z-index: 11;
+    box-shadow: 0px 0 10px 0 #ccc;
+
+    .tit-button {
+        font-size: 0;
+        text-align: center;
+        padding: 18px 0;
+
+        span {
+            cursor: pointer;
+            display: inline-block;
+            width: 120px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 14px;
+
+            &.left {
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+            }
+
+            &.right {
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+
+            &.on {
+                border: 1px solid $color-green;
+                background: $color-green;
+                color: #FFF;
+            }
+
+            &.off {
+                border: 1px solid $color-btn-border-grey;
+                background: #fafafa;
+                color: $color-font-grey;
+            }
+        }
+    }
+
+    .con-Wrap {
+
+        span.fa-spinner {
+            display: block;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            font-size: 25px;
+            line-height: 25px;
+            margin: 0 auto;
+            color: $color-green;
+        }
+
+        .stationMail-loading {
+            padding-top: 100px;
+        }
+
+        .cw-con {
+            height: 416px;
+
+
+            p.tips {
+                text-align: center;
+                line-height: 200px;
+                color: $color-font-grey;
+            }
+
+            .con-li {
+                cursor: pointer;
+                padding: 15px 20px;
+                position: relative;
+                display:  block;
+                text-decoration: none;
+
+                &:hover {
+                    background: #fafafa;
+
+                    .con-text {
+                        color: $color-green;
+                    }
+                }
+
+               .remind {
+                    position: absolute;
+                    display: inline-block;
+                    height: 6px;
+                    width: 6px;
+                    border-radius: 6px;
+                    box-shadow: 0 0 5px 0px $color-green;
+                    background: $color-green;
+                    left: 8px;
+                    top: 23px;
+                }
+
+                .con-text{
+                    color: #39414d;
+                    display: block;
+                    font-size: 14px;
+                    padding-right: 10px;
+                    margin: 0 0 10px 0;
+                    line-height: 22px;
+                    height: 44px;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+
+                    a {
+                        color: #39414d;
+                        text-decoration: none;
+
+                        // &:hover,
+                        // &:active {
+                        //     color: $color-green;
+                        // }
+                    }
+                }
+
+                .con-bottom{
+                    display: block;
+                    height: 20px;
+
+                    &:after,
+                    &:before {
+                        content: '';
+                        display: table;
+                        clear: both;
+                    }
+
+                    span.date {
+                        float: left;
+                        color: $color-green;
+                        font-size: 13px;
+                        display: inline-block;
+                        line-height: 22px;
+                    }
+
+                    button {
+                        float: right;
+                        color: $color-green;
+                        font-size: 13px;
+                        border: none;
+                        background: inherit;
+                        outline: none;
+                    }
+                }
+
+            }
+        }
+    }
+
+    .cw-bottom {
+        padding: 10px 20px;
+
+        &:after,
+        &:before {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        .aChange {
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            display: none;
+
+            a {
+                font-size: 13px;
+                color: $color-font-grey;
+
+                &:hover,
+                &:active {
+                    color: $color-green;
+                }
+            }
+        }
+
+        .pageChange {
+            float: right;
+            font-size: 0;
+            height: 30px;
+
+            button {
+                background: inherit;
+                border: none;
+                color: #ccc;
+                display: inline-block;
+                height: 30px;
+                outline: 0;
+                padding: 9px 7px 5px 7px;
+                vertical-align: middle;
+                width: 30px;
+
+                &:hover,
+                &:active {
+                    color: $color-green;
+                }
+
+                i.fa {
+                    color: inherit;
+                    font-size: 16px;
+                    width: 16px;
+                    height: 16px;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}

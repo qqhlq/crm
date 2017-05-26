@@ -13,6 +13,7 @@ import api from './plugins/api'
 import formater from './plugins/formater'
 import verifier from './plugins/verifier'
 import BHeader from './components/header'
+import BStationMail from './components/stationMail'
 import BTreeDrop from './components/treeDrop'
 import BTable from './components/table'
 import BLoadSelect from './components/loadSelect'
@@ -25,6 +26,7 @@ Vue.use(api)
 Vue.use(formater)
 Vue.use(verifier)
 Vue.use(BHeader)
+Vue.use(BStationMail)
 Vue.use(BTreeDrop)
 Vue.use(BTable)
 Vue.use(BLoadSelect)

@@ -30,7 +30,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '**/*.do': {
-        target: 'http://dev-b.wesdom.cc',
+        target: 'http://dev-b.wesdom.cc/',
         changeOrigin: true
       }
 

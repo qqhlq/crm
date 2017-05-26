@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <b-header></b-header>
+    <b-station-mail></b-station-mail>
     <div class="w-wrapper">
       <router-view class="w-content"></router-view>
     </div>
@@ -17,9 +18,18 @@
     },
     methods: {
       ...mapActions([
-      ])
+      ]),
+
+      getBacklogs() {
+        this.$wGet('/admin/letter/backlog.do',{page: 1}).then(data => {
+          console.log(data)
+        })
+        // console.log('a')
+      }
+
     },
     mounted() {
+
     }
   }
 </script>
@@ -34,6 +44,7 @@
     font-family: "Microsoft Yahei", "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 0;
     position: relative;
+    overflow: hidden;
   }
   ul {
     list-style: none;
