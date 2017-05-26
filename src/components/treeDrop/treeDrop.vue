@@ -1,4 +1,4 @@
-<<template>
+<template>
   <div class="tree-drop-down-box">
       <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick" show-checkbox></el-tree>
     <div class="buttons">

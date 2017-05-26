@@ -50,7 +50,6 @@
         this.$wGet('/admin/letter/backlog.do',{page: 1}).then(data => {
           console.log(data)
         })
-        // console.log('a')
       }
 
     },

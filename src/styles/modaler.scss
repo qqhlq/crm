@@ -1,0 +1,76 @@
+@import './core/var';
+.bmodaler-wrap {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+
+    .bmodaler-bak {
+      background: #000;
+      z-index: 10000;
+      top: 0;
+      left: 0;
+      opacity: .5;
+      width: 100%;
+      height: 100%;
+    }
+
+    .bmodaler-box-wrap {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      top: 0;
+      left: 0;
+      z-index: 10001;
+      text-align: center;
+
+      &:before {
+        content: '';
+        width: 0;
+        height: 100%;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
+    .bmodaler-box {
+      background: #FFF;
+      border-radius: 4px;
+      display: inline-block;
+      text-align: left;
+      vertical-align: middle;
+      width: 560px;
+      padding: 30px 50px;
+      position: relative;
+
+      .bmodaler-header {
+        .bmodaler-title {
+          color: $color-green;
+        }
+
+        .bmmodaler-close {
+          cursor: pointer;
+          position: absolute;
+          display: inline-block;
+          top: 0;
+          right: 0;
+          height: 50px;
+          line-height: 50px;
+          width: 50px;
+          text-align: center;
+          color:  rgba(0,0,0,0.30);
+
+          &:hover {
+            color: $color-green;
+          }
+
+          i {
+            font-size: 14px;
+          }
+
+        }
+      }
+    }
+}

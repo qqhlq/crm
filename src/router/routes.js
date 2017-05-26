@@ -1,6 +1,7 @@
 import Group from 'views/group'
 import Indexv from 'views/indexv'
 import BProcessBar from 'components/processBar'
+import BModaler from 'components/modaler'
 export default [
   {
     path: '/group',
@@ -16,5 +17,10 @@ export default [
     path: '/processbar',
     name: 'BProcessBar',
     component: BProcessBar
+  },
+  {
+    path: '/modaler',
+    name: 'BModaler',
+    component: BModaler
   }
 ]

@@ -2,6 +2,10 @@
   <div id="app">
     <b-header></b-header>
     <b-station-mail></b-station-mail>
+    <b-process-bar :active="3"></b-process-bar>
+    <b-modaler>
+      <b-complex-drop></b-complex-drop>
+    </b-modaler>
     <div class="w-wrapper">
       <router-view class="w-content"></router-view>
     </div>
@@ -24,7 +28,6 @@
         this.$wGet('/admin/letter/backlog.do',{page: 1}).then(data => {
           console.log(data)
         })
-        // console.log('a')
       }
 
     },

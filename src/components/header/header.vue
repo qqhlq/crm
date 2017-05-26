@@ -1,47 +1,47 @@
 <template>
   <header class="boss-navbar">
     <div class="wrap">
-        <a class="logo" href="/index">
-            <img src="../../assets/login-logo@2x.png">
-        </a>
-        <div class="nav">
-            <div class="navIndex navContentOut"><a href="/index">首页</a></div>
-            <div class="navContent" id="navContent">
-              <div class="navContent-a" ref="navContentAs">
-                  <div :class="navContentAPosition ? 'navContentaWrapTop' : 'navContentaWrapBottom'">
-                    <div v-for="(menu,index) in data.data.menus">
-                      <a @mouseenter="mouseenterNavContentUl(index)" @mouseleave="mouseleaveNavContentUl(index)" href="javascript:void(0);">{{menu.label}}</a>
-                    </div>
-                  </div>
-              </div>
-              <div class="navContent-ul">
-                <div v-for="(menu,index) in data.data.menus" @mouseenter="mouseenterNavContentUl(index)" @mouseleave="mouseleaveNavContentUl(index)" :class="{navContentUl: computeBoolean(index)} " :style="computeNavContentUlStyle(index)" :ref="computeNavContentUlRef(index)">
-                    <ul>
-                      <li v-for="child in menu.children">
-                        <a :href="child.url">{{child.label}}</a>
-                      </li>
-                    </ul>
+      <a class="logo" href="/index">
+        <img src="../../assets/login-logo@2x.png">
+      </a>
+      <div class="nav">
+        <div class="navIndex navContentOut"><a href="/index">首页</a></div>
+          <div class="navContent">
+            <div class="navContent-a" ref="navContentAs">
+              <div :class="navContentAPosition ? 'navContentaWrapTop' : 'navContentaWrapBottom'">
+                <div v-for="(menu,index) in data.data.menus">
+                  <a @mouseenter="mouseenterNavContentUl(index)" @mouseleave="mouseleaveNavContentUl(index)" href="javascript:void(0);">{{menu.label}}</a>
                 </div>
               </div>
             </div>
-            <div class="more navContentOut" ref="navMore" @click="moreNavContentUl"><a href="javascript:void(0)">更多<span class="fa fa-angle-down"></span></a></div>
-            <div class="user" id="userInfo">
-              <a href="javascript:void(0);">
-                <span class='user-img'><img :src="data.data.userInfo.icon ? '../../assets/none.png' : data.data.userInfo.icon"></span>
-                {{data.data.userInfo.userName}}
-                <span class="fa fa-angle-down"></span>
-                <span class="fa new-message" id="newMessage" style="display: none">new</span>
-              </a>
-              <div>
+            <div class="navContent-ul">
+              <div v-for="(menu,index) in data.data.menus" @mouseenter="mouseenterNavContentUl(index)" @mouseleave="mouseleaveNavContentUl(index)" :class="{navContentUl: computeBoolean(index)} " :style="computeNavContentUlStyle(index)" :ref="computeNavContentUlRef(index)">
                 <ul>
-                  <li @click="nolyStationMailIn($event)"><span class="stationMail-news" id="stationMail-news" style="display: none"></span><a href="javascript:void(0)" id="station-mail-out">站内信</a></li>
-                  <li><a href="/boss/new/system/mail-list" id="addressBook">通讯录</a></li>
-                  <li><a href="javascript:void(0)" id="changePwd">修改密码</a></li>
-                  <li><a href="javascript:void(0)" id="logout">退出</a></li>
+                  <li v-for="child in menu.children">
+                    <a :href="child.url">{{child.label}}</a>
+                  </li>
                 </ul>
               </div>
             </div>
-        </div>
+          </div>
+          <div class="more navContentOut" ref="navMore" @click="moreNavContentUl"><a href="javascript:void(0)">更多<span class="fa fa-angle-down"></span></a></div>
+          <div class="user">
+            <a href="javascript:void(0);">
+              <span class='user-img'><img :src="data.data.userInfo.icon ? '../../assets/none.png' : data.data.userInfo.icon"></span>
+              {{data.data.userInfo.userName}}
+              <span class="fa fa-angle-down"></span>
+              <span class="fa new-message" style="display: none">new</span>
+            </a>
+            <div>
+              <ul>
+                <li @click="nolyStationMailIn($event)"><span class="stationMail-news" style="display: none"></span><a href="javascript:void(0)" id="station-mail-out">站内信</a></li>
+                <li><a href="/boss/new/system/mail-list">通讯录</a></li>
+                <li><a href="javascript:void(0)">修改密码</a></li>
+                <li><a href="javascript:void(0)">退出</a></li>
+              </ul>
+            </div>
+          </div>
+      </div>
     </div>
   </header>
 </template>

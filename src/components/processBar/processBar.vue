@@ -24,11 +24,14 @@
   export default {
     name: 'BProcessBar',
 
-    data() {
-      return {
-        active: 3
-      }
-    }
+    props: [
+      'active'
+    ]
+    // data() {
+    //   return {
+    //     active: 1
+    //   }
+    // }
   }
 </script>
 
