@@ -1,53 +1,15 @@
 <template>
-  <div :class=" ['el-autocomplete-label', `el-autocomplete-${this.headerType}`]">
-    <el-autocomplete
-      v-model="state4"
-      :fetch-suggestions="querySearchAsync"
-      :popper-class="`el-autocomplete-suggestion-${this.headerType}`"
-      :placeholder="this.placeholder"
-      @select="handleSelect"
-    >
-    </el-autocomplete>
+  <div :class="['b-load-select',`b-load-select-${this.headType}`]">
+    <input type="text" class="b-load-select-input">
   </div>
+
 </template>
 
 <script>
   export default {
     name: 'BLoadSelect',
-    data() {
-      return {
-        restaurants: [],
-        state4: '',
-        timeout:  null,
-      }
-    },
-    methods: {
-      loadAll() {
-        return this.moreItem
-      },
-      querySearchAsync(queryString, cb) {
-        let restaurants = this.restaurants
-        let results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants
-
-        clearTimeout(this.timeout)
-        this.timeout = setTimeout(() => {
-          cb(results)
-        }, 100)
-      },
-      createStateFilter(queryString) {
-        return (state) => {
-          return (state.value.indexOf(queryString.toLowerCase()) === 0)
-        }
-      },
-      handleSelect(item) {
-        this.$emit({
-          headerType: this.headerType,
-          headerValue: item.value
-        })
-      }
-    },
     props: {
-      headerType: {
+      headType: {
         type: String,
         default: ''
       },
@@ -55,13 +17,64 @@
         type: String,
         default: '请输入搜索内容'
       },
-      moreItem: {
+      searchList: {
         type: Array,
-        default: []
+        default: () => {
+          return []
+        }
       }
-    },
-    mounted() {
-      this.restaurants = this.loadAll()
     }
   }
 </script>
+
+<style lang="scss" scoped>
+  .b-load-select {
+    width: 100%;
+    background-color: #FFF;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,.2);
+    position: absolute;
+    padding: 10px;
+    top: 40px;
+    z-index: 999;
+  }
+  .b-load-select-input {
+    height: 32px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+    padding: 0 10px;
+
+    &:focus,&:hover {
+      border-color: #29CC29;
+    }
+  }
+  .b-load-select-product {
+    width: 256px;
+
+    input {
+      width: 236px;
+    }
+  }
+  .b-load-select-ower {
+    width: 256px;
+
+    input {
+      width: 236px;
+    }
+  }
+  .b-load-select-trade {
+    width: 160px;
+
+    input {
+      width: 140px;
+    }
+  }
+  .b-load-select-city {
+    width: 160px;
+
+    input {
+      width: 140px;
+    }
+  }
+
+</style>

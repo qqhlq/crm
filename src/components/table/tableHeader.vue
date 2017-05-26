@@ -1,4 +1,4 @@
-</<template>
+<template>
   <div class="table-header">
       <ul v-if="tableType === 0 && tableState === 1">
           <li>
