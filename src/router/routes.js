@@ -1,5 +1,6 @@
 import Group from 'views/group'
 import Indexv from 'views/indexv'
+import Open from 'views/open'
 export default [
   {
     path: '/group',
@@ -10,5 +11,10 @@ export default [
     path: '/index',
     name: 'Indexv',
     component: Indexv
+  },
+  {
+    path: '/open',
+    name: 'Open',
+    component: Open
   }
 ]

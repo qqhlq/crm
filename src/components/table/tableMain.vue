@@ -1,11 +1,13 @@
 <template>
   <el-table
     :data="tableData4"
-    border
     style="width: 100%"
     max-height="250">
+     <el-table-column
+      type="selection"
+      width="55">
+    </el-table-column>
     <el-table-column
-      fixed
       prop="date"
       label="日期"
       width="150">
@@ -34,19 +36,6 @@
       prop="zip"
       label="邮编"
       width="120">
-    </el-table-column>
-    <el-table-column
-      fixed="right"
-      label="操作"
-      width="120">
-      <template scope="scope">
-        <el-button
-          @click.native.prevent="deleteRow(scope.$index, tableData4)"
-          type="text"
-          size="small">
-          移除
-        </el-button>
-      </template>
     </el-table-column>
   </el-table>
 </template>

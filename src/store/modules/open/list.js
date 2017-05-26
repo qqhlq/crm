@@ -55,6 +55,10 @@ let actions = {
    */
   async tableSelectChange({ commit }, payload) {
     commit(types.OPEN_TABLE_LIST_SELECT_CHANGE, payload)
+  },
+
+  async getList({ commit }, param) {
+    return await Vue.wGet('/admin/letter/backlog.do', param)
   }
 
 }

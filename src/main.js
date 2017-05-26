@@ -15,6 +15,7 @@ import verifier from './plugins/verifier'
 import BHeader from './components/header'
 import BTreeDrop from './components/treeDrop'
 import BTable from './components/table'
+import BLoadSelect from './components/loadSelect'
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -26,6 +27,7 @@ Vue.use(verifier)
 Vue.use(BHeader)
 Vue.use(BTreeDrop)
 Vue.use(BTable)
+Vue.use(BLoadSelect)
 
 new Vue({
   el: '#app',
