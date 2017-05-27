@@ -60,7 +60,7 @@
         }
       })
 
-      this.getBacklogs()
+      // this.getBacklogs()
     },
     computed: {
       ...mapGetters({

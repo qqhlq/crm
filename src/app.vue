@@ -4,7 +4,7 @@
     <b-station-mail></b-station-mail>
     <b-process-bar :active="3"></b-process-bar>
     <b-modaler>
-      <b-complex-drop></b-complex-drop>
+      <b-complex-drop style="width: 460px;"></b-complex-drop>
     </b-modaler>
     <div class="w-wrapper">
       <router-view class="w-content"></router-view>

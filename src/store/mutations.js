@@ -7,7 +7,6 @@ export default {
    * @param {Object} payload 表格类型
    */
   [types.IS_STATIONMAIL_OUT](state, payload) {
-    console.log(state.isStationMailOut)
     state.isStationMailOut = payload.isStationMailOut
   },
 }
