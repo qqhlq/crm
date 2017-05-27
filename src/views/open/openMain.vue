@@ -55,7 +55,7 @@
         changeState: 'openList/changeState',
         changeTable: 'openList/changeTable',
         changeList: 'openList/changeList',
-        changeSelect: 'openList/changeSelect'
+        changeSelect: 'openList/changeSelect',
       }),
 
      /**
@@ -74,7 +74,7 @@
         this.changeList(key)
       },
 
-    /**
+     /**
       * 根据 表格中列表的选择框选中状态改变 更新选中状态列表
       * @param {Object}
       */
@@ -161,14 +161,28 @@
           <div class="b-table-data-picker">
             <span onClick={() => {
               this.changeState('date')
+              this.showDatePicker()
             }}>最新动态时间</span><i class="fa fa-caret-down"></i>
             <b-date-picker
               v-show={this.tableHead.date.show}
               list= {this.tableHead.date}
+              onChangeState={() => {
+                this.changeState('data')
+              }}
               >
             </b-date-picker>
           </div>
         )
+      },
+
+      // 显示时间选择器
+      showDatePicker() {
+        setTimeout(()=> {
+          let ele = document.getElementsByClassName('el-date-editor')[0].getElementsByTagName('input')[0]
+          if(this.tableHead.date.show === true) {
+            ele.focus()
+          }
+        },10)
       }
     }
   }

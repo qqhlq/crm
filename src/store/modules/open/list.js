@@ -142,6 +142,7 @@ let state = {
       ],
       head: 'product',
       select: false,
+      value: '',
       key: ''
     },
     ower: {
@@ -200,6 +201,7 @@ let state = {
       ],
       head: 'ower',
       select: false,
+      value: '',
       key: ''
     },
     trade: {
@@ -258,6 +260,7 @@ let state = {
       ],
       head: 'trade',
       select: false,
+      value: '',
       key: ''
     },
     city: {
@@ -316,11 +319,49 @@ let state = {
       ],
       head: 'city',
       select: false,
+      value: '',
       key: ''
     },
     date: {
       show: false,
-      value: ''
+      value: '',
+      pickerOptions: {
+        shortcuts: [
+          {
+            text: '最近一周',
+            onClick(picker) {
+              const end = new Date()
+              const start = new Date()
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+              picker.$emit('pick', [start, end])
+            }
+          },
+          {
+            text: '最近一个月',
+            onClick(picker) {
+              const end = new Date()
+              const start = new Date()
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+              picker.$emit('pick', [start, end])
+            }
+          },
+          {
+            text: '最近三个月',
+            onClick(picker) {
+              const end = new Date()
+              const start = new Date()
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+              picker.$emit('pick', [start, end])
+            }
+          },
+          {
+            text: '清空',
+            onClick(picker) {
+              picker.$emit('pick', '')
+            }
+          }
+        ]
+      }
     }
   }
 }
@@ -386,6 +427,10 @@ let actions = {
    */
   async changeList({ commit }, param) {
     commit(types.OPEN_TABLE_HEAD_LIST_CHANGE, param)
+  },
+
+  async getList({ commit }, param) {
+    return await Vue.wGet('/admin/letter/backlog.do', {page: 1})
   }
 }
 
