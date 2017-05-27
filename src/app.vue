@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <b-header></b-header>
+    <b-crumbs :is-two-level="true"></b-crumbs>
     <b-station-mail></b-station-mail>
     <b-process-bar :active="3"></b-process-bar>
     <b-modaler>

@@ -20,6 +20,8 @@ import BProcessBar from './components/processBar'
 import BComplexDrop from './components/complexDrop'
 import BModaler from './components/modaler'
 import BLoadSelect from './components/loadSelect'
+import BDatePicker from './components/datePicker'
+import BCrumbs from './components/crumbs'
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -36,6 +38,8 @@ Vue.use(BProcessBar)
 Vue.use(BComplexDrop)
 Vue.use(BModaler)
 Vue.use(BLoadSelect)
+Vue.use(BDatePicker)
+Vue.use(BCrumbs)
 
 new Vue({
   el: '#app',

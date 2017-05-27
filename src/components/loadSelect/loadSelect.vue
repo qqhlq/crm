@@ -1,67 +1,37 @@
 <template>
-  <div :class=" ['el-autocomplete-label', `el-autocomplete-${this.headerType}`]">
-    <el-autocomplete
-      v-model="state4"
-      :fetch-suggestions="querySearchAsync"
-      :popper-class="`el-autocomplete-suggestion-${this.headerType}`"
-      :placeholder="this.placeholder"
-      @select="handleSelect"
-    >
-    </el-autocomplete>
+  <div :class="['b-load-select',`b-load-select-${list.head}`]">
+    <input type="text" class="b-load-select-input" v-model="list.key" @focus="getList" @keyup="getList">
+    <ul class="b-load-select-list" v-if="list.searchList.length === 0">
+      <li class="b-load-select-empty">
+        查无此客户
+      </li>
+    </ul>
+    <ul class="b-load-select-list" v-else>
+      <li v-for="item in list.searchList" @click="getChoose">
+          {{item.value}}
+      </li>
+    </ul>
   </div>
+
 </template>
 
 <script>
+
   export default {
     name: 'BLoadSelect',
-    data() {
-      return {
-        restaurants: [],
-        state4: '',
-        timeout:  null,
+    props: {
+      list: {
+        type: Object,
+        default: {}
       }
     },
     methods: {
-      loadAll() {
-        return this.moreItem
+      getChoose() {
+        this.$emit('pushTable',this.list)
       },
-      querySearchAsync(queryString, cb) {
-        let restaurants = this.restaurants
-        let results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants
-
-        clearTimeout(this.timeout)
-        this.timeout = setTimeout(() => {
-          cb(results)
-        }, 100)
-      },
-      createStateFilter(queryString) {
-        return (state) => {
-          return (state.value.indexOf(queryString.toLowerCase()) === 0)
-        }
-      },
-      handleSelect(item) {
-        this.$emit({
-          headerType: this.headerType,
-          headerValue: item.value
-        })
+      getList() {
+        this.$emit('pushList',this.list)
       }
-    },
-    props: {
-      headerType: {
-        type: String,
-        default: ''
-      },
-      placeholder: {
-        type: String,
-        default: '请输入搜索内容'
-      },
-      moreItem: {
-        type: Array,
-        default: []
-      }
-    },
-    mounted() {
-      this.restaurants = this.loadAll()
     }
   }
 </script>

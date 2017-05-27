@@ -6,41 +6,55 @@
       </a>
       <div class="nav">
         <div class="navIndex navContentOut"><a href="/index">首页</a></div>
-          <div class="navContent" v-if="Boolean(data.data)">
-            <div class="navContent-a" ref="navContentAs">
-              <div :class="navContentAPosition ? 'navContentaWrapTop' : 'navContentaWrapBottom'">
-                <div v-for="(menu,index) in data.data.menus">
-                  <a @mouseenter="mouseenterNavContentUl(index)" @mouseleave="mouseleaveNavContentUl(index)" href="javascript:void(0);">{{menu.label}}</a>
-                </div>
-              </div>
-            </div>
-            <div class="navContent-ul">
-              <div v-if="Boolean(data.data)" v-for="(menu,index) in data.data.menus" @mouseenter="mouseenterNavContentUl(index)" @mouseleave="mouseleaveNavContentUl(index)" :class="{navContentUl: computeBoolean(index)} " :style="computeNavContentUlStyle(index)" :ref="computeNavContentUlRef(index)">
-                <ul>
-                  <li v-for="child in menu.children">
-                    <a :href="child.url">{{child.label}}</a>
-                  </li>
-                </ul>
+        <div class="navContent" v-if="Boolean(menusData.data)">
+          <div class="navContent-a" ref="navContentAs">
+            <div :class="navContentAPosition ? 'navContentaWrapTop' : 'navContentaWrapBottom'">
+              <div v-for="(menu,index) in menusData.data.menus">
+                <a @mouseenter="mouseenterNavContentUl(index)" @mouseleave="mouseleaveNavContentUl(index)" href="javascript:void(0);">{{menu.label}}</a>
               </div>
             </div>
           </div>
-          <div class="more navContentOut" ref="navMore" @click="moreNavContentUl"><a href="javascript:void(0)">更多<span class="fa fa-angle-down"></span></a></div>
-          <div class="user">
-            <a href="javascript:void(0);"  v-if="Boolean(data.data)" >
-              <span class='user-img'><img :src="data.data.userInfo.icon ? '../../assets/none.png' : data.data.userInfo.icon"></span>
-              {{data.data.userInfo.userName}}
-              <span class="fa fa-angle-down"></span>
-              <span class="fa new-message" style="display: none">new</span>
-            </a>
-            <div>
+          <div class="navContent-ul">
+            <div
+              v-for="(menu,index) in menusData.data.menus"
+              @mouseenter="mouseenterNavContentUl(index)"
+              @mouseleave="mouseleaveNavContentUl(index)"
+              :class="{navHidden: computeBoolean(index)} "
+              :style="computeNavContentUlStyle(index)"
+              :ref="computeNavContentUlRef(index)">
               <ul>
-                <li @click="nolyStationMailIn($event)"><span class="stationMail-news" style="display: none"></span><a href="javascript:void(0)" id="station-mail-out">站内信</a></li>
-                <li><a href="/boss/new/system/mail-list">通讯录</a></li>
-                <li><a href="javascript:void(0)">修改密码</a></li>
-                <li><a href="javascript:void(0)">退出</a></li>
+                <li v-for="child in menu.children">
+                  <a :href="child.url">{{child.label}}</a>
+                </li>
               </ul>
             </div>
           </div>
+        </div>
+        <div
+          class="more navContentOut"
+          :class="{navHidden2: !hasmore}"
+          ref="navMore"
+          @click="moreNavContentUl">
+          <a href="javascript:void(0)">
+            更多<span class="fa fa-angle-down"></span>
+          </a>
+        </div>
+        <div class="user">
+          <a href="javascript:void(0);" v-if="Boolean(menusData.data)" >
+            <span class='user-img'><img :src="menusData.data.userInfo.icon ? '../../assets/none.png' : menusData.data.userInfo.icon"></span>
+            {{menusData.data.userInfo.userName}}
+            <span class="fa fa-angle-down"></span>
+            <span class="fa new-message" style="display: none">new</span>
+          </a>
+          <div>
+            <ul>
+              <li @click="nolyStationMailIn($event)"><span class="stationMail-news" style="display: none"></span><a href="javascript:void(0)" id="station-mail-out">站内信</a></li>
+              <li><a href="/boss/new/system/mail-list">通讯录</a></li>
+              <li><a href="javascript:void(0)">修改密码</a></li>
+              <li><a href="javascript:void(0)">退出</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -50,33 +64,46 @@
 
   export default {
     name: 'BHeader',
+
     data() {
       return {
-        // 导航假数据
-        data: {},
 
         // 一级导航位置(true:1-6一级菜单,false:7-12一级菜单)
         navContentAPosition: true,
 
         // 二级导航是否显示 true：显示， false：不显示
-        navContentUlInOut: {}
+        navContentUlInOut: {},
+
+        // 是否显示更多
+        hasmore: true
       }
     },
+
+    computed: {
+      ...mapGetters({
+        menusData: 'groupList/data'
+      })
+    },
+
     mounted () {
-      // 导航少于等于六个，隐藏更多按钮
-      if(Boolean(this.data.data)) {
-        if(this.data.data.menus.length >= 6) {
-          this.$refs.navMore.style.visibility = 'visible'
+
+      // 隐藏所有二级菜单
+      let newnavContentUlInOut ={}
+      console.log(this.menusData)
+      if(Boolean(this.menusData.data)) {
+        for(var i in this.menusData.data.menus) {
+          newnavContentUlInOut[i] = true
         }
       }
+      console.log(this.navContentUlInOut)
+      this.navContentUlInOut = newnavContentUlInOut
+      console.log(this.navContentUlInOut)
+
     },
+
     created () {
       // 获取导航数据
-      this.data = this.getList()
-      // ({url: this.$route.path})
-      console.log(this.data)
-      // 隐藏所有二级导航
-      this.navContentUlInOut = this.navContentUlAllIn()
+      this.getMenusList({url: this.$route.path})
     },
 
     methods: {
@@ -85,7 +112,7 @@
         stationMailIn: 'stationMailIn',
 
         // 获取导航和当前页面权限
-        getList: 'openList/getList'
+        getMenusList: 'groupList/getMenusList'
       }),
 
       // 打开站内信，避免冒泡
@@ -101,13 +128,13 @@
 
       // 隐藏所有二级导航
       navContentUlAllIn() {
-        let aaa = {}
+        let NavContentUlAllIn = {}
         if(Boolean(this.data.data)) {
           for(var i in this.data.data.menus) {
-            aaa[i] = true
+            NavContentUlAllIn[i] = true
           }
         }
-        return aaa
+        return NavContentUlAllIn
       },
 
       // 计算二级导航样式
@@ -153,8 +180,11 @@
     top: -52px;
   }
 
-  .navContentUl {
+  .navHidden {
     display: none;
+  }
+  .navHidden2 {
+    visibility: none;
   }
 
 

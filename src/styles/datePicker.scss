@@ -1,0 +1,10 @@
+.b-table-data-picker {
+  position: relative;
+  z-index: 9999;
+
+  .el-date-editor {
+    position: absolute;
+    top: 42px;
+    left: 0px;
+  }
+}
