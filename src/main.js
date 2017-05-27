@@ -17,6 +17,7 @@ import BStationMail from './components/stationMail'
 import BTreeDrop from './components/treeDrop'
 import BTable from './components/table'
 import BLoadSelect from './components/loadSelect'
+import BDatePicker from './components/datePicker'
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -30,6 +31,7 @@ Vue.use(BStationMail)
 Vue.use(BTreeDrop)
 Vue.use(BTable)
 Vue.use(BLoadSelect)
+Vue.use(BDatePicker)
 
 new Vue({
   el: '#app',

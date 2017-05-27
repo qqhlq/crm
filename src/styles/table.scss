@@ -3,7 +3,7 @@
   height: 80px;
   margin: 0 auto;
   background: #fff;
-  font-weight: 300;
+  font-weight: 400;
 
   th {
     &>div {
@@ -68,10 +68,13 @@
   .cell {
     background: inherit;
     font-weight: 300;
+    padding-left: 0px;
   }
 
   .el-table-column--selection {
-    padding-left: 20px;
+    .cell {
+      padding: 0 10px 0 30px;
+    }
   }
 
   .el-checkbox__inner {
@@ -98,7 +101,7 @@
       border-color: #25c526;
     }
   }
-  .el-table-load-select {
+  .b-table-load-select {
     position: relative;
 
     span {
@@ -108,23 +111,6 @@
     &>i.fa {
       color: #525666;
       margin-left: 6px;
-    }
-
-    .el-autocomplete-label{
-      position: absolute;
-      top: 40px;
-      left: -35px;
-      z-index: 9999;
-    }
-    .el-autocomplete {
-      width: 100%;
-      padding: 10px;
-      box-shadow: 0 0 6px 0 rgba(0,0,0,.2);
-      box-sizing: content-box !important;
-      background-color: #fff !important;
-    }
-    .el-autocomplete-focus {
-      box-shadow: inherit !important;
     }
   }
   .el-input__inner {
@@ -144,34 +130,10 @@
     }
   }
 }
-.el-autocomplete-suggestion {
-  top: 168px !important;
-  box-shadow: 0 0 6px 0 rgba(0,0,0,.2);
-  padding: 50px 0px 0px;
-  background: #fff;
-
-  div {
-    box-sizing: content-box !important;
+td.el-table_1_column_3,
+td.el-table_1_column_4,
+td.el-table_1_column_5 {
+  .cell {
+    color: #999;
   }
-
-  li {
-    padding-left: 18px;
-    &:hover {
-      background-color: #FAFAFA;
-
-    }
-  }
-  .el-scrollbar__bar.is-vertical {
-  right:10px !important;
-}
-}
-.el-autocomplete-suggestion__wrap {
-  border: none;
-}
-.el-autocomplete-product {
-  width: 236px;
-}
-
-.el-autocomplete-suggestion-product {
-  width: 256px !important;
 }

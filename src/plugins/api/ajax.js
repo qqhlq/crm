@@ -41,7 +41,7 @@ plugin.install = Vue => {
   /**
    * http POST
    * @param {String} uri 请求链接
-   * @param {Object} param 请求参数
+   * @param {Object} params 请求参数
    * @param {Function} prev 返回数据预处理函数
    */
   Vue.prototype.$wPost = (uri, params, prev = data => data) => {
@@ -75,15 +75,40 @@ plugin.install = Vue => {
  * @returns {Boolean} true：通过处理，执行回调，false：没通过处理，执行特定步骤，不执行回调
  */
 function verify(response) {
-  if (response.code === 200) {
+  if (response.code >= 200 && response.code <= 299) {
     return true
   }
   switch (response.code) {
-    case -100:
-      location.href = '/login'
+    case 100:
+      location.href = '/wdsp/website/index'
+      break
+    case 101:
+      ElementUI.Message('当前无权限访问该页面')
+      break
+    case 300:
+      location.href = response.data
+      break
+    case 301:
+      ElementUI.MessageBox.alert(response.message, '系统提示', {
+        confirmButtonText: '确定',
+        callback(action) {
+          if (action === 'confirm') {
+            location.href = response.data
+          }
+        }
+      })
+      break
+    case 400:
+      ElementUI.Message(response.message)
+      break
+    case 500:
+      ElementUI.Message('服务器异常')
+      break
+    case 501:
+      ElementUI.Message('服务器停机维护')
       break
     default:
-      ElementUI.Message(response.message)
+      ElementUI.Message('当前服务器返回了一个未定义的状态码')
       break
   }
   return false
