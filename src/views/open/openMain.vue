@@ -1,6 +1,6 @@
 <template>
   <div class="open-table">
-    <el-table :data="data" style="width: 100%" max-height="600">
+    <el-table :data="data" style="width: 100%" max-height="600" @select="pushSelect">
       <el-table-column
         type="selection"
         width="55px"
@@ -43,93 +43,130 @@
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
-    productName: 'BTableMain',
+    name: 'BOpenMain',
     computed: {
       ...mapGetters({
         data: 'openList/data',
-        serchList: 'openList/serchList',
         tableHead: 'openList/tableHead'
       })
     },
     methods: {
       ...mapActions({
-        changeState: 'openList/changeState'
+        changeState: 'openList/changeState',
+        changeTable: 'openList/changeTable',
+        changeList: 'openList/changeList',
+        changeSelect: 'openList/changeSelect'
       }),
+
+     /**
+      * 根据 选择下拉框选择的选项改变表格
+      * @param {Object} 表格头部对象 包括下拉框中的值
+      */
+      pushTable(key) {
+        this.changeTable(key)
+      },
+
+     /**
+      * 根据 选择下拉框输入的内容 获取 搜索列表
+      * @param {Object} 表格头部对象 包括下拉框中的值
+      */
+      pushList(key) {
+        this.changeList(key)
+      },
+
+    /**
+      * 根据 表格中列表的选择框选中状态改变 更新选中状态列表
+      * @param {Object}
+      */
+      pushSelect(x, y) {
+        console.log(x,y)
+      },
+
+      // 渲染 客户产品名表头信息
       renderProduct() {
         let self = this
         return (
-          <div class="el-table-load-select el-table-ower">
+          <div class="b-table-load-select">
             <span onClick={() => {
               this.changeState('product')
             }}>客户产品名</span><i class="fa fa-caret-down"></i>
             <b-load-select
-              placeholder={this.tableHead.product.placeholder}
-              width={this.tableHead.product.width}
-              head-type={'product'}
-              search-list={this.searchList}
               v-show={this.tableHead.product.show}
-              >
+              list={this.tableHead.product}
+              onPushTable={this.pushTable}
+              onPushList={this.pushList}>
             </b-load-select>
           </div>
         )
       },
+
+      // 渲染 客户所有人表头信息
       renderOwer() {
         let self = this
         return (
-          <div class="el-table-load-select el-table-product">
+          <div class="b-table-load-select">
             <span onClick={() => {
               this.changeState('ower')
             }}>客户所有人</span><i class="fa fa-caret-down"></i>
             <b-load-select
-              placeholder={this.tableHead.ower.placeholder}
-              width={this.tableHead.ower.width}
-              head-type={'ower'}
-              search-list={this.searchList}
-              v-show={this.tableHead.ower.show}>
+              v-show={this.tableHead.ower.show}
+              list={this.tableHead.ower}
+              onPushTable={this.pushTable}
+              onPushList={this.pushList}>
             </b-load-select>
           </div>
         )
       },
+
+      // 渲染 客户所属行业表头信息
       renderTrade() {
         let self = this
         return (
-          <div class="el-table-load-select el-table-trade">
+          <div class="b-table-load-select">
             <span onClick={() => {
               this.changeState('trade')
             }}>行业</span><i class="fa fa-caret-down"></i>
             <b-load-select
-              placeholder={this.tableHead.trade.placeholder}
-              head-type={'trade'}
-              search-list={this.searchList}
-              v-show={this.tableHead.trade.show}>
+              v-show={this.tableHead.trade.show}
+              list={this.tableHead.trade}
+              onPushTable={this.pushTable}
+              onPushList={this.pushList}>
             </b-load-select>
           </div>
         )
       },
+
+      // 渲染 客户所在城市表头信息
       renderCity() {
         let self = this
         return (
-          <div class="el-table-load-select el-table-cityName">
+          <div class="b-table-load-select">
             <span onClick={() => {
               this.changeState('city')
             }}>城市</span><i class="fa fa-caret-down"></i>
             <b-load-select
-              placeholder={this.tableHead.city.placeholder}
-              head-type={'city'}
-              search-list={this.searchList}
-              width={this.tableHead.city.width}
-              v-show={this.tableHead.city.show}>
+              v-show={this.tableHead.city.show}
+              list={this.tableHead.city}
+              onPushTable={this.pushTable}
+              onPushList={this.pushList}>
             </b-load-select>
           </div>
         )
       },
+
+      // 渲染 最新动态时间表头信息
       renderTime() {
         let self = this
         return (
-          <div class="el-table-load-select el-table-cityName">
+          <div class="b-table-data-picker">
             <span onClick={() => {
-              this.changeState('time')
+              this.changeState('date')
             }}>最新动态时间</span><i class="fa fa-caret-down"></i>
+            <b-date-picker
+              v-show={this.tableHead.date.show}
+              list= {this.tableHead.date}
+              >
+            </b-date-picker>
           </div>
         )
       }

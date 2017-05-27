@@ -1,80 +1,37 @@
 <template>
-  <div :class="['b-load-select',`b-load-select-${this.headType}`]">
-    <input type="text" class="b-load-select-input">
+  <div :class="['b-load-select',`b-load-select-${list.head}`]">
+    <input type="text" class="b-load-select-input" v-model="list.key" @focus="getList" @keyup="getList">
+    <ul class="b-load-select-list" v-if="list.searchList.length === 0">
+      <li class="b-load-select-empty">
+        查无此客户
+      </li>
+    </ul>
+    <ul class="b-load-select-list" v-else>
+      <li v-for="item in list.searchList" @click="getChoose">
+          {{item.value}}
+      </li>
+    </ul>
   </div>
 
 </template>
 
 <script>
+
   export default {
     name: 'BLoadSelect',
     props: {
-      headType: {
-        type: String,
-        default: ''
+      list: {
+        type: Object,
+        default: {}
+      }
+    },
+    methods: {
+      getChoose() {
+        this.$emit('pushTable',this.list)
       },
-      placeholder: {
-        type: String,
-        default: '请输入搜索内容'
-      },
-      searchList: {
-        type: Array,
-        default: () => {
-          return []
-        }
+      getList() {
+        this.$emit('pushList',this.list)
       }
     }
   }
 </script>
-
-<style lang="scss" scoped>
-  .b-load-select {
-    width: 100%;
-    background-color: #FFF;
-    box-shadow: 0 0 6px 0 rgba(0,0,0,.2);
-    position: absolute;
-    padding: 10px;
-    top: 40px;
-    z-index: 999;
-  }
-  .b-load-select-input {
-    height: 32px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    outline: none;
-    padding: 0 10px;
-
-    &:focus,&:hover {
-      border-color: #29CC29;
-    }
-  }
-  .b-load-select-product {
-    width: 256px;
-
-    input {
-      width: 236px;
-    }
-  }
-  .b-load-select-ower {
-    width: 256px;
-
-    input {
-      width: 236px;
-    }
-  }
-  .b-load-select-trade {
-    width: 160px;
-
-    input {
-      width: 140px;
-    }
-  }
-  .b-load-select-city {
-    width: 160px;
-
-    input {
-      width: 140px;
-    }
-  }
-
-</style>

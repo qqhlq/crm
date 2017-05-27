@@ -1,0 +1,97 @@
+.b-load-select {
+  width: 100%;
+  background-color: #FFF !important;
+  box-shadow: 0 0 6px 0 rgba(0,0,0,.2);
+  position: absolute;
+  top: 40px;
+  z-index: 999;
+  padding-right: 10px;
+}
+.b-load-select-input {
+  height: 32px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  outline: none;
+  padding: 0 10px;
+  margin: 10px;
+  color: #999;
+  font-size: 14px;
+  font-weight: 300;
+
+  &:focus,&:hover {
+    border-color: #29CC29;
+  }
+}
+.b-load-select-product {
+  width: 256px;
+
+  input {
+    width: 236px;
+  }
+}
+.b-load-select-ower {
+  width: 160px;
+
+  input {
+    width: 140px;
+  }
+}
+.b-load-select-trade {
+  width: 160px;
+
+  input {
+    width: 140px;
+  }
+}
+.b-load-select-city {
+  width: 160px;
+
+  input {
+    width: 140px;
+  }
+}
+
+.b-load-select-list {
+  width: 100%;
+  margin-top: 10px;
+  max-height: 252px;
+  overflow: scroll;
+
+  li {
+    padding-left: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:hover {
+      background: #FAFAFA;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #FFF;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: #ddd;
+    opacity: 0.99;
+  }
+}
+.b-load-select-empty {
+  text-align: center;
+  color: #999;
+
+  &:hover {
+    background-color: inherit !important;
+  }
+}

@@ -3,7 +3,7 @@
   height: 80px;
   margin: 0 auto;
   background: #fff;
-  font-weight: 300;
+  font-weight: 400;
 
   th {
     &>div {
@@ -101,7 +101,7 @@
       border-color: #25c526;
     }
   }
-  .el-table-load-select {
+  .b-table-load-select {
     position: relative;
 
     span {
@@ -128,5 +128,12 @@
     div {
       background-color: inherit;
     }
+  }
+}
+td.el-table_1_column_3,
+td.el-table_1_column_4,
+td.el-table_1_column_5 {
+  .cell {
+    color: #999;
   }
 }

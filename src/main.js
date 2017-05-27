@@ -16,6 +16,7 @@ import BHeader from './components/header'
 import BTreeDrop from './components/treeDrop'
 import BTable from './components/table'
 import BLoadSelect from './components/loadSelect'
+import BDatePicker from './components/datePicker'
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -28,6 +29,7 @@ Vue.use(BHeader)
 Vue.use(BTreeDrop)
 Vue.use(BTable)
 Vue.use(BLoadSelect)
+Vue.use(BDatePicker)
 
 new Vue({
   el: '#app',

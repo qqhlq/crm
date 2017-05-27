@@ -35,7 +35,7 @@
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
-    name: 'BTableHeader',
+    name: 'BOpenHeader',
     computed: {
       ...mapGetters({
         authority: 'openList/authority',
