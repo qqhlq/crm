@@ -1,6 +1,6 @@
 <template>
   <div class="open-table">
-    <el-table :data="data" style="width: 100%" max-height="600" @select="pushSelect">
+    <el-table :data="data" style="width: 100%" max-height="600" @selection-change="handleSelectionChange">
       <el-table-column
         type="selection"
         width="55px"
@@ -47,7 +47,8 @@
     computed: {
       ...mapGetters({
         data: 'openList/data',
-        tableHead: 'openList/tableHead'
+        tableHead: 'openList/tableHead',
+        choosed: 'openList/choosed'
       })
     },
     methods: {
@@ -56,6 +57,7 @@
         changeTable: 'openList/changeTable',
         changeList: 'openList/changeList',
         changeSelect: 'openList/changeSelect',
+        changeChoosed: 'openList/changeChoosed'
       }),
 
      /**
@@ -82,6 +84,14 @@
         console.log(x,y)
       },
 
+      handleSelectionChange(row) {
+        let temp = []
+        for(let item in row) {
+          temp.push(row[item].id)
+        }
+        this.changeChoosed(temp)
+      },
+
       // 渲染 客户产品名表头信息
       renderProduct() {
         let self = this
@@ -90,12 +100,14 @@
             <span onClick={() => {
               this.changeState('product')
             }}>客户产品名</span><i class="fa fa-caret-down"></i>
-            <b-load-select
-              v-show={this.tableHead.product.show}
-              list={this.tableHead.product}
-              onPushTable={this.pushTable}
-              onPushList={this.pushList}>
-            </b-load-select>
+            <transition name="el-zoom-in-top">
+              <b-load-select
+                v-show={this.tableHead.product.show}
+                list={this.tableHead.product}
+                onPushTable={this.pushTable}
+                onPushList={this.pushList}>
+              </b-load-select>
+            </transition>
           </div>
         )
       },
@@ -108,12 +120,14 @@
             <span onClick={() => {
               this.changeState('ower')
             }}>客户所有人</span><i class="fa fa-caret-down"></i>
-            <b-load-select
-              v-show={this.tableHead.ower.show}
-              list={this.tableHead.ower}
-              onPushTable={this.pushTable}
-              onPushList={this.pushList}>
-            </b-load-select>
+            <transition name="el-zoom-in-top">
+              <b-load-select
+                v-show={this.tableHead.ower.show}
+                list={this.tableHead.ower}
+                onPushTable={this.pushTable}
+                onPushList={this.pushList}>
+              </b-load-select>
+            </transition>
           </div>
         )
       },
@@ -126,12 +140,14 @@
             <span onClick={() => {
               this.changeState('trade')
             }}>行业</span><i class="fa fa-caret-down"></i>
-            <b-load-select
-              v-show={this.tableHead.trade.show}
-              list={this.tableHead.trade}
-              onPushTable={this.pushTable}
-              onPushList={this.pushList}>
-            </b-load-select>
+            <transition name="el-zoom-in-top">
+              <b-load-select
+                v-show={this.tableHead.trade.show}
+                list={this.tableHead.trade}
+                onPushTable={this.pushTable}
+                onPushList={this.pushList}>
+              </b-load-select>
+            </transition>
           </div>
         )
       },
@@ -144,12 +160,14 @@
             <span onClick={() => {
               this.changeState('city')
             }}>城市</span><i class="fa fa-caret-down"></i>
-            <b-load-select
-              v-show={this.tableHead.city.show}
-              list={this.tableHead.city}
-              onPushTable={this.pushTable}
-              onPushList={this.pushList}>
-            </b-load-select>
+            <transition name="el-zoom-in-top">
+              <b-load-select
+                v-show={this.tableHead.city.show}
+                list={this.tableHead.city}
+                onPushTable={this.pushTable}
+                onPushList={this.pushList}>
+              </b-load-select>
+            </transition>
           </div>
         )
       },
@@ -161,7 +179,6 @@
           <div class="b-table-data-picker">
             <span onClick={() => {
               this.changeState('date')
-              this.showDatePicker()
             }}>最新动态时间</span><i class="fa fa-caret-down"></i>
             <b-date-picker
               v-show={this.tableHead.date.show}
@@ -173,16 +190,6 @@
             </b-date-picker>
           </div>
         )
-      },
-
-      // 显示时间选择器
-      showDatePicker() {
-        setTimeout(()=> {
-          let ele = document.getElementsByClassName('el-date-editor')[0].getElementsByTagName('input')[0]
-          if(this.tableHead.date.show === true) {
-            ele.focus()
-          }
-        },10)
       }
     }
   }

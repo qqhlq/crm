@@ -9,29 +9,33 @@ let state = {
   // 头部选项状态
   state: 0,
   // 公海池下拉选项
-  options: [
-    {
-      value: 0,
-      label: '全部'
-    },
-    {
-      value: 1,
-      label: '销售组'
-    },
-    {
-      value: 2,
-      label: '渠道组'
-    },
-    {
-      value: 3,
-      label: '商务组'
-    }
-  ],
-  // 公海池下拉选项默认值
-  value: 0,
+  options: {
+    list: [
+      {
+        value: 0,
+        label: '全部'
+      },
+      {
+        value: 1,
+        label: '销售组'
+      },
+      {
+        value: 2,
+        label: '渠道组'
+      },
+      {
+        value: 3,
+        label: '商务组'
+      }
+    ],
+    show: false,
+    value: 0
+  },
+
   // 公海池 表格数据
   data: [
     {
+      id: 1,
       lastUpdatetime: '2016-05-03',
       name: '王小虎',
       tradeName: '上海',
@@ -39,6 +43,7 @@ let state = {
       lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
       owerName: 200333
     }, {
+      id: 2,
       lastUpdatetime: '2016-05-02',
       name: '王小虎',
       tradeName: '上海',
@@ -46,6 +51,7 @@ let state = {
       lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
       owerName: 200333
     }, {
+      id: 3,
       lastUpdatetime: '2016-05-04',
       name: '王小虎',
       tradeName: '上海',
@@ -53,6 +59,7 @@ let state = {
       lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
       owerName: 200333
     }, {
+      id: 4,
       lastUpdatetime: '2016-05-01',
       name: '王小虎',
       tradeName: '上海',
@@ -60,6 +67,7 @@ let state = {
       lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
       owerName: 200333
     }, {
+      id: 5,
       lastUpdatetime: '2016-05-08',
       name: '王小虎',
       tradeName: '上海',
@@ -67,6 +75,7 @@ let state = {
       lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
       owerName: 200333
     }, {
+      id: 6,
       lastUpdatetime: '2016-05-06',
       name: '王小虎',
       tradeName: '上海',
@@ -74,6 +83,7 @@ let state = {
       lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
       owerName: 200333
     }, {
+      id: 7,
       lastUpdatetime: '2016-05-07',
       name: '王小虎',
       tradeName: '上海',
@@ -84,6 +94,7 @@ let state = {
   ],
   // 页码
   page: 1,
+  totalPage: 8,
   // 公海池表格 表格头信息
   tableHead: {
     product: {
@@ -363,37 +374,54 @@ let state = {
         ]
       }
     }
-  }
+  },
+  choosed: []
 }
 
 let getters = {
   authority: state => state.authority,
   state: state => state.state,
   options: state => state.options,
-  value: state => state.value,
   data: state => state.data,
   page: state => state.page,
+  totalPage: state => state.totalPage,
   serchList: state => state.serchList,
   tableHead: state => state.tableHead,
+  choosed: state => state.choosed
 }
 
 let mutations = {
+
+  //  切换表格头附加项的显示与隐藏
   [types.OPEN_TABLE_HEAD_STATE_CHANGE](state, payload) {
-    for(let item in state.tableHead) {
-      if(payload === item) {
+    for (let item in state.tableHead) {
+      if (payload === item) {
         state.tableHead[item].show = !state.tableHead[item].show
-      }else {
+      } else {
         state.tableHead[item].show = false
       }
     }
   },
-  [types.OPEN_TABLE_HEAD_TABLE_CHANGE](state, param) {
-    let name = param.head
-    state.tableHead[name].show = false
-  },
+
+  // 根据附加项输入的值 改变附加項的搜索列表
   [types.OPEN_TABLE_HEAD_LIST_CHANGE](state, param) {
     let name = param.head
     state.tableHead[name].searchList = []
+  },
+
+  // 选择框的选择选项 改变纪录的已选择的选项列表
+  [types.OPEN_TABLE_CHOOSED_LIST_CHANGE](state, param) {
+    state.choosed = param
+  },
+
+  // 改变当前页数
+  [types.OPEN_TABLE_PAGE_CHANGE](state, param) {
+    state.page = param
+  },
+
+  // 改变表格
+  [types.OPEN_TABLE_CHANGE](state, param) {
+
   }
 }
 
@@ -407,6 +435,15 @@ let actions = {
    */
   async changeState({ commit }, payload) {
     commit(types.OPEN_TABLE_HEAD_STATE_CHANGE, payload)
+
+    if (payload === 'date') {
+      setTimeout(() => {
+        let ele = document.getElementsByClassName('el-date-editor')[0].getElementsByTagName('input')[0]
+        if (state.tableHead.date.show === true) {
+          ele.focus()
+        }
+      }, 0)
+    }
   },
 
   /**
@@ -416,7 +453,8 @@ let actions = {
    * @param {Object} param
    */
   async changeTable({ commit }, param) {
-    commit(types.OPEN_TABLE_HEAD_TABLE_CHANGE, param)
+    commit(types.OPEN_TABLE_HEAD_STATE_CHANGE, param)
+    commit(types.OPEN_TABLE_CHANGE)
   },
 
   /**
@@ -429,9 +467,30 @@ let actions = {
     commit(types.OPEN_TABLE_HEAD_LIST_CHANGE, param)
   },
 
-  async getList({ commit }, param) {
-    return await Vue.wGet('/admin/letter/backlog.do', {page: 1})
+  /**
+   * 改变纪录已勾选选择框的列表
+   *
+   * @param {Object} { commit }
+   * @param {Array} param
+   */
+  async changeChoosed({ commit }, param) {
+    commit(types.OPEN_TABLE_CHOOSED_LIST_CHANGE, param)
+  },
+
+  /**
+   * 改变当前页数
+   *
+   * @param {Object} { commit }
+   * @param {Number} param
+   */
+  async changePage({ commit }, param) {
+    commit(types.OPEN_TABLE_PAGE_CHANGE, param)
+    commit(types.OPEN_TABLE_CHANGE)
   }
+
+  /*  async getList({ commit }, param) {
+      return await Vue.wGet('/admin/letter/backlog.do', {page: 1})
+    }*/
 }
 
 export default {
