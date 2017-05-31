@@ -57,7 +57,7 @@
   }
 </script>
 
-<style>
+<style lang="scss" scoped>
   .colseDropTranstion {
     opacity: 0;
     transition: opacity .3s;

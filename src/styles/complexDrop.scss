@@ -1,5 +1,6 @@
 @import './core/var';
 .complexdrop {
+  position: relative;
 
   .complexdrop-input {
     width: 100%;
@@ -12,11 +13,17 @@
     font-family: inherit;
     font-size: 14px;
   }
+
+
   .comlexdropWrap{
-    position: relative;
+    display: none;
+    position: absolute;
     border: 1px solid #DDD;
     border-radius: 4px;
-    margin-top: 2px;
+    top: 42px;
+    left: 0;
+    background: #FFF;
+    z-index: 11;
 
     .complexdrop-content {
       border-bottom: 1px solid #DDD;
@@ -80,9 +87,9 @@
         }
       }
 
-
       .node-name {
         color: #999;
+        cursor: pointer;
         font-size: 14px;
         padding-left: 6px;
         vertical-align: middle;
@@ -91,12 +98,12 @@
       .child-node {
         cursor: pointer;
         display: inline-block;
-        margin-right: 40px;
+        margin-right: 39px;
+        min-width: 63px;
         margin-top: 6px;
       }
 
       .parent-node {
-        cursor: pointer;
         margin-top: 10px;
       }
 
@@ -104,6 +111,8 @@
       .open-clild {
 
         >.switch-clild {
+          cursor: pointer;
+
           .fa-plus {
             display: none;
           }
@@ -154,5 +163,57 @@
         font-family: inherit;
       }
     }
+  }
+
+  .complexdropCheckeds {
+    width: 460px;
+    overflow: hidden;
+    z-index: 10;
+
+    .items {
+      width: 480px;
+      font-size: 0;
+
+      span {
+        background: #E9FAE9;
+        border-radius: 4px;
+        color: $color-green;
+        display: inline-block;
+        height: 34px;
+        min-width: 100px;
+        margin-top: 8px;
+        margin-right: 20px;
+        padding: 7px 30px 7px 12px;
+        position: relative;
+        font-size: 14px;
+
+        &.unDel {
+          i {
+            display: none;
+          }
+        }
+
+        i {
+          cursor: pointer;
+          display: inline-block;
+          height: 20px;
+          line-height: 22px;
+          position: absolute;
+          right: 12px;
+          top: 7px;
+          text-align: center;
+          width: 20px;
+        }
+      }
+    }
+  }
+
+  .text-unChecked {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently not supported by any browser */
   }
 }
