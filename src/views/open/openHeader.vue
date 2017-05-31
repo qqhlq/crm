@@ -1,6 +1,6 @@
 <template>
   <div class="table-header">
-    <ul v-if="state === 1">
+    <ul v-if="choosed.length !== 0">
       <li>
         <i class="fa fa-mail-forward"></i>
         <span>领取</span>
@@ -14,17 +14,17 @@
         <span>删除</span>
       </li>
     </ul>
-    <div v-if="state === 0 && authority === 0" class="table-header-authority">
-        <el-select v-model="value" placeholder="请选择" @change="tableSelectChange">
+    <div v-if="choosed.length === 0 && authority === 0" class="table-header-authority">
+        <el-select v-model="options.value" placeholder="请选择" @change="tableSelectChange">
         <el-option
-          v-for="item in options"
+          v-for="item in options.list"
           :key="item.value"
           :label="item.label"
           :value="item.value">
         </el-option>
       </el-select>
     </div>
-    <span v-if="state === 0 && authority !== 0 ">全部</span>
+    <span v-if="choosed.length === 0 && authority !== 0 ">全部</span>
     <div class="btn-green-mid">
       新建客户
     </div>
@@ -39,9 +39,8 @@
     computed: {
       ...mapGetters({
         authority: 'openList/authority',
-        state: 'openList/state',
         options: 'openList/options',
-        value: 'openList/value'
+        choosed: 'openList/choosed'
       })
     },
 
