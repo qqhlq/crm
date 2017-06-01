@@ -1,15 +1,11 @@
 <template>
   <div id="app">
     <b-header></b-header>
-    <b-crumbs :is-two-level="true"></b-crumbs>
+    <b-crumbs :is-two-level="true" :first-name="'CRM'" :twoth-name="'公海池'"></b-crumbs>
     <b-station-mail></b-station-mail>
-    <b-process-bar :active="3"></b-process-bar>
+    <b-process-bar :active="1"></b-process-bar>
     <b-modaler>
-      <b-complex-drop
-        :checked-no-changeds="checkedNoChangeds"
-        :checked-can-changeds="checkedCanChangeds"
-        style="width: 460px;">
-      </b-complex-drop>
+      <b-complex-drop style="width: 460px;"></b-complex-drop>
     </b-modaler>
     <div class="w-wrapper">
       <router-view class="w-content"></router-view>
@@ -23,8 +19,6 @@
     name: 'App',
     data () {
       return {
-        checkedNoChangeds: [{'val':'321293','name':'张鑫'}],
-        checkedCanChangeds: [{'val':'326659','name':'张先锋'},{'val':'432653','name':'邢苏妮'}]
       }
     },
     computed: {

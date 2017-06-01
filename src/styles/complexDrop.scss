@@ -14,9 +14,7 @@
     font-size: 14px;
   }
 
-
   .comlexdropWrap{
-    display: none;
     position: absolute;
     border: 1px solid #DDD;
     border-radius: 4px;
@@ -24,12 +22,14 @@
     left: 0;
     background: #FFF;
     z-index: 11;
+    width: inherit;
 
     .complexdrop-content {
       border-bottom: 1px solid #DDD;
       height: 182px;
       overflow-y: scroll;
       padding-left: 12px;
+      width: inherit;
 
       li {
         font-size: 0;
@@ -166,8 +166,9 @@
   }
 
   .complexdropCheckeds {
-    width: 460px;
+    height: auto;
     overflow: hidden;
+    width: 460px;
     z-index: 10;
 
     .items {
@@ -208,6 +209,24 @@
     }
   }
 
+  .put-deploy {
+    position: absolute;
+    cursor: pointer;
+    right: -40px;
+    bottom: 5px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+    display: none;
+  }
+
+  .away-more{
+    display: inline-block;
+  }
+
+  .deploy-more {
+    max-height: 84px;
+  }
+
   .text-unChecked {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Chrome/Safari/Opera */
@@ -215,5 +234,40 @@
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently not supported by any browser */
+  }
+
+  .complex-noData {
+    color: $color-font-grey;
+    font-size: 14px;
+    padding-top: 81px;
+    text-align: center;
+  }
+  .complex-searchNoResult {
+    color: $color-font-grey;
+    font-size: 14px;
+    padding-top: 81px;
+    text-align: center;
+  }
+  .complex-loading {
+    color: $color-green;
+    font-size: 45px;
+    padding-top: 50px;
+    text-align: center;
+  }
+  .complex-colse-search {
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: center;
+    width: 40px;
+
+    &:hover,
+    &:active{
+      color: rgba(0,0,0,0.30);
+    }
   }
 }

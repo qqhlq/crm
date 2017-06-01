@@ -42,25 +42,21 @@
     methods: {
       ...mapActions({
         // 关闭站内信
-        stationMailOut: 'stationMailOut'
+        stationMailOut: 'stationMailOut',
+        on: 'on'
       }),
 
       // 访问接口
       getBacklogs() {
         this.$wGet('/admin/letter/backlog.do',{page: 1}).then(data => {
-          console.log(data)
         })
       }
-
     },
     mounted () {
-      document.addEventListener('click', (e) => {
-        if (!this.$el.contains(e.target)){
-          this.stationMailOut()
-        }
-      })
+      let self = this
+      self.on({el: self.$el, behavior: self.stationMailOut})
 
-      // this.getBacklogs()
+      this.getBacklogs()
     },
     computed: {
       ...mapGetters({

@@ -1,15 +1,19 @@
 <template>
   <div class="crumbs">
-    <a href="javascript:void(0)">CRM</a>
+    <a :href="firstLink">{{ firstName }}</a>
     &gt;
-    <a href="javascript:void(0)" :class="{crumbsHidden: isTwoLevel}">分组管理</a>
+    <a :href="twothLink" :class="{crumbsHidden: isTwoLevel}">{{ twothName }}</a>
   </div>
 </template>
 <script>
 export default {
   name: 'BCrumbs',
   props: {
-    isTwoLevel: Boolean
+    isTwoLevel: Boolean,
+    firstName: String,
+    twothName: String,
+    firstLink: String,
+    twothLink: String
   }
 }
 </script>
