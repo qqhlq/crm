@@ -57,7 +57,7 @@ plugin.install = Vue => {
    * @param {String} str 格式化后的字符串
    * @returns {Number} num 浮点数
    */
-  Vue.prototype.$wRFromatDeci = str => {
+  Vue.prototype.$wRFormatDeci = str => {
     return Number(str.replace(/\,/g, ''))
   }
 

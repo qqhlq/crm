@@ -15,12 +15,12 @@
       </li>
     </ul>
     <div v-if="choosed.length === 0 && authority === 0" class="table-header-authority">
-        <el-select v-model="options.value" placeholder="请选择" @change="tableSelectChange">
+        <el-select v-model="options.value" placeholder="请选择" @change="SelectChange">
         <el-option
           v-for="item in options.list"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
+          :key="item.id"
+          :label="item.name"
+          :value="item.id">
         </el-option>
       </el-select>
     </div>
@@ -46,8 +46,19 @@
 
     methods: {
       ...mapActions({
-        tableSelectChange: 'openList/tableSelectChange'
+        tableSelectChange: 'openList/tableSelectChange',
+        getTableOptions: 'openList/getTableOptions',
+        getList: 'openList/getList'
       }),
+      SelectChange(value) {
+        let self = this
+        self.tableSelectChange(value)
+        self.getList()
+      }
+    },
+    mounted() {
+      let self = this
+      self.getTableOptions()
     }
   }
 </script>

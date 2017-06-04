@@ -10,88 +10,13 @@ let state = {
   state: 0,
   // 公海池下拉选项
   options: {
-    list: [
-      {
-        value: 0,
-        label: '全部'
-      },
-      {
-        value: 1,
-        label: '销售组'
-      },
-      {
-        value: 2,
-        label: '渠道组'
-      },
-      {
-        value: 3,
-        label: '商务组'
-      }
-    ],
+    list: [],
     show: false,
     value: 0
   },
-
+  optionsSelected: '',
   // 公海池 表格数据
-  data: [
-    {
-      id: 1,
-      lastUpdatetime: '2016-05-03',
-      name: '王小虎',
-      tradeName: '上海',
-      cityName: '普陀区',
-      lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
-      owerName: 200333
-    }, {
-      id: 2,
-      lastUpdatetime: '2016-05-02',
-      name: '王小虎',
-      tradeName: '上海',
-      cityName: '普陀区',
-      lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
-      owerName: 200333
-    }, {
-      id: 3,
-      lastUpdatetime: '2016-05-04',
-      name: '王小虎',
-      tradeName: '上海',
-      cityName: '普陀区',
-      lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
-      owerName: 200333
-    }, {
-      id: 4,
-      lastUpdatetime: '2016-05-01',
-      name: '王小虎',
-      tradeName: '上海',
-      cityName: '普陀区',
-      lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
-      owerName: 200333
-    }, {
-      id: 5,
-      lastUpdatetime: '2016-05-08',
-      name: '王小虎',
-      tradeName: '上海',
-      cityName: '普陀区',
-      lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
-      owerName: 200333
-    }, {
-      id: 6,
-      lastUpdatetime: '2016-05-06',
-      name: '王小虎',
-      tradeName: '上海',
-      cityName: '普陀区',
-      lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
-      owerName: 200333
-    }, {
-      id: 7,
-      lastUpdatetime: '2016-05-07',
-      name: '王小虎',
-      tradeName: '上海',
-      cityName: '普陀区',
-      lastUpdateMemo: '上海市普陀区金沙江路 1518 弄',
-      owerName: 200333
-    }
-  ],
+  data: [],
   // 页码
   page: 1,
   totalPage: 8,
@@ -101,56 +26,7 @@ let state = {
       show: false,
       placeholder: '请输入产品名',
       width: '256',
-      searchList: [
-        { 'value': '三全鲜食（北新泾店）', 'address': '长宁区新渔路144号' },
-        { 'value': 'Hot honey 首尔炸鸡（仙霞路）', 'address': '上海市长宁区淞虹路661号' },
-        { 'value': '新旺角茶餐厅', 'address': '上海市普陀区真北路988号创邑金沙谷6号楼113' },
-        { 'value': '泷千家(天山西路店)', 'address': '天山西路438号' },
-        { 'value': '胖仙女纸杯蛋糕（上海凌空店）', 'address': '上海市长宁区金钟路968号1幢18号楼一层商铺18-101' },
-        { 'value': '贡茶', 'address': '上海市长宁区金钟路633号' },
-        { 'value': '豪大大香鸡排超级奶爸', 'address': '上海市嘉定区曹安公路曹安路1685号' },
-        { 'value': '茶芝兰（奶茶，手抓饼）', 'address': '上海市普陀区同普路1435号' },
-        { 'value': '十二泷町', 'address': '上海市北翟路1444弄81号B幢-107' },
-        { 'value': '星移浓缩咖啡', 'address': '上海市嘉定区新郁路817号' },
-        { 'value': '阿姨奶茶/豪大大', 'address': '嘉定区曹安路1611号' },
-        { 'value': '新麦甜四季甜品炸鸡', 'address': '嘉定区曹安公路2383弄55号' },
-        { 'value': 'Monica摩托主题咖啡店', 'address': '嘉定区江桥镇曹安公路2409号1F，2383弄62号1F' },
-        { 'value': '浮生若茶（凌空soho店）', 'address': '上海长宁区金钟路968号9号楼地下一层' },
-        { 'value': 'NONO JUICE  鲜榨果汁', 'address': '上海市长宁区天山西路119号' },
-        { 'value': 'CoCo都可(北新泾店）', 'address': '上海市长宁区仙霞西路' },
-        { 'value': '快乐柠檬（神州智慧店）', 'address': '上海市长宁区天山西路567号1层R117号店铺' },
-        { 'value': 'Merci Paul cafe', 'address': '上海市普陀区光复西路丹巴路28弄6号楼819' },
-        { 'value': '猫山王（西郊百联店）', 'address': '上海市长宁区仙霞西路88号第一层G05-F01-1-306' },
-        { 'value': '枪会山', 'address': '上海市普陀区棕榈路' },
-        { 'value': '纵食', 'address': '元丰天山花园(东门) 双流路267号' },
-        { 'value': '钱记', 'address': '上海市长宁区天山西路' },
-        { 'value': '壹杯加', 'address': '上海市长宁区通协路' },
-        { 'value': '唦哇嘀咖', 'address': '上海市长宁区新泾镇金钟路999号2幢（B幢）第01层第1-02A单元' },
-        { 'value': '爱茜茜里(西郊百联)', 'address': '长宁区仙霞西路88号1305室' },
-        { 'value': '爱茜茜里(近铁广场)', 'address': '上海市普陀区真北路818号近铁城市广场北区地下二楼N-B2-O2-C商铺' },
-        { 'value': '鲜果榨汁（金沙江路和美广店）', 'address': '普陀区金沙江路2239号金沙和美广场B1-10-6' },
-        { 'value': '开心丽果（缤谷店）', 'address': '上海市长宁区威宁路天山路341号' },
-        { 'value': '超级鸡车（丰庄路店）', 'address': '上海市嘉定区丰庄路240号' },
-        { 'value': '妙生活果园（北新泾店）', 'address': '长宁区新渔路144号' },
-        { 'value': '香宜度麻辣香锅', 'address': '长宁区淞虹路148号' },
-        { 'value': '凡仔汉堡（老真北路店）', 'address': '上海市普陀区老真北路160号' },
-        { 'value': '港式小铺', 'address': '上海市长宁区金钟路968号15楼15-105室' },
-        { 'value': '蜀香源麻辣香锅（剑河路店）', 'address': '剑河路443-1' },
-        { 'value': '北京饺子馆', 'address': '长宁区北新泾街道天山西路490-1号' },
-        { 'value': '饭典*新简餐（凌空SOHO店）', 'address': '上海市长宁区金钟路968号9号楼地下一层9-83室' },
-        { 'value': '焦耳·川式快餐（金钟路店）', 'address': '上海市金钟路633号地下一层甲部' },
-        { 'value': '动力鸡车', 'address': '长宁区仙霞西路299弄3号101B' },
-        { 'value': '浏阳蒸菜', 'address': '天山西路430号' },
-        { 'value': '四海游龙（天山西路店）', 'address': '上海市长宁区天山西路' },
-        { 'value': '樱花食堂（凌空店）', 'address': '上海市长宁区金钟路968号15楼15-105室' },
-        { 'value': '壹分米客家传统调制米粉(天山店)', 'address': '天山西路428号' },
-        { 'value': '福荣祥烧腊（平溪路店）', 'address': '上海市长宁区协和路福泉路255弄57-73号' },
-        { 'value': '速记黄焖鸡米饭', 'address': '上海市长宁区北新泾街道金钟路180号1层01号摊位' },
-        { 'value': '红辣椒麻辣烫', 'address': '上海市长宁区天山西路492号' },
-        { 'value': '(小杨生煎)西郊百联餐厅', 'address': '长宁区仙霞西路88号百联2楼' },
-        { 'value': '阳阳麻辣烫', 'address': '天山西路389号' },
-        { 'value': '南拳妈妈龙虾盖浇饭', 'address': '普陀区金沙江路1699号鑫乐惠美食广场A13' }
-      ],
+      searchList: [null],
       head: 'product',
       select: false,
       value: '',
@@ -160,56 +36,7 @@ let state = {
       show: false,
       placeholder: '请输入姓名',
       width: '100',
-      searchList: [
-        { 'value': '三全鲜食（北新泾店）', 'address': '长宁区新渔路144号' },
-        { 'value': 'Hot honey 首尔炸鸡（仙霞路）', 'address': '上海市长宁区淞虹路661号' },
-        { 'value': '新旺角茶餐厅', 'address': '上海市普陀区真北路988号创邑金沙谷6号楼113' },
-        { 'value': '泷千家(天山西路店)', 'address': '天山西路438号' },
-        { 'value': '胖仙女纸杯蛋糕（上海凌空店）', 'address': '上海市长宁区金钟路968号1幢18号楼一层商铺18-101' },
-        { 'value': '贡茶', 'address': '上海市长宁区金钟路633号' },
-        { 'value': '豪大大香鸡排超级奶爸', 'address': '上海市嘉定区曹安公路曹安路1685号' },
-        { 'value': '茶芝兰（奶茶，手抓饼）', 'address': '上海市普陀区同普路1435号' },
-        { 'value': '十二泷町', 'address': '上海市北翟路1444弄81号B幢-107' },
-        { 'value': '星移浓缩咖啡', 'address': '上海市嘉定区新郁路817号' },
-        { 'value': '阿姨奶茶/豪大大', 'address': '嘉定区曹安路1611号' },
-        { 'value': '新麦甜四季甜品炸鸡', 'address': '嘉定区曹安公路2383弄55号' },
-        { 'value': 'Monica摩托主题咖啡店', 'address': '嘉定区江桥镇曹安公路2409号1F，2383弄62号1F' },
-        { 'value': '浮生若茶（凌空soho店）', 'address': '上海长宁区金钟路968号9号楼地下一层' },
-        { 'value': 'NONO JUICE  鲜榨果汁', 'address': '上海市长宁区天山西路119号' },
-        { 'value': 'CoCo都可(北新泾店）', 'address': '上海市长宁区仙霞西路' },
-        { 'value': '快乐柠檬（神州智慧店）', 'address': '上海市长宁区天山西路567号1层R117号店铺' },
-        { 'value': 'Merci Paul cafe', 'address': '上海市普陀区光复西路丹巴路28弄6号楼819' },
-        { 'value': '猫山王（西郊百联店）', 'address': '上海市长宁区仙霞西路88号第一层G05-F01-1-306' },
-        { 'value': '枪会山', 'address': '上海市普陀区棕榈路' },
-        { 'value': '纵食', 'address': '元丰天山花园(东门) 双流路267号' },
-        { 'value': '钱记', 'address': '上海市长宁区天山西路' },
-        { 'value': '壹杯加', 'address': '上海市长宁区通协路' },
-        { 'value': '唦哇嘀咖', 'address': '上海市长宁区新泾镇金钟路999号2幢（B幢）第01层第1-02A单元' },
-        { 'value': '爱茜茜里(西郊百联)', 'address': '长宁区仙霞西路88号1305室' },
-        { 'value': '爱茜茜里(近铁广场)', 'address': '上海市普陀区真北路818号近铁城市广场北区地下二楼N-B2-O2-C商铺' },
-        { 'value': '鲜果榨汁（金沙江路和美广店）', 'address': '普陀区金沙江路2239号金沙和美广场B1-10-6' },
-        { 'value': '开心丽果（缤谷店）', 'address': '上海市长宁区威宁路天山路341号' },
-        { 'value': '超级鸡车（丰庄路店）', 'address': '上海市嘉定区丰庄路240号' },
-        { 'value': '妙生活果园（北新泾店）', 'address': '长宁区新渔路144号' },
-        { 'value': '香宜度麻辣香锅', 'address': '长宁区淞虹路148号' },
-        { 'value': '凡仔汉堡（老真北路店）', 'address': '上海市普陀区老真北路160号' },
-        { 'value': '港式小铺', 'address': '上海市长宁区金钟路968号15楼15-105室' },
-        { 'value': '蜀香源麻辣香锅（剑河路店）', 'address': '剑河路443-1' },
-        { 'value': '北京饺子馆', 'address': '长宁区北新泾街道天山西路490-1号' },
-        { 'value': '饭典*新简餐（凌空SOHO店）', 'address': '上海市长宁区金钟路968号9号楼地下一层9-83室' },
-        { 'value': '焦耳·川式快餐（金钟路店）', 'address': '上海市金钟路633号地下一层甲部' },
-        { 'value': '动力鸡车', 'address': '长宁区仙霞西路299弄3号101B' },
-        { 'value': '浏阳蒸菜', 'address': '天山西路430号' },
-        { 'value': '四海游龙（天山西路店）', 'address': '上海市长宁区天山西路' },
-        { 'value': '樱花食堂（凌空店）', 'address': '上海市长宁区金钟路968号15楼15-105室' },
-        { 'value': '壹分米客家传统调制米粉(天山店)', 'address': '天山西路428号' },
-        { 'value': '福荣祥烧腊（平溪路店）', 'address': '上海市长宁区协和路福泉路255弄57-73号' },
-        { 'value': '速记黄焖鸡米饭', 'address': '上海市长宁区北新泾街道金钟路180号1层01号摊位' },
-        { 'value': '红辣椒麻辣烫', 'address': '上海市长宁区天山西路492号' },
-        { 'value': '(小杨生煎)西郊百联餐厅', 'address': '长宁区仙霞西路88号百联2楼' },
-        { 'value': '阳阳麻辣烫', 'address': '天山西路389号' },
-        { 'value': '南拳妈妈龙虾盖浇饭', 'address': '普陀区金沙江路1699号鑫乐惠美食广场A13' }
-      ],
+      searchList: [null],
       head: 'ower',
       select: false,
       value: '',
@@ -219,56 +46,7 @@ let state = {
       show: false,
       placeholder: '请输入行业',
       width: '100',
-      searchList: [
-        { 'value': '三全鲜食（北新泾店）', 'address': '长宁区新渔路144号' },
-        { 'value': 'Hot honey 首尔炸鸡（仙霞路）', 'address': '上海市长宁区淞虹路661号' },
-        { 'value': '新旺角茶餐厅', 'address': '上海市普陀区真北路988号创邑金沙谷6号楼113' },
-        { 'value': '泷千家(天山西路店)', 'address': '天山西路438号' },
-        { 'value': '胖仙女纸杯蛋糕（上海凌空店）', 'address': '上海市长宁区金钟路968号1幢18号楼一层商铺18-101' },
-        { 'value': '贡茶', 'address': '上海市长宁区金钟路633号' },
-        { 'value': '豪大大香鸡排超级奶爸', 'address': '上海市嘉定区曹安公路曹安路1685号' },
-        { 'value': '茶芝兰（奶茶，手抓饼）', 'address': '上海市普陀区同普路1435号' },
-        { 'value': '十二泷町', 'address': '上海市北翟路1444弄81号B幢-107' },
-        { 'value': '星移浓缩咖啡', 'address': '上海市嘉定区新郁路817号' },
-        { 'value': '阿姨奶茶/豪大大', 'address': '嘉定区曹安路1611号' },
-        { 'value': '新麦甜四季甜品炸鸡', 'address': '嘉定区曹安公路2383弄55号' },
-        { 'value': 'Monica摩托主题咖啡店', 'address': '嘉定区江桥镇曹安公路2409号1F，2383弄62号1F' },
-        { 'value': '浮生若茶（凌空soho店）', 'address': '上海长宁区金钟路968号9号楼地下一层' },
-        { 'value': 'NONO JUICE  鲜榨果汁', 'address': '上海市长宁区天山西路119号' },
-        { 'value': 'CoCo都可(北新泾店）', 'address': '上海市长宁区仙霞西路' },
-        { 'value': '快乐柠檬（神州智慧店）', 'address': '上海市长宁区天山西路567号1层R117号店铺' },
-        { 'value': 'Merci Paul cafe', 'address': '上海市普陀区光复西路丹巴路28弄6号楼819' },
-        { 'value': '猫山王（西郊百联店）', 'address': '上海市长宁区仙霞西路88号第一层G05-F01-1-306' },
-        { 'value': '枪会山', 'address': '上海市普陀区棕榈路' },
-        { 'value': '纵食', 'address': '元丰天山花园(东门) 双流路267号' },
-        { 'value': '钱记', 'address': '上海市长宁区天山西路' },
-        { 'value': '壹杯加', 'address': '上海市长宁区通协路' },
-        { 'value': '唦哇嘀咖', 'address': '上海市长宁区新泾镇金钟路999号2幢（B幢）第01层第1-02A单元' },
-        { 'value': '爱茜茜里(西郊百联)', 'address': '长宁区仙霞西路88号1305室' },
-        { 'value': '爱茜茜里(近铁广场)', 'address': '上海市普陀区真北路818号近铁城市广场北区地下二楼N-B2-O2-C商铺' },
-        { 'value': '鲜果榨汁（金沙江路和美广店）', 'address': '普陀区金沙江路2239号金沙和美广场B1-10-6' },
-        { 'value': '开心丽果（缤谷店）', 'address': '上海市长宁区威宁路天山路341号' },
-        { 'value': '超级鸡车（丰庄路店）', 'address': '上海市嘉定区丰庄路240号' },
-        { 'value': '妙生活果园（北新泾店）', 'address': '长宁区新渔路144号' },
-        { 'value': '香宜度麻辣香锅', 'address': '长宁区淞虹路148号' },
-        { 'value': '凡仔汉堡（老真北路店）', 'address': '上海市普陀区老真北路160号' },
-        { 'value': '港式小铺', 'address': '上海市长宁区金钟路968号15楼15-105室' },
-        { 'value': '蜀香源麻辣香锅（剑河路店）', 'address': '剑河路443-1' },
-        { 'value': '北京饺子馆', 'address': '长宁区北新泾街道天山西路490-1号' },
-        { 'value': '饭典*新简餐（凌空SOHO店）', 'address': '上海市长宁区金钟路968号9号楼地下一层9-83室' },
-        { 'value': '焦耳·川式快餐（金钟路店）', 'address': '上海市金钟路633号地下一层甲部' },
-        { 'value': '动力鸡车', 'address': '长宁区仙霞西路299弄3号101B' },
-        { 'value': '浏阳蒸菜', 'address': '天山西路430号' },
-        { 'value': '四海游龙（天山西路店）', 'address': '上海市长宁区天山西路' },
-        { 'value': '樱花食堂（凌空店）', 'address': '上海市长宁区金钟路968号15楼15-105室' },
-        { 'value': '壹分米客家传统调制米粉(天山店)', 'address': '天山西路428号' },
-        { 'value': '福荣祥烧腊（平溪路店）', 'address': '上海市长宁区协和路福泉路255弄57-73号' },
-        { 'value': '速记黄焖鸡米饭', 'address': '上海市长宁区北新泾街道金钟路180号1层01号摊位' },
-        { 'value': '红辣椒麻辣烫', 'address': '上海市长宁区天山西路492号' },
-        { 'value': '(小杨生煎)西郊百联餐厅', 'address': '长宁区仙霞西路88号百联2楼' },
-        { 'value': '阳阳麻辣烫', 'address': '天山西路389号' },
-        { 'value': '南拳妈妈龙虾盖浇饭', 'address': '普陀区金沙江路1699号鑫乐惠美食广场A13' }
-      ],
+      searchList: [null],
       head: 'trade',
       select: false,
       value: '',
@@ -278,56 +56,7 @@ let state = {
       show: false,
       placeholder: '请输入城市',
       width: '100',
-      searchList: [
-        { 'value': '三全鲜食（北新泾店）', 'address': '长宁区新渔路144号' },
-        { 'value': 'Hot honey 首尔炸鸡（仙霞路）', 'address': '上海市长宁区淞虹路661号' },
-        { 'value': '新旺角茶餐厅', 'address': '上海市普陀区真北路988号创邑金沙谷6号楼113' },
-        { 'value': '泷千家(天山西路店)', 'address': '天山西路438号' },
-        { 'value': '胖仙女纸杯蛋糕（上海凌空店）', 'address': '上海市长宁区金钟路968号1幢18号楼一层商铺18-101' },
-        { 'value': '贡茶', 'address': '上海市长宁区金钟路633号' },
-        { 'value': '豪大大香鸡排超级奶爸', 'address': '上海市嘉定区曹安公路曹安路1685号' },
-        { 'value': '茶芝兰（奶茶，手抓饼）', 'address': '上海市普陀区同普路1435号' },
-        { 'value': '十二泷町', 'address': '上海市北翟路1444弄81号B幢-107' },
-        { 'value': '星移浓缩咖啡', 'address': '上海市嘉定区新郁路817号' },
-        { 'value': '阿姨奶茶/豪大大', 'address': '嘉定区曹安路1611号' },
-        { 'value': '新麦甜四季甜品炸鸡', 'address': '嘉定区曹安公路2383弄55号' },
-        { 'value': 'Monica摩托主题咖啡店', 'address': '嘉定区江桥镇曹安公路2409号1F，2383弄62号1F' },
-        { 'value': '浮生若茶（凌空soho店）', 'address': '上海长宁区金钟路968号9号楼地下一层' },
-        { 'value': 'NONO JUICE  鲜榨果汁', 'address': '上海市长宁区天山西路119号' },
-        { 'value': 'CoCo都可(北新泾店）', 'address': '上海市长宁区仙霞西路' },
-        { 'value': '快乐柠檬（神州智慧店）', 'address': '上海市长宁区天山西路567号1层R117号店铺' },
-        { 'value': 'Merci Paul cafe', 'address': '上海市普陀区光复西路丹巴路28弄6号楼819' },
-        { 'value': '猫山王（西郊百联店）', 'address': '上海市长宁区仙霞西路88号第一层G05-F01-1-306' },
-        { 'value': '枪会山', 'address': '上海市普陀区棕榈路' },
-        { 'value': '纵食', 'address': '元丰天山花园(东门) 双流路267号' },
-        { 'value': '钱记', 'address': '上海市长宁区天山西路' },
-        { 'value': '壹杯加', 'address': '上海市长宁区通协路' },
-        { 'value': '唦哇嘀咖', 'address': '上海市长宁区新泾镇金钟路999号2幢（B幢）第01层第1-02A单元' },
-        { 'value': '爱茜茜里(西郊百联)', 'address': '长宁区仙霞西路88号1305室' },
-        { 'value': '爱茜茜里(近铁广场)', 'address': '上海市普陀区真北路818号近铁城市广场北区地下二楼N-B2-O2-C商铺' },
-        { 'value': '鲜果榨汁（金沙江路和美广店）', 'address': '普陀区金沙江路2239号金沙和美广场B1-10-6' },
-        { 'value': '开心丽果（缤谷店）', 'address': '上海市长宁区威宁路天山路341号' },
-        { 'value': '超级鸡车（丰庄路店）', 'address': '上海市嘉定区丰庄路240号' },
-        { 'value': '妙生活果园（北新泾店）', 'address': '长宁区新渔路144号' },
-        { 'value': '香宜度麻辣香锅', 'address': '长宁区淞虹路148号' },
-        { 'value': '凡仔汉堡（老真北路店）', 'address': '上海市普陀区老真北路160号' },
-        { 'value': '港式小铺', 'address': '上海市长宁区金钟路968号15楼15-105室' },
-        { 'value': '蜀香源麻辣香锅（剑河路店）', 'address': '剑河路443-1' },
-        { 'value': '北京饺子馆', 'address': '长宁区北新泾街道天山西路490-1号' },
-        { 'value': '饭典*新简餐（凌空SOHO店）', 'address': '上海市长宁区金钟路968号9号楼地下一层9-83室' },
-        { 'value': '焦耳·川式快餐（金钟路店）', 'address': '上海市金钟路633号地下一层甲部' },
-        { 'value': '动力鸡车', 'address': '长宁区仙霞西路299弄3号101B' },
-        { 'value': '浏阳蒸菜', 'address': '天山西路430号' },
-        { 'value': '四海游龙（天山西路店）', 'address': '上海市长宁区天山西路' },
-        { 'value': '樱花食堂（凌空店）', 'address': '上海市长宁区金钟路968号15楼15-105室' },
-        { 'value': '壹分米客家传统调制米粉(天山店)', 'address': '天山西路428号' },
-        { 'value': '福荣祥烧腊（平溪路店）', 'address': '上海市长宁区协和路福泉路255弄57-73号' },
-        { 'value': '速记黄焖鸡米饭', 'address': '上海市长宁区北新泾街道金钟路180号1层01号摊位' },
-        { 'value': '红辣椒麻辣烫', 'address': '上海市长宁区天山西路492号' },
-        { 'value': '(小杨生煎)西郊百联餐厅', 'address': '长宁区仙霞西路88号百联2楼' },
-        { 'value': '阳阳麻辣烫', 'address': '天山西路389号' },
-        { 'value': '南拳妈妈龙虾盖浇饭', 'address': '普陀区金沙江路1699号鑫乐惠美食广场A13' }
-      ],
+      searchList: [null],
       head: 'city',
       select: false,
       value: '',
@@ -406,7 +135,7 @@ let mutations = {
   // 根据附加项输入的值 改变附加項的搜索列表
   [types.OPEN_TABLE_HEAD_LIST_CHANGE](state, param) {
     let name = param.head
-    state.tableHead[name].searchList = []
+    state.tableHead[name] = param
   },
 
   // 选择框的选择选项 改变纪录的已选择的选项列表
@@ -421,7 +150,20 @@ let mutations = {
 
   // 改变表格
   [types.OPEN_TABLE_CHANGE](state, param) {
+    state.data = param.records
+    state.page = param.page
+    state.totalPage = param.pageCount
+  },
 
+  // 获取公海次组 列表
+  [types.OPEN_TABLE_OPTIONS](state, param) {
+    state.options.list = param
+    state.options.value = param[0].id
+  },
+
+  // 改变公海池组 的选中
+  [types.OPEN_TABLE_OPTIONS_SELECTED](state, param) {
+    state.options.value = param
   }
 }
 
@@ -447,14 +189,14 @@ let actions = {
   },
 
   /**
-   * 改变表格内容
+   * 点击下拉选项
    *
    * @param {Object} { commit }
    * @param {Object} param
    */
-  async changeTable({ commit }, param) {
+  async changeValue({ commit }, param) {
     commit(types.OPEN_TABLE_HEAD_STATE_CHANGE, param)
-    commit(types.OPEN_TABLE_CHANGE)
+    commit(types.OPEN_TABLE_HEAD_LIST_CHANGE, param)
   },
 
   /**
@@ -464,6 +206,33 @@ let actions = {
    * @param {Object} param
    */
   async changeList({ commit }, param) {
+    let key = param.key
+    let head = param.head
+    let url, data={}
+    switch (head) {
+      case 'product':
+        url = '/crm/custom/custom_name_option.do'
+        break
+      case 'ower':
+        url = '/crm/custom/onwer_option.do'
+        break
+      case 'trade':
+        url = ' /crm/custom/trade_option.do'
+        break
+      case 'city':
+        url = '/crm/custom/city_option.do'
+        break
+      default:
+        break
+    }
+
+    // 接口部分
+    data =  await Vue.wGet(url,{
+      'name': key,
+      'public': false
+    })
+
+    param.searchList = data.data
     commit(types.OPEN_TABLE_HEAD_LIST_CHANGE, param)
   },
 
@@ -485,12 +254,56 @@ let actions = {
    */
   async changePage({ commit }, param) {
     commit(types.OPEN_TABLE_PAGE_CHANGE, param)
-    commit(types.OPEN_TABLE_CHANGE)
+  },
+
+  /**
+   * 刷新列表
+   *
+   * @param {Object} { commit }
+   * @returns
+   */
+  async getList({ commit }) {
+    let startDate
+    let endDate
+    if(state.tableHead.date.value !== '' && state.tableHead.date.value.toString() !== ',') {
+      startDate = state.tableHead.date.value[0].toLocaleString().split(' ')[0]
+      endDate = state.tableHead.date.value[1].toLocaleString().split(' ')[0]
+    }
+
+    let param = {
+      name: state.tableHead.product.value,
+      tradeId: state.tableHead.trade.value,
+      cityCode: state.tableHead.city.value,
+      startDate,
+      endDate,
+      page: state.page,
+      customPoolId: state.options.value
+    }
+    let data =  await Vue.wGet('/crm/custom/list.do', param)
+    commit(types.OPEN_TABLE_CHANGE, data.data)
+  },
+
+
+  /**
+   * 更改选中的公海池组ID
+   *
+   * @param {Object} { commit }
+   * @param {String} param
+   */
+  async tableSelectChange({ commit }, param) {
+    commit(types.OPEN_TABLE_OPTIONS_SELECTED, param)
+  },
+
+  /**
+   * 生产公海池组列表
+   *
+   * @param {Object} { commit }
+   */
+  async getTableOptions({ commit }) {
+    let data =  await Vue.wGet('/crm/custom_pool/list.do', {page: 1})
+    commit(types.OPEN_TABLE_OPTIONS, Array.from(data.data.records))
   }
 
-  /*  async getList({ commit }, param) {
-      return await Vue.wGet('/admin/letter/backlog.do', {page: 1})
-    }*/
 }
 
 export default {

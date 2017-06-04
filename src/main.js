@@ -15,7 +15,6 @@ import verifier from './plugins/verifier'
 import BHeader from './components/header'
 import BStationMail from './components/stationMail'
 import BTreeDrop from './components/treeDrop'
-import BTable from './components/table'
 import BProcessBar from './components/processBar'
 import BComplexDrop from './components/complexDrop'
 import BModaler from './components/modaler'
@@ -33,7 +32,6 @@ Vue.use(verifier)
 Vue.use(BHeader)
 Vue.use(BStationMail)
 Vue.use(BTreeDrop)
-Vue.use(BTable)
 Vue.use(BProcessBar)
 Vue.use(BComplexDrop)
 Vue.use(BModaler)
