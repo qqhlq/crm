@@ -1,0 +1,12 @@
+@import './core/var';
+
+.crumbs {
+  color: #525666;
+  font-size: 14px;
+  line-height: 54px;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}

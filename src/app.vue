@@ -1,6 +1,12 @@
 <template>
   <div id="app">
     <b-header></b-header>
+    <b-crumbs :is-two-level="true" :first-name="'CRM'" :twoth-name="'公海池'"></b-crumbs>
+    <b-station-mail></b-station-mail>
+    <b-process-bar :active="1"></b-process-bar>
+    <b-modaler>
+      <b-complex-drop style="width: 460px;"></b-complex-drop>
+    </b-modaler>
     <div class="w-wrapper">
       <router-view class="w-content"></router-view>
     </div>
@@ -11,15 +17,27 @@
 
   export default {
     name: 'App',
+    data () {
+      return {
+      }
+    },
     computed: {
       ...mapGetters([
       ])
     },
     methods: {
       ...mapActions([
-      ])
+      ]),
+
+      getBacklogs() {
+        this.$wGet('/admin/letter/backlog.do',{page: 1}).then(data => {
+          console.log(data)
+        })
+      }
+
     },
     mounted() {
+
     }
   }
 </script>
@@ -34,6 +52,7 @@
     font-family: "Microsoft Yahei", "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 0;
     position: relative;
+    overflow: hidden;
   }
   ul {
     list-style: none;

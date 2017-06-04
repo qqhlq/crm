@@ -1,266 +1,260 @@
 /*门户导航栏*/
-
+@import './core/var';
 .boss-navbar {
-    background-color: #fff;
-    box-shadow: 0 2px 3px 0 #ccc;
-    height: 50px;
-    position: relative;
-    width: 100%;
-    z-index: 12;
+  background-color: #fff;
+  box-shadow: 0 2px 3px 0 #ccc;
+  height: 50px;
+  position: relative;
+  width: 100%;
+  z-index: 12;
 
-    a {
-        color: #525666;
-        text-decoration: none;
+  a {
+    color: #525666;
+    text-decoration: none;
 
-        &:hover {
-            color: #29cc29;
-        }
+    &:hover {
+        color: $color-green;
+    }
+  }
+
+  .wrap {
+    margin: auto;
+    width: 1115px;
+
+    &:before,
+    &:after {
+        clear: both;
+        content: '';
+        display: table;
     }
 
-    .wrap {
-        margin: auto;
-        width: 1115px;
+    .logo {
+      background: #fff;
+      float: left;
+      height: 50px;
+      line-height: 44px;
+      text-align: center;
+      width: 140px;
 
-        &:before,
-        &:after {
-            clear: both;
-            content: '';
-            display: table;
+      img {
+        height: 22px;
+        width: 118px;
+        vertical-align: middle;
+      }
+    }
+
+    .nav {
+      float: right;
+
+      &:before,
+      &:after {
+          content: '';
+          clear: both;
+          display: table-cell;
+      }
+
+      >div {
+          float:left;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+      }
+
+
+      .navIndex {
+        width: 80px;
+
+        a {
+          display: block;
         }
+      }
 
-        .logo {
-            background: #fff;
-            float: left;
+      .more {
+        width: 110px;
+
+        a {
+          display: block;
+
+          span {
+            display: inline-block;
             height: 50px;
-            line-height: 44px;
-            text-align: center;
-            width: 140px;
-
-            img {
-                height: 22px;
-                width: 118px;
-                vertical-align: middle;
-            }
+            line-height: 50px;
+            margin-left: 5px;
+          }
         }
+      }
+      .navContent {
+        position: relative;
 
-        .nav {
-            float: right;
+        .navContent-a {
+          height: 49px;
+          margin-top: 1px;
+          overflow: hidden;
+          position: relative;
+          width: 660px;
+
+
+          >div {
+            width: 660px;
+            position: relative;
 
             &:before,
             &:after {
-                content: '';
                 clear: both;
-                display: table-cell;
+                content: '';
+                display: table;
             }
 
-            >div {
-                float:left;
-                height: 50px;
-                line-height: 50px;
+            div {
+              float: left;
+              color: #525666;
+              font-size: 14px;
+              height: 52px;
+              line-height: 48px;
+              position: relative;
+              text-align: center;
+              width: 110px;
+
+              a {
+                font-size: 14px;
+                display:block;
                 text-align: center;
+
+                span {
+                  display: inline-block;
+                  height: 50px;
+                  line-height: 50px;
+                  margin-left: 5px;
+                }
+              }
             }
-
-
-            .navIndex {
-                width: 80px;
-
-                a {
-                    display: block;
-                }
-            }
-
-            .more {
-                width: 110px;
-                visibility: hidden;
-
-                a {
-                    display: block;
-
-                    span {
-                        display: inline-block;
-                        height: 50px;
-                        line-height: 50px;
-                        margin-left: 5px;
-                    }
-                }
-            }
-            .navContent {
-                position: relative;
-
-                .navContent-a {
-                    height: 49px;
-                    margin-top: 1px;
-                    overflow: hidden;
-                    position: relative;
-                    width: 660px;
-
-
-                    >div {
-                        width: 660px;
-                        position: relative;
-
-                        &:before,
-                        &:after {
-                            clear: both;
-                            content: '';
-                            display: table;
-                        }
-
-                        div {
-                            float: left;
-                            color: #525666;
-                            font-size: 14px;
-                            height: 52px;
-                            line-height: 48px;
-                            position: relative;
-                            text-align: center;
-                            width: 110px;
-
-                            a {
-                                font-size: 14px;
-                                display:block;
-                                text-align: center;
-
-                                span {
-                                    display: inline-block;
-                                    height: 50px;
-                                    line-height: 50px;
-                                    margin-left: 5px;
-                                }
-                            }
-                        }
-
-                    }
-                }
-
-
-                .navContent-ul {
-                    position: absolute;
-                    left: 0;
-                    top: 49px;
-
-                     div {
-                        background: #FFF;
-                        box-shadow: 0 2px 3px 0 #ccc;
-                        display: none;
-                        position: absolute;
-                        top: 0;
-                        width: 155px;
-                        z-index: 100;
-
-                        ul {
-                            li {
-                                height: 43px;
-                                line-height: 43px;
-
-                                a {
-                                    display: block;
-                                    height: 43px;
-                                    line-height: 43px;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            .user {
-                width: 120px;
-                position: relative;
-
-                &:hover {
-
-                    div {
-                        display: block;
-                    }
-                }
-
-                a {
-                    font-size: 14px;
-                    display:block;
-                    text-align: center;
-
-                    span.fa-angle-down {
-                        display: inline-block;
-                        height: 50px;
-                        line-height: 50px;
-                        margin-left: 5px;
-                    }
-
-                    span.new-message {
-                        position: absolute;
-                        display: block;
-                        height: 10px;
-                        width: 20px;
-                        border-radius: 5px;
-                        background: #29cc29;
-                        color: #FFF;
-                        font-size: 10px;
-                        line-height: 10px;
-                        top: 8px;
-                        left: 20px;
-                    }
-
-
-                }
-
-                div {
-                    background: #FFF;
-                    box-shadow: 0 2px 3px 0 #ccc;
-                    display: none;
-                    position: absolute;
-                    left: -22px;
-                    top: 49px;
-                    width: 155px;
-                    z-index: 100;
-
-                    ul {
-                        li {
-                            height: 43px;
-                            line-height: 43px;
-                            position: relative;
-
-                            a {
-                                height: 43px;
-                                line-height: 43px;
-                            }
-
-                            span {
-                                    position: absolute;
-                                    display: block;
-                                    background: #29cc29;
-                                    width: 6px;
-                                    height: 6px;
-                                    border-radius: 3px;
-                                    box-shadow: 0 0 5px 0px #29cc29;
-                                    top: 18px;
-                                    left: 30px;
-                            }
-                        }
-                    }
-                }
-
-
-
-                >a {
-                    .user-img {
-
-                        width: 35px;
-                        height: 35px;
-                        border-radius: 17px;
-                        display: inline-block;
-                        margin-right: 10px;
-                        overflow: hidden;
-                        vertical-align: middle;
-                        font-size: 0;
-
-                        img {
-                            width: 100%;
-                            vertical-align: top;
-                        }
-                    }
-                }
-            }
+          }
         }
+
+
+        .navContent-ul {
+          position: absolute;
+          left: 0;
+          top: 49px;
+
+          div {
+            background: #FFF;
+            box-shadow: 0 2px 3px 0 #ccc;
+            // display: none;
+            position: absolute;
+            top: 0;
+            width: 155px;
+            z-index: 100;
+
+            ul {
+              li {
+                height: 43px;
+                line-height: 43px;
+
+                a {
+                    display: block;
+                  height: 43px;
+                  line-height: 43px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .user {
+        width: 120px;
+        position: relative;
+
+        &:hover {
+
+          div {
+            display: block;
+          }
+        }
+
+        a {
+          font-size: 14px;
+          display:block;
+          text-align: center;
+
+          span.fa-angle-down {
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+            margin-left: 5px;
+          }
+
+          span.new-message {
+            position: absolute;
+            display: block;
+            height: 10px;
+            width: 20px;
+            border-radius: 5px;
+            background: $color-green;
+            color: #FFF;
+            font-size: 10px;
+            line-height: 10px;
+            top: 8px;
+            left: 20px;
+          }
+        }
+
+        div {
+          background: #FFF;
+          box-shadow: 0 2px 3px 0 #ccc;
+          display: none;
+          position: absolute;
+          left: -22px;
+          top: 49px;
+          width: 155px;
+          z-index: 100;
+
+          ul {
+            li {
+              height: 43px;
+              line-height: 43px;
+              position: relative;
+
+              a {
+                height: 43px;
+                line-height: 43px;
+              }
+
+              span {
+                position: absolute;
+                display: block;
+                background: $color-green;
+                width: 6px;
+                height: 6px;
+                border-radius: 3px;
+                box-shadow: 0 0 5px 0px $color-green;
+                top: 18px;
+                left: 30px;
+              }
+            }
+          }
+        }
+
+        >a {
+          .user-img {
+
+            width: 35px;
+            height: 35px;
+            border-radius: 17px;
+            display: inline-block;
+            margin-right: 10px;
+            overflow: hidden;
+            vertical-align: middle;
+            font-size: 0;
+
+            img {
+              width: 100%;
+              vertical-align: top;
+            }
+          }
+        }
+      }
     }
+  }
 }

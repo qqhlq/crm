@@ -13,10 +13,15 @@ import api from './plugins/api'
 import formater from './plugins/formater'
 import verifier from './plugins/verifier'
 import BHeader from './components/header'
+import BStationMail from './components/stationMail'
 import BTreeDrop from './components/treeDrop'
 import BTable from './components/table'
+import BProcessBar from './components/processBar'
+import BComplexDrop from './components/complexDrop'
+import BModaler from './components/modaler'
 import BLoadSelect from './components/loadSelect'
 import BDatePicker from './components/datePicker'
+import BCrumbs from './components/crumbs'
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -26,10 +31,15 @@ Vue.use(api)
 Vue.use(formater)
 Vue.use(verifier)
 Vue.use(BHeader)
+Vue.use(BStationMail)
 Vue.use(BTreeDrop)
 Vue.use(BTable)
+Vue.use(BProcessBar)
+Vue.use(BComplexDrop)
+Vue.use(BModaler)
 Vue.use(BLoadSelect)
 Vue.use(BDatePicker)
+Vue.use(BCrumbs)
 
 new Vue({
   el: '#app',
