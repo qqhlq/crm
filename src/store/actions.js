@@ -35,11 +35,12 @@ export default {
    * 点击某个标签外任意地方实现某行为
    * @param {Object} payload - 参数
    * @param {el} payload.el - 屏蔽的标签
+   * @param {el} payload.adEl - 添加事件标签
    * @param {function} payload.behavior - 行为
    */
   on({ commit }, payload) {
-    if(document.addEventListener) {
-      document.addEventListener('click', (e) => {
+    if(payload.adEl.addEventListener) {
+      payload.adEl.addEventListener('click', (e) => {
         if (!payload.el.contains(e.target)){
           payload.behavior()
         }
@@ -51,7 +52,7 @@ export default {
         }
       })
     }
-  }
+  },
 
 
 

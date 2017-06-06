@@ -1,0 +1,57 @@
+@import './core/var';
+
+// element-ui select
+
+/* 选项样式 */
+.el-select-dropdown__list {
+  width: 100%;
+}
+.dropdown__item.hover, .el-select-dropdown__item:hover {
+    background-color: #ddd;
+}
+
+.el-select-dropdown__item.selected.hover {
+  background-color: $color-green;
+}
+
+.el-select-dropdown.is-multiple
+.el-select-dropdown__item.selected.hover,
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item:hover{
+  background-color: #ddd;
+}
+
+.el-select-dropdown__item.selected {
+  background-color: $color-green;
+}
+
+.el-input__inner {
+  border-color: #ddd;
+  color: #999;
+
+  &::-webkit-input-placeholder {
+    color: #ccc;
+  }
+  &:-moz-placeholder {
+    color: #ccc;
+  }
+
+  &:-ms-input-placeholder {
+      /* IE10+ */
+    color: #ccc;
+  }
+}
+
+/* input框hover和focus样式*/
+.el-select .el-input__inner:hover {
+    border-color: $color-green;
+}
+
+.el-select .el-input__inner:focus {
+    border-color: $color-green;
+}
+
+/* icon样式*/
+.el-select .el-input .el-input__icon {
+  color: #ddd;
+}

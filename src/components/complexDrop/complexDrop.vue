@@ -77,8 +77,8 @@
           </i>
         </span>
       </div>
-      <span class="put-deploy text-unChecked" :class="{'away-more': isput && (newCheckedCanChangeds.data.length + checkedNoChangeds.length) > 8}" @click="deployCheckeds">更多</span>
-      <span class="put-deploy text-unChecked" :class="{'away-more': !isput && (newCheckedCanChangeds.data.length + checkedNoChangeds.length) > 8}" @click="putCheckeds">收起</span>
+      <span class="put-deploy text-unChecked" :class="{'away-more': isput && (newCheckedCanChangeds.data.length + checkedNoChangeds.data.length) > 8}" @click="deployCheckeds">更多</span>
+      <span class="put-deploy text-unChecked" :class="{'away-more': !isput && (newCheckedCanChangeds.data.length + checkedNoChangeds.data.length) > 8}" @click="putCheckeds">收起</span>
     </div>
   </div>
 </template>
@@ -126,9 +126,10 @@ export default {
     'noChangeds',
     'canChangeds'
   ],
+
   mounted () {
     let self = this
-    self.on({el: self.$el, behavior: self.closeComplex})
+    self.on({el: self.$el, adEl: document, behavior: self.closeComplex})
     self.realTimeVetUsers.data = self.vetUsersPrep({data: self.vetUsers, checkedNoChangeds: self.checkedNoChangeds.data, checkedCanChangeds: self.newCheckedCanChangeds.data})
   },
 
@@ -252,19 +253,22 @@ export default {
 
     // 点击改选
     clickChangeCheck(id, name, val, CanChanged, event) {
+      let self = this
       if(CanChanged) {
-        this.realTimeVetUsers = {data: this.changeRealTimeVetUsers(id, 'checkedCanChanged', this.realTimeVetUsers.data, val)}
+        self.realTimeVetUsers = {data: self.changeRealTimeVetUsers(id, 'checkedCanChanged', self.realTimeVetUsers.data, val)}
       }
 
     },
 
     // 点击打开关闭子节点
     clickSwitchChild(id, val) {
-      this.realTimeVetUsers = {data: this.changeRealTimeVetUsers(id, 'openChild', this.realTimeVetUsers.data, val)}
+      let self = this
+      self.realTimeVetUsers = {data: self.changeRealTimeVetUsers(id, 'openChild', self.realTimeVetUsers.data, val)}
     },
 
     // 实时人员数据修改
     changeRealTimeVetUsers(id, attrName, data, val) {
+      let self = this
       for(let i=0; i<data.length; i++) {
         if(data[i].id === id || data[i].id === `${id}`) {
           data[i][attrName] = val
@@ -272,7 +276,7 @@ export default {
         } else {
           if(data[i].children !== null) {
             if(data[i].children.length > 0) {
-              data[i].children = this.changeRealTimeVetUsers(id, attrName, data[i].children, val)
+              data[i].children = self.changeRealTimeVetUsers(id, attrName, data[i].children, val)
             }
           }
         }
@@ -297,7 +301,7 @@ export default {
 
     // 判断当前json树里面是否有子元素的匹配某个值
     isInJsonTree(jsonTree, val) {
-      let self =this
+      let self = this
       let isIn = false
       for(let i=0; i<jsonTree.length; i++) {
         if(jsonTree[i].id === val) {
@@ -352,8 +356,8 @@ export default {
       self.closeSearchVetusers()
       if(self.newCheckedCanChangeds.data.length + self.checkedNoChangeds.data.length <= 8) {
         self.isput = true
-        console.log('aa')
       }
+      self.$emit('getCheckeds', self.newCheckedCanChangeds.data )
     },
 
     // 关闭下拉框
@@ -371,12 +375,13 @@ export default {
     },
     // 所有数据已选和默选都置为空,子节点关闭
     allfalseClose(data){
+      let self = this
       for(let i=0; i<data.length; i++) {
         data[i].checkedNoChanged = false
         data[i].checkedCanChanged = false
         data[i].openChild = false
         if(data[i].children !== null) {
-          data[i].children = this.allfalseClose(data[i].children)
+          data[i].children = self.allfalseClose(data[i].children)
         }
       }
       return data
@@ -384,12 +389,13 @@ export default {
 
     // 所有数据已选和默选都置为空,子节点打开
     allfalseOpen(data){
+      let self = this
       for(let i=0; i<data.length; i++) {
         data[i].checkedNoChanged = false
         data[i].checkedCanChanged = false
         data[i].openChild = true
         if(data[i].children !== null) {
-          data[i].children = this.allfalseClose(data[i].children)
+          data[i].children = self.allfalseClose(data[i].children)
         }
       }
       return data
@@ -397,6 +403,7 @@ export default {
 
     // 添加已选(选中的打开父节点)
     addCheckedNoChanged(data, checkedNoChanged, NoChanged){
+      let self = this
       let isOpenParent = false
       for(let i=0; i<data.length; i++) {
         let getReturn = {}
@@ -406,7 +413,7 @@ export default {
         }
         if(data[i].children) {
           if(data[i].children !== null) {
-            getReturn = this.addCheckedNoChanged(data[i].children, checkedNoChanged, data[i].id === checkedNoChanged.val)
+            getReturn = self.addCheckedNoChanged(data[i].children, checkedNoChanged, data[i].id === checkedNoChanged.val)
             data[i].children = getReturn.data
           }
           if(getReturn.isOpenParent) {
@@ -422,6 +429,7 @@ export default {
 
     // 添加默选(选中的打开父节点)
     addCheckedCanChanged(data, checkedCanChanged, CanChanged){
+      let self = this
       let isOpenParent = false
       for(let i=0; i<data.length; i++) {
         let getReturn = {}
@@ -431,7 +439,7 @@ export default {
         }
         if(data[i].children) {
           if(data[i].children !== null) {
-            getReturn = this.addCheckedCanChanged(data[i].children, checkedCanChanged, data[i].id === checkedCanChanged.val)
+            getReturn = self.addCheckedCanChanged(data[i].children, checkedCanChanged, data[i].id === checkedCanChanged.val)
             data[i].children = getReturn.data
           }
           if(getReturn.isOpenParent) {
@@ -447,19 +455,20 @@ export default {
 
     // 数据预处理
     vetUsersPrep({data, checkedNoChangeds, checkedCanChangeds, type='full'}){
+      let self = this
       let _data = data
       if(type === 'search') {
-        _data = this.allfalseOpen(_data)
+        _data = self.allfalseOpen(_data)
       } else {
-        _data = this.allfalseClose(_data)
+        _data = self.allfalseClose(_data)
       }
 
       for(let i=0; i<checkedNoChangeds.length; i++) {
-        _data = this.addCheckedNoChanged(_data, checkedNoChangeds[i], false).data
+        _data = self.addCheckedNoChanged(_data, checkedNoChangeds[i], false).data
 
       }
       for(let i=0; i<checkedCanChangeds.length; i++) {
-        _data = this.addCheckedCanChanged(_data, checkedCanChangeds[i], false).data
+        _data = self.addCheckedCanChanged(_data, checkedCanChangeds[i], false).data
       }
       return _data
     },

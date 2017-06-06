@@ -54,7 +54,7 @@
     },
     mounted () {
       let self = this
-      self.on({el: self.$el, behavior: self.stationMailOut})
+      self.on({el: self.$el, adEl: document, behavior: self.stationMailOut})
 
       this.getBacklogs()
     },

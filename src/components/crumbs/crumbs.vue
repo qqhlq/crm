@@ -1,24 +1,18 @@
 <template>
   <div class="crumbs">
-    <a :href="firstLink">{{ firstName }}</a>
-    &gt;
-    <a :href="twothLink" :class="{crumbsHidden: isTwoLevel}">{{ twothName }}</a>
+    <span v-for="(crumb, index) in crumbs">
+      <span v-if="index > 0">&gt;</span>
+      <a :href="crumb.link">{{ crumb.name }}</a>
+    </span>
   </div>
 </template>
 <script>
 export default {
   name: 'BCrumbs',
   props: {
-    isTwoLevel: Boolean,
-    firstName: String,
-    twothName: String,
-    firstLink: String,
-    twothLink: String
+    crumbs: Array
   }
 }
 </script>
-<style>
-  .crumbsHidden {
-    direction: none;
-  }
+<style scoped>
 </style>

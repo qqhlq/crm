@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <b-header></b-header>
-    <b-crumbs :is-two-level="true" :first-name="'CRM'" :twoth-name="'公海池'"></b-crumbs>
     <b-station-mail></b-station-mail>
+    <!--<b-crumbs :is-two-level="true" :first-name="'CRM'" :twoth-name="'公海池'"></b-crumbs>
     <b-process-bar :active="1"></b-process-bar>
     <b-modaler>
       <b-complex-drop style="width: 460px;"></b-complex-drop>
-    </b-modaler>
-    <div class="w-wrapper">
-      <router-view class="w-content"></router-view>
+    </b-modaler>-->
+    <div class="b-wrapper">
+      <router-view class="b-content"></router-view>
     </div>
   </div>
 </template>
@@ -31,7 +31,6 @@
 
       getBacklogs() {
         this.$wGet('/admin/letter/backlog.do',{page: 1}).then(data => {
-          console.log(data)
         })
       }
 
@@ -41,30 +40,9 @@
     }
   }
 </script>
-<style lang="scss">
-  @import "./styles/core/var";
-
-  * {
-    box-sizing: border-box !important;
+<style scoped>
+  .b-wrapper {
+    width: 1200px;
+    margin: 0 auto;
   }
-  body {
-    background: #ebebeb;
-    font-family: "Microsoft Yahei", "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin: 0;
-    position: relative;
-    overflow: hidden;
-  }
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  li {
-    list-style-type: none;
-  }
-  h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
-    font-family: "Microsoft Yahei", "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
-
-
 </style>

@@ -5,11 +5,17 @@
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 9999;
+    z-index: 999;
+
+    .bmodaler-fram {
+      positon: relative;
+      width: 100%;
+      height: 100%;
+    }
 
     .bmodaler-bak {
       background: #000;
-      z-index: 10000;
+      z-index: 1000;
       top: 0;
       left: 0;
       opacity: .5;
@@ -17,38 +23,27 @@
       height: 100%;
     }
 
-    .bmodaler-box-wrap {
-      position: fixed;
-      bottom: 0;
-      right: 0;
-      top: 0;
-      left: 0;
-      z-index: 10001;
-      text-align: center;
-
-      &:before {
-        content: '';
-        width: 0;
-        height: 100%;
-        display: inline-block;
-        vertical-align: middle;
-      }
-    }
 
     .bmodaler-box {
+      position: fixed;
       background: #FFF;
       border-radius: 4px;
       display: inline-block;
-      text-align: left;
-      vertical-align: middle;
-      width: 560px;
+      height: auto;
+      left: 50%;
+      max-width: 560px;
+      min-width: 560px;
       padding: 30px 50px;
-      position: relative;
+      top: 50%;
+      width: 50%;
+      z-index: 1001;
+
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      -moz-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
 
       .bmodaler-header {
-        .bmodaler-title {
-          color: $color-green;
-        }
 
         .bmmodaler-close {
           cursor: pointer;
@@ -73,4 +68,80 @@
         }
       }
     }
+}
+
+.min-modal {
+  .bmodaler-box {
+     max-width: 400px;
+     min-width: 400px;
+  }
+}
+
+.editorCustom-modal {
+  .bmodaler-box {
+     max-width: 546px;
+     min-width: 546px;
+  }
+}
+
+
+.modal-grey-header {
+  color:  #525666;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.modal-green-header {
+  color: $color-green;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.modal-center-btn {
+  font-size: 0;
+  text-align: center;
+  margin-top: 30px;
+
+  button.green {
+    background: $color-green;
+    cursor: pointer;
+    width: 80px;
+    height: 36px;
+    color: #FFF;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    font-family: inherit;
+    margin: 0 10px;
+
+    &:hover {
+      background: #26B31E;
+    }
+  }
+
+  button.grey {
+    background: #FFF;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    width: 80px;
+    height: 36px;
+    color: #999;
+    border-radius: 4px;
+    outline: none;
+    font-family: inherit;
+    margin: 0 10px;
+
+    &:hover {
+      background: #FAFAFA;
+      border: 1px solid #DDDDDD;
+      border-radius: 4px;
+    }
+  }
+}
+
+.modal-teps {
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  margin-top: 22px;
 }

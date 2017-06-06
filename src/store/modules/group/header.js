@@ -30,17 +30,7 @@ let actions = {
 
   async getMenusList({ commit }, param) {
     state.menusData =  await Vue.wGet('/admin/user/list_menus.do', param)
-  },
-
-  /**
-   * 获取公司所有员工列表
-   * @param {Object} payload {
-   * }
-   */
-
-  async getAllSaffList({ commit }, param) {
-    state.data =  await Vue.wGet('/admin/user/list_menus.do', param)
-  },
+  }
 
 }
 

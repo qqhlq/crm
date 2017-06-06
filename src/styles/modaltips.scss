@@ -1,0 +1,22 @@
+.b-modaltips-box {
+  position: fixed;
+  background: #303640;
+  color: #FFF;
+  border-radius: 4px;
+  height: auto;
+  left: 50%;
+  width: auto;
+  opacity: 0;
+  padding: 0 29px;
+  top: 50%;
+  z-index: 10001;
+
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+
+  div {
+    line-height: 70px;
+  }
+}

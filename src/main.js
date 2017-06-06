@@ -19,9 +19,12 @@ import BTable from './components/table'
 import BProcessBar from './components/processBar'
 import BComplexDrop from './components/complexDrop'
 import BModaler from './components/modaler'
+import BModaltips from './components/modaltips'
 import BLoadSelect from './components/loadSelect'
 import BDatePicker from './components/datePicker'
 import BCrumbs from './components/crumbs'
+import BPageBottom from './components/pageBottom'
+import BNewCustom from './components/newCustom'
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -40,6 +43,9 @@ Vue.use(BModaler)
 Vue.use(BLoadSelect)
 Vue.use(BDatePicker)
 Vue.use(BCrumbs)
+Vue.use(BModaltips)
+Vue.use(BPageBottom)
+Vue.use(BNewCustom)
 
 new Vue({
   el: '#app',

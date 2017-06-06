@@ -7,6 +7,8 @@ import actions from './actions'
 import openList from './modules/open/list'
 import groupHeader from './modules/group/header'
 import groupcomplexDrop from './modules/group/complexDrop'
+import newCustom from './modules/group/newCustom'
+import customerDetail from './modules/views/customerDetail'
 
 Vue.use(Vuex)
 
@@ -14,7 +16,9 @@ export default new Vuex.Store({
   modules: {
     openList,
     groupHeader,
-    groupcomplexDrop
+    groupcomplexDrop,
+    customerDetail,
+    newCustom
   },
   state,
   getters,

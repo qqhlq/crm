@@ -2,7 +2,7 @@ import * as types from '../../mutation-types'
 import Vue from 'vue'
 
 let state = {
-  vetUsers: []
+  vetUsers: [],
 }
 let getters = {
   vetUsers: state => state.vetUsers,
@@ -24,14 +24,15 @@ let actions = {
 
   /**
    * 获取人员数据
-   * @param {Object} payload {
-   * }
+   * @param {Object} payload
+   * @param {el} payload.adEl - 添加事件标签
+   * @param {function} payload.behavior - 行为
    */
 
   async getVetusers({ commit }, payload) {
     let _data=  await Vue.wGet('/admin/workflow/vet_users.do', payload.param)
     commit(types.GROUP_COMPLEXDROP_DATA_PREP, {data:_data})
-  },
+  }
 
 }
 
