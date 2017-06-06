@@ -11,9 +11,9 @@
         :render-header="renderProduct"
       ></el-table-column>
       <el-table-column
-        prop="owerName"
+        prop="ownerName"
         min-width="120px"
-        :render-header="renderOwer"
+        label="客户所有人">
       ></el-table-column>
       <el-table-column
         prop="tradeName"
@@ -31,10 +31,12 @@
         :render-header="renderTime"
       ></el-table-column>
       <el-table-column
-        prop="lastUpdateMemo"
         label="最新动态记录"
-        min-width="320px"
-      ></el-table-column>
+        min-width="320px">
+        <template scope="scope">
+          <p class="b-table-cell" v-html="scope.row.lastUpdateMemo"></p>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
@@ -54,18 +56,20 @@
     methods: {
       ...mapActions({
         changeState: 'openList/changeState',
-        changeTable: 'openList/changeTable',
+        changeValue: 'openList/changeValue',
         changeList: 'openList/changeList',
         changeSelect: 'openList/changeSelect',
-        changeChoosed: 'openList/changeChoosed'
+        changeChoosed: 'openList/changeChoosed',
+        getList: 'openList/getList'
       }),
 
      /**
       * 根据 选择下拉框选择的选项改变表格
       * @param {Object} 表格头部对象 包括下拉框中的值
       */
-      pushTable(key) {
-        this.changeTable(key)
+      pushValue(key) {
+        this.changeValue(key)
+        this.getList()
       },
 
      /**
@@ -104,27 +108,7 @@
               <b-load-select
                 v-show={this.tableHead.product.show}
                 list={this.tableHead.product}
-                onPushTable={this.pushTable}
-                onPushList={this.pushList}>
-              </b-load-select>
-            </transition>
-          </div>
-        )
-      },
-
-      // 渲染 客户所有人表头信息
-      renderOwer() {
-        let self = this
-        return (
-          <div class="b-table-load-select">
-            <span onClick={() => {
-              this.changeState('ower')
-            }}>客户所有人</span><i class="fa fa-caret-down"></i>
-            <transition name="el-zoom-in-top">
-              <b-load-select
-                v-show={this.tableHead.ower.show}
-                list={this.tableHead.ower}
-                onPushTable={this.pushTable}
+                onPushValue={this.pushValue}
                 onPushList={this.pushList}>
               </b-load-select>
             </transition>
@@ -144,7 +128,7 @@
               <b-load-select
                 v-show={this.tableHead.trade.show}
                 list={this.tableHead.trade}
-                onPushTable={this.pushTable}
+                onPushValue={this.pushValue}
                 onPushList={this.pushList}>
               </b-load-select>
             </transition>
@@ -164,7 +148,7 @@
               <b-load-select
                 v-show={this.tableHead.city.show}
                 list={this.tableHead.city}
-                onPushTable={this.pushTable}
+                onPushValue={this.pushValue}
                 onPushList={this.pushList}>
               </b-load-select>
             </transition>
@@ -184,7 +168,8 @@
               v-show={this.tableHead.date.show}
               list= {this.tableHead.date}
               onChangeState={() => {
-                this.changeState('data')
+                this.changeState('date')
+                this.getList()
               }}
               >
             </b-date-picker>

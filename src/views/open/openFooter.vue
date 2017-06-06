@@ -30,18 +30,21 @@
     },
     methods: {
       ...mapActions({
-        changePage: 'openList/changePage'
+        changePage: 'openList/changePage',
+        getList: 'openList/getList'
       }),
       pushPrev() {
         let self = this
         if(self.page > 1) {
           this.changePage(--self.page)
+          this.getList()
         }
       },
       pushNext() {
         let self = this
         if(self.page < self.totalPage) {
           this.changePage(++self.page)
+          this.getList()
         }
       },
       pushPage(e) {
@@ -49,6 +52,7 @@
         let value = e.target.value
         if(value >= 1 && value <= self.totalPage) {
           this.changePage(value)
+          this.getList()
         }else {
           e.target.value = self.page
         }

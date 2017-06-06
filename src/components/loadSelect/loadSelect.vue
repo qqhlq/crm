@@ -6,9 +6,9 @@
         查无此客户
       </li>
     </ul>
-    <ul class="b-load-select-list" v-else>
-      <li v-for="item in list.searchList" @click="getChoose">
-          {{item.value}}
+    <ul class="b-load-select-list" v-else-if="list.searchList[0] !== null">
+      <li v-for="item in list.searchList" @click="getChoose" :data-id="item.id">
+          {{item.text}}
       </li>
     </ul>
   </div>
@@ -26,11 +26,15 @@
       }
     },
     methods: {
-      getChoose() {
-        this.$emit('pushTable',this.list)
+      getChoose(e) {
+        let self = this
+        let id = e.currentTarget.getAttribute('data-id')
+        self.list.value = id
+        this.$emit('pushValue',self.list)
       },
       getList() {
-        this.$emit('pushList',this.list)
+        let self = this
+        this.$emit('pushList',self.list)
       }
     }
   }
