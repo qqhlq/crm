@@ -10,6 +10,13 @@
       overflow: inherit !important;
     }
   }
+  .green {
+    color: #25c526;
+
+    &+i {
+      color: #25c526 !important;
+    }
+  }
 }
 
 .table-header {
@@ -54,7 +61,6 @@
 }
 .el-table {
   border-color: #EAEAEA;
-  overflow: inherit;
   border-left: none;
 
   &::after {
@@ -126,8 +132,8 @@
 
   }
 }
-.el-table__header-wrapper {
-  overflow: inherit;
+.el-table__header-wrapper, .el-table__fixed-header-wrapper {
+  overflow: visible;
 
   thead {
     div {

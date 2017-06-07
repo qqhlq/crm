@@ -68,8 +68,9 @@
       * @param {Object} 表格头部对象 包括下拉框中的值
       */
       pushValue(key) {
-        this.changeValue(key)
-        this.getList()
+        let self = this
+        self.changeValue(key)
+        self.getList()
       },
 
      /**
@@ -77,23 +78,21 @@
       * @param {Object} 表格头部对象 包括下拉框中的值
       */
       pushList(key) {
-        this.changeList(key)
+        let self = this
+        self.changeList(key)
       },
 
-     /**
-      * 根据 表格中列表的选择框选中状态改变 更新选中状态列表
-      * @param {Object}
+    /**
+      * 根据 改变表格列表的选中状态
+      * @param {Object} row 表格头部对象 包括下拉框中的值
       */
-      pushSelect(x, y) {
-        console.log(x,y)
-      },
-
       handleSelectionChange(row) {
+        let self = this
         let temp = []
         for(let item in row) {
           temp.push(row[item].id)
         }
-        this.changeChoosed(temp)
+        self.changeChoosed(temp)
       },
 
       // 渲染 客户产品名表头信息
@@ -102,14 +101,16 @@
         return (
           <div class="b-table-load-select">
             <span onClick={() => {
-              this.changeState('product')
-            }}>客户产品名</span><i class="fa fa-caret-down"></i>
+              self.changeState('product')
+            }}
+            class={{'green': self.tableHead.product.value !== ''}}>
+            客户产品名</span><i class="fa fa-caret-down"></i>
             <transition name="el-zoom-in-top">
               <b-load-select
-                v-show={this.tableHead.product.show}
-                list={this.tableHead.product}
-                onPushValue={this.pushValue}
-                onPushList={this.pushList}>
+                v-show={self.tableHead.product.show}
+                list={self.tableHead.product}
+                onPushValue={self.pushValue}
+                onPushList={self.pushList}>
               </b-load-select>
             </transition>
           </div>
@@ -122,14 +123,16 @@
         return (
           <div class="b-table-load-select">
             <span onClick={() => {
-              this.changeState('trade')
-            }}>行业</span><i class="fa fa-caret-down"></i>
+              self.changeState('trade')
+            }}
+            class={{'green': self.tableHead.trade.value !== ''}}>
+            行业</span><i class="fa fa-caret-down"></i>
             <transition name="el-zoom-in-top">
               <b-load-select
-                v-show={this.tableHead.trade.show}
-                list={this.tableHead.trade}
-                onPushValue={this.pushValue}
-                onPushList={this.pushList}>
+                v-show={self.tableHead.trade.show}
+                list={self.tableHead.trade}
+                onPushValue={self.pushValue}
+                onPushList={self.pushList}>
               </b-load-select>
             </transition>
           </div>
@@ -142,14 +145,16 @@
         return (
           <div class="b-table-load-select">
             <span onClick={() => {
-              this.changeState('city')
-            }}>城市</span><i class="fa fa-caret-down"></i>
+              self.changeState('city')
+            }}
+            class={{'green': self.tableHead.city.value !== ''}}>
+            城市</span><i class="fa fa-caret-down"></i>
             <transition name="el-zoom-in-top">
               <b-load-select
-                v-show={this.tableHead.city.show}
-                list={this.tableHead.city}
-                onPushValue={this.pushValue}
-                onPushList={this.pushList}>
+                v-show={self.tableHead.city.show}
+                list={self.tableHead.city}
+                onPushValue={self.pushValue}
+                onPushList={self.pushList}>
               </b-load-select>
             </transition>
           </div>
@@ -162,14 +167,16 @@
         return (
           <div class="b-table-data-picker">
             <span onClick={() => {
-              this.changeState('date')
-            }}>最新动态时间</span><i class="fa fa-caret-down"></i>
+              self.changeState('date')
+            }}
+            class={{'green': self.tableHead.date.value !== '' &&  self.tableHead.date.value.toString() !== ','}}>
+            最新动态时间</span><i class="fa fa-caret-down"></i>
             <b-date-picker
-              v-show={this.tableHead.date.show}
-              list= {this.tableHead.date}
+              v-show={self.tableHead.date.show}
+              list= {self.tableHead.date}
               onChangeState={() => {
-                this.changeState('date')
-                this.getList()
+                self.changeState('date')
+                self.getList()
               }}
               >
             </b-date-picker>

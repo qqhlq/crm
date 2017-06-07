@@ -64,44 +64,7 @@ let state = {
     },
     date: {
       show: false,
-      value: '',
-      pickerOptions: {
-        shortcuts: [
-          {
-            text: '最近一周',
-            onClick(picker) {
-              const end = new Date()
-              const start = new Date()
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
-              picker.$emit('pick', [start, end])
-            }
-          },
-          {
-            text: '最近一个月',
-            onClick(picker) {
-              const end = new Date()
-              const start = new Date()
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
-              picker.$emit('pick', [start, end])
-            }
-          },
-          {
-            text: '最近三个月',
-            onClick(picker) {
-              const end = new Date()
-              const start = new Date()
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
-              picker.$emit('pick', [start, end])
-            }
-          },
-          {
-            text: '清空',
-            onClick(picker) {
-              picker.$emit('pick', '')
-            }
-          }
-        ]
-      }
+      value: ''
     }
   },
   choosed: []
@@ -158,12 +121,13 @@ let mutations = {
   // 获取公海次组 列表
   [types.OPEN_TABLE_OPTIONS](state, param) {
     state.options.list = param
-    state.options.value = param[0].id
+    state.options.value = param[0].name
   },
 
   // 改变公海池组 的选中
   [types.OPEN_TABLE_OPTIONS_SELECTED](state, param) {
     state.options.value = param
+    state.page = 1
   }
 }
 
@@ -270,6 +234,14 @@ let actions = {
       endDate = state.tableHead.date.value[1].toLocaleString().split(' ')[0]
     }
 
+    let customPoolId = () => {
+      for(let item of state.options.list) {
+        if(item.name === state.options.value) {
+          return item.id
+        }
+      }
+    }
+
     let param = {
       name: state.tableHead.product.value,
       tradeId: state.tableHead.trade.value,
@@ -277,7 +249,7 @@ let actions = {
       startDate,
       endDate,
       page: state.page,
-      customPoolId: state.options.value
+      customPoolId
     }
     let data =  await Vue.wGet('/crm/custom/list.do', param)
     commit(types.OPEN_TABLE_CHANGE, data.data)

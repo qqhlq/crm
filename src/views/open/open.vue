@@ -1,8 +1,11 @@
-<<template>
-  <div class="table">
-    <open-header></open-header>
-    <open-main></open-main>
-    <open-footer></open-footer>
+<template>
+  <div>
+    <b-crumbs :crumbs="[{name: 'CRM'}, {name: '客户公海池'}]"></b-crumbs>
+    <div class="table">
+      <open-header></open-header>
+      <open-main></open-main>
+      <open-footer></open-footer>
+    </div>
   </div>
 </template>
 
@@ -20,8 +23,3 @@
     }
   }
 </script>
-
-<style>
-
-</style>
-

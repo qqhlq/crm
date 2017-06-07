@@ -15,14 +15,14 @@
       </li>
     </ul>
     <div v-if="choosed.length === 0 && authority === 0" class="table-header-authority">
-        <el-select v-model="options.value" placeholder="请选择" @change="SelectChange">
-        <el-option
-          v-for="item in options.list"
-          :key="item.id"
-          :label="item.name"
-          :value="item.id">
-        </el-option>
-      </el-select>
+      <el-dropdown @command="handleCommand">
+        <span class="el-dropdown-link">
+          {{options.value}}<i class="el-icon-caret-bottom el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item  v-for="item in options.list" :key="item.id" :command="item.name">{{item.name}}</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
     <span v-if="choosed.length === 0 && authority !== 0 ">全部</span>
     <div class="btn-green-mid">
@@ -35,7 +35,7 @@
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
-    name: 'BOpenHeader',
+    name: 'OpenHeader',
     computed: {
       ...mapGetters({
         authority: 'openList/authority',
@@ -50,7 +50,7 @@
         getTableOptions: 'openList/getTableOptions',
         getList: 'openList/getList'
       }),
-      SelectChange(value) {
+      handleCommand(value) {
         let self = this
         self.tableSelectChange(value)
         self.getList()
