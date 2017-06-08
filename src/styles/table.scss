@@ -10,6 +10,12 @@
 .table-header {
   background-color: #FFF;
 
+  &>span {
+    line-height: 80px;
+    padding-left: 30px;
+    color: #525666;
+  }
+
   .table-opera {
     overflow: auto;
     height: 80px;
