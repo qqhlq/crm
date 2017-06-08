@@ -80,7 +80,6 @@
     overflow: inherit !important;
   }
   td {
-    border-color: #EAEAEA;
     height: 60px;
   }
 
@@ -226,6 +225,8 @@
   }
 }
 .table-operation {
+  width: 300px;
+  float: left;
   height: 40px;
   line-height: 40px;
   margin: 20px 0px;
