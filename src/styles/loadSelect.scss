@@ -23,34 +23,6 @@
     border-color: #29CC29;
   }
 }
-.b-load-select-product {
-  width: 256px;
-
-  input {
-    width: 236px;
-  }
-}
-.b-load-select-ower {
-  width: 160px;
-
-  input {
-    width: 140px;
-  }
-}
-.b-load-select-trade {
-  width: 160px;
-
-  input {
-    width: 140px;
-  }
-}
-.b-load-select-city {
-  width: 160px;
-
-  input {
-    width: 140px;
-  }
-}
 
 .b-load-select-list {
   width: 100%;
@@ -94,5 +66,46 @@
 
   &:hover {
     background-color: inherit !important;
+  }
+}
+
+.private-table {
+  .b-load-select-ownerName {
+    width: 160px;
+
+    input {
+      width: 140px;
+    }
+  }
+}
+
+.open-table {
+  .b-load-select-product {
+    width: 256px;
+
+    input {
+      width: 236px;
+    }
+  }
+  .b-load-select-ower {
+    width: 160px;
+
+    input {
+      width: 140px;
+    }
+  }
+  .b-load-select-trade {
+    width: 160px;
+
+    input {
+      width: 140px;
+    }
+  }
+  .b-load-select-city {
+    width: 160px;
+
+    input {
+      width: 140px;
+    }
   }
 }

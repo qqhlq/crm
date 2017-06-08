@@ -1,13 +1,17 @@
 import * as types from '../../mutation-types'
 import Vue from 'vue'
 
-// 私人池页面
+// 公海池页面
 
 let state = {
   choosed: [],
   page: 1,
   totalPage: 1,
   data: [],
+  poolList: {
+    list: [],
+    value: ''
+  },
   search: {
     productName: {
       head: 'productName',
@@ -16,58 +20,21 @@ let state = {
       icon: 'search',
       value: ''
     },
-    ownerName: {
-      head: 'ownerName',
-      placeholder: '请输入客户所有人',
+    tradeName: {
+      head: 'tradeName',
+      placeholder: '所在行业',
+      searchList: [],
+      value: ''
+    },
+    cityName: {
+      head: 'cityName',
+      placeholder: '所在城市',
       searchList: [],
       icon: 'search',
       value: ''
     },
-    levelName: {
-      head: 'levelName',
-      placeholder: '请输入客户级别',
-      searchList: [
-        {
-          value: 1,
-          label: 'A(重点客户)'
-        },
-        {
-          value: 2,
-          label: 'B(普通客户)'
-        },
-        {
-          value: 3,
-          label: 'C(非重点客户)'
-        }
-      ],
-      value: ''
-    },
-    ownerTime: {
-      head: 'ownerTime',
-      value: ''
-    },
-    restTime: {
-      head: 'restTime',
-      placeholder: '请输入剩余时间',
-      searchList: [
-        {
-          value:1,
-          label: '0-3天'
-        },
-        {
-          value:2,
-          label: '3-10天'
-        },
-        {
-          value:3,
-          label: '10-30天'
-        },
-        {
-          value:4,
-          label: '30-45天'
-        }
-      ],
-      icon: 'caret-bottom',
+    updateTime: {
+      head: 'updateTime',
       value: ''
     }
   }
@@ -78,40 +45,56 @@ let getters = {
   page: state => state.page,
   totalPage: state => state.totalPage,
   data: state => state.data,
+  poolList: state => state.poolList,
   search: state => state.search
 }
 
 let mutations = {
-
   // 选择框的选择选项 改变纪录的已选择的选项列表
-  [types.PRIVATE_TABLE_CHOOSED_LIST_CHANGE](state, param) {
+  [types.COMMON_TABLE_CHOOSED_LIST_CHANGE](state, param) {
     state.choosed = param
   },
 
   // 更改页数
-  [types.PRIVATE_TABLE_PAGE_CHANGE](state, param) {
+  [types.COMMON_TABLE_PAGE_CHANGE](state, param) {
     state.page = param
   },
 
   // 更改下拉输入框的搜索列表
-  [types.PRIVATE_TABLE_SEARCH_LIST](state, param) {
+  [types.COMMON_TABLE_SEARCH_LIST](state, param) {
     state.search[param.head] = param
   },
-  [types.PRIVATE_TABLE_CHANG](state, param) {
+
+  [types.COMMON_TABLE_GET_POOLLIST](state, param) {
+    state.poolList.list = param
+    state.poolList.value = param[0]
+  },
+
+  [types.COMMON_TABLE_CHANGE_POOLLIST_VALUE](state, param) {
+    for(let item of state.poolList.list) {
+      if(item.id === Number(param)) {
+        state.poolList.value = item
+      }
+    }
+  },
+  [types.COMMON_TABLE_CHANGE](state, param) {
     state.data = param
+  },
+  [types.COMMON_TABLE_GET_TRADE_LIST](state, param) {
+    state.search.tradeName.searchList = param
   }
 }
 
 let actions = {
 
-  /**
+ /**
    * 更改表格右侧的选择状态
    *
    * @param {any} { commit }
    * @param {any} param
    */
   async changeChoosed({ commit }, param) {
-    commit(types.PRIVATE_TABLE_CHOOSED_LIST_CHANGE, param)
+    commit(types.COMMON_TABLE_CHOOSED_LIST_CHANGE, param)
   },
 
   /**
@@ -121,7 +104,7 @@ let actions = {
    * @param {any} param
    */
   async changePage({ dispatch, commit }, param) {
-    await commit(types.PRIVATE_TABLE_PAGE_CHANGE, param)
+    await commit(types.COMMON_TABLE_PAGE_CHANGE, param)
     dispatch('getList')
   },
 
@@ -133,20 +116,20 @@ let actions = {
   async getList({ state, commit }) {
     let obj = {
       startDate: '',
-      endDate: ''
+      endDate: '',
+      customPoolid: ''
     }
-    if(state.search.ownerTime.value !== '' && state.search.ownerTime.value.toString() !== ',') {
-      obj.startDate = state.search.ownerTime.value[0].toLocaleString().split(' ')[0]
-      obj.endDate = state.search.ownerTime.value[1].toLocaleString().split(' ')[0]
+    if(state.search.updateTime.value !== '' && state.search.updateTime.value.toString() !== ',') {
+      obj.startDate = state.search.updateTime.value[0].toLocaleString().split(' ')[0]
+      obj.endDate = state.search.updateTime.value[1].toLocaleString().split(' ')[0]
     }
     obj.name = state.search.productName.value
-    obj.ownerName = state.search.ownerName.value
-    obj.resttimeId =state.search.restTime.value
-    obj.levelName = state.search.levelName.value
+    obj.tradeId =state.search.tradeName.value
+    obj.cityCode = state.search.cityName.value
     obj.page = state.page
-    let data = await Vue.wGet('/crm/custom/self_list.do',obj)
-    commit(types.PRIVATE_TABLE_CHANG, data.data.records)
-
+    obj.customPoolid = state.poolList.value.id
+    let data = await Vue.wGet('/crm/custom/list.do',obj)
+    commit(types.COMMON_TABLE_CHANGE, data.data.records)
   },
 
   /**
@@ -183,7 +166,7 @@ let actions = {
     for(let item of _param.searchList) {
       item.value = item.text
     }
-    commit(types.PRIVATE_TABLE_SEARCH_LIST, _param)
+    commit(types.COMMON_TABLE_SEARCH_LIST, _param)
   },
 
   /**
@@ -194,6 +177,24 @@ let actions = {
    */
   async chooseSearchList({ dispatch, state, commit }, param) {
     dispatch('getList')
+  },
+  async getPoolList({ dispatch, state, commit }, param) {
+    let data = await Vue.wGet('/crm/custom_pool/list.do',{page: 1})
+    await commit (types.COMMON_TABLE_GET_POOLLIST, data.data.records)
+    dispatch('getList')
+
+  },
+  async changePoolValue({ dispatch, state, commit }, param) {
+    await commit (types.COMMON_TABLE_CHANGE_POOLLIST_VALUE, param)
+    dispatch('getList')
+  },
+  async getTradeList({ dispatch, state, commit }, param) {
+    let data = await Vue.wGet('/crm/custom/trade_option.do')
+    for(let item of data.data) {
+      item.label = item.text
+      item.value = item.id
+    }
+    commit(types.COMMON_TABLE_GET_TRADE_LIST, data.data)
   }
 }
 
@@ -204,4 +205,3 @@ export default {
   actions,
   mutations
 }
-

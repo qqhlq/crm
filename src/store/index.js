@@ -4,7 +4,7 @@ import state from './states'
 import getters from './getters'
 import mutations from './mutations'
 import actions from './actions'
-import openList from './modules/open/list'
+import commonList from './modules/common/list'
 import privateList from './modules/private/list'
 import groupHeader from './modules/group/header'
 import groupcomplexDrop from './modules/group/complexDrop'
@@ -15,7 +15,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    openList,
+    commonList,
     privateList,
     groupHeader,
     groupcomplexDrop,

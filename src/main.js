@@ -24,6 +24,9 @@ import BDatePicker from './components/datePicker'
 import BCrumbs from './components/crumbs'
 import BPageBottom from './components/pageBottom'
 import BNewCustom from './components/newCustom'
+import BInput from './components/input'
+import BAutocomplete from './components/autocomplete'
+import BSelect from './components/select'
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -44,6 +47,9 @@ Vue.use(BCrumbs)
 Vue.use(BModaltips)
 Vue.use(BPageBottom)
 Vue.use(BNewCustom)
+Vue.use(BInput)
+Vue.use(BAutocomplete)
+Vue.use(BSelect)
 
 new Vue({
   el: '#app',

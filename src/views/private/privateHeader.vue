@@ -18,6 +18,30 @@
     <div class="btn-green-mid">
       新建客户
     </div>
+    <div class="table-search">
+      <b-autocomplete
+        :list ="search.productName"
+        @getSearchList = "getSearchList"
+        @chooseSearchList = "chooseSearchList">
+      </b-autocomplete>
+      <b-autocomplete
+        :list ="search.ownerName"
+        @getSearchList = "getSearchList"
+        @chooseSearchList = "chooseSearchList">
+      </b-autocomplete>
+      <b-select
+        :list ="search.levelName"
+        @getList = "getList">
+      </b-select>
+      <b-date-picker
+        :list ="search.ownerTime"
+        @getList = "getList">
+      </b-date-picker>
+      <b-select
+        :list ="search.restTime"
+        @getList = "getList">
+      </b-select>
+    </div>
   </div>
 </template>
 
@@ -28,9 +52,21 @@
     name: 'PrivateHeader',
     computed: {
       ...mapGetters({
-        choosed: 'openList/choosed'
+        choosed: 'privateList/choosed',
+        search: 'privateList/search'
       })
     },
+    methods: {
+      ...mapActions({
+        getSearchList: 'privateList/getSearchList',
+        chooseSearchList: 'privateList/chooseSearchList',
+        getList: 'privateList/getList'
+      })
+    },
+    mounted() {
+      let self = this
+      self.getList()
+    }
   }
 </script>
 

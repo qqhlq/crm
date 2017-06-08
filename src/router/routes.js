@@ -1,6 +1,6 @@
 import Group from 'views/group'
 import Indexv from 'views/indexv'
-import Open from 'views/open'
+import Common from 'views/common'
 import Private from 'views/private'
 import customerDetail from 'views/customerDetail'
 import BProcessBar from 'components/processBar'
@@ -13,9 +13,9 @@ export default [
     component: Group
   },
   {
-    path: '/open',
-    name: 'Open',
-    component: Open
+    path: '/common',
+    name: 'Common',
+    component: Common
   },
   {
     path: '/processbar',
