@@ -277,12 +277,22 @@
             })
         }
       },
+
+      // 取消空值提示
+      closeTips(type) {
+        let self = this
+        if(self[type].isEmpty) {
+          self[type].isEmpty = false
+        }
+      },
     },
     mounted() {
       let self = this
       self.getList()
       self.getMenusList({url: self.$route.path})
-    }
+    },
+
+
   }
 </script>
 
