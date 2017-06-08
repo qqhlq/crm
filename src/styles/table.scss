@@ -1,9 +1,10 @@
+@import './mixins/clearfix';
+
 .table {
   width: 1200px;
   height: 80px;
   margin: 0 auto;
   background: #fff;
-  font-weight: 400;
 }
 
 .table-header {
@@ -17,6 +18,7 @@
 
   .table-search {
     height: 80px;
+    border-top: 1px solid #DDD;
 
     input {
       height: 40px;
@@ -75,6 +77,7 @@
     background: inherit;
     font-weight: 400;
     padding-left: 10px;
+    overflow: visible;
   }
 
   .el-table-column--selection {
@@ -127,13 +130,6 @@
 
   }
 
-  td.el-table_1_column_3,
-  td.el-table_1_column_4,
-  td.el-table_1_column_5 {
-    .cell {
-      color: #999;
-    }
-  }
   .table-header li {
       height: 80px;
       line-height: 80px;
@@ -197,6 +193,100 @@
       a {
         color: #25c526;
       }
+    }
+  }
+}
+.table-operation {
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  margin: 20px 0px;
+
+  li {
+    float: left;
+    margin-left: 30px;
+    color: #525666;
+    cursor: pointer;
+
+    &:hover {
+      color: #25c526;
+    }
+
+    &.active {
+      color: #25c526;
+    }
+  }
+}
+.common-table {
+  td.el-table_1_column_2{
+    .cell {
+      color: #525666;
+    }
+  }
+  td.el-table_1_column_3,
+  td.el-table_1_column_4,
+  td.el-table_1_column_5,
+  td.el-table_1_column_6 {
+    .cell {
+      color: #999;
+    }
+  }
+}
+.private-table {
+  td.el-table_1_column_2{
+    .cell {
+      color: #525666;
+    }
+  }
+  td.el-table_1_column_3,
+  td.el-table_1_column_4,
+  td.el-table_1_column_5,
+  td.el-table_1_column_6,
+  td.el-table_1_column_9 {
+    .cell {
+      color: #999;
+    }
+  }
+}
+
+.el-table th>.cell {
+  color: #525666;
+}
+
+.b-poollist {
+  .el-dropdown-link {
+    font-size: 16px;
+    color: #525666;
+
+    i {
+      font-size: 12px;
+    }
+  }
+}
+.b-table-poper {
+  display: none;
+  position: absolute;
+  top: -55px;
+  left: -5px;
+  box-shadow: 0 0 5px 0 #DDDDDD;
+  width: 320px;
+  min-height: 60px;
+  padding: 20px 15px;
+  border-radius: 4px;
+  background-color: #FAFAFA;
+  font-size: 14px;
+  line-height: 20px;
+}
+.b-table-cell {
+
+  &:hover+div {
+    display: block;
+  }
+
+  p {
+    span{
+      color: #999;
+      margin: 0px 8px;
     }
   }
 }

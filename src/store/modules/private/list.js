@@ -145,6 +145,10 @@ let actions = {
     obj.levelName = state.search.levelName.value
     obj.page = state.page
     let data = await Vue.wGet('/crm/custom/self_list.do',obj)
+    for(let i of data.data.records) {
+      i.ownertime = (Vue.wFormatTime(i.ownertime))
+      i.lastUpdatetime = (Vue.wFormatTime(i.lastUpdatetime))
+    }
     commit(types.PRIVATE_TABLE_CHANG, data.data.records)
 
   },

@@ -9,4 +9,9 @@ export default {
   [types.STATIONMAIL_IS_OUT](state, payload) {
     state.isStationMailOut = payload.isStationMailOut
   },
+  [types.HEADER_MEANSDATA](state, payload) {
+    state.menusData = payload
+    let role = payload.data.crmRole
+    state.role =  role
+  }
 }

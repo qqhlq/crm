@@ -31,7 +31,8 @@ let state = {
       placeholder: '所在城市',
       searchList: [],
       icon: 'search',
-      value: ''
+      value: '',
+      code: ''
     },
     updateTime: {
       head: 'updateTime',
@@ -82,6 +83,13 @@ let mutations = {
   },
   [types.COMMON_TABLE_GET_TRADE_LIST](state, param) {
     state.search.tradeName.searchList = param
+  },
+  [types.CHOOSE_SEARCHLIST_CITYNAME](state, param) {
+    for(let i in param.searchList) {
+      if(param.searchList[i].text === param.value) {
+        param.code = param.searchList[i].id
+      }
+    }
   }
 }
 
@@ -117,7 +125,7 @@ let actions = {
     let obj = {
       startDate: '',
       endDate: '',
-      customPoolid: ''
+      customPoolId: ''
     }
     if(state.search.updateTime.value !== '' && state.search.updateTime.value.toString() !== ',') {
       obj.startDate = state.search.updateTime.value[0].toLocaleString().split(' ')[0]
@@ -125,10 +133,13 @@ let actions = {
     }
     obj.name = state.search.productName.value
     obj.tradeId =state.search.tradeName.value
-    obj.cityCode = state.search.cityName.value
+    obj.cityCode = state.search.cityName.code
     obj.page = state.page
-    obj.customPoolid = state.poolList.value.id
+    obj.customPoolId = state.poolList.value.id
     let data = await Vue.wGet('/crm/custom/list.do',obj)
+    for(let i of data.data.records) {
+      i.lastUpdatetime = (Vue.wFormatTime(i.lastUpdatetime))
+    }
     commit(types.COMMON_TABLE_CHANGE, data.data.records)
   },
 
@@ -176,6 +187,9 @@ let actions = {
    * @param {any} param
    */
   async chooseSearchList({ dispatch, state, commit }, param) {
+    if(param.head === 'cityName') {
+      commit(types.CHOOSE_SEARCHLIST_CITYNAME, param)
+    }
     dispatch('getList')
   },
   async getPoolList({ dispatch, state, commit }, param) {
@@ -184,10 +198,24 @@ let actions = {
     dispatch('getList')
 
   },
+
+  /**
+   * 更改公海池分组 的下拉选择
+   *
+   * @param {any} { dispatch, state, commit }
+   * @param {any} param
+   */
   async changePoolValue({ dispatch, state, commit }, param) {
     await commit (types.COMMON_TABLE_CHANGE_POOLLIST_VALUE, param)
     dispatch('getList')
   },
+
+  /**
+   * 获取行业列表
+   *
+   * @param {any} { dispatch, state, commit }
+   * @param {any} param
+   */
   async getTradeList({ dispatch, state, commit }, param) {
     let data = await Vue.wGet('/crm/custom/trade_option.do')
     for(let item of data.data) {

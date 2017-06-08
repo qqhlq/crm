@@ -67,9 +67,12 @@
 
        <!-- 最新动态纪录 -->
       <el-table-column
-        prop="lastUpdateMemo"
         min-width="270px"
         label="最新动态纪录">
+         <template scope="scope">
+          <p class="b-table-cell" v-html="scope.row.lastStatusDesc"></p>
+          <div class="b-table-poper" v-html="scope.row.lastUpdateMemo"></div>
+        </template>
       </el-table-column>
     </el-table>
   </div>

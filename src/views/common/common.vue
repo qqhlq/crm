@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="table-common">
     <b-crumbs :crumbs="[{name: 'CRM'}, {name: '客户公海池'}]"></b-crumbs>
     <div class="table">
       <common-header></common-header>

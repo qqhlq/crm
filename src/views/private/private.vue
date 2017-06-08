@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="table-private">
     <b-crumbs :crumbs="[{name: 'CRM'}, {name: '私人池'}]"></b-crumbs>
     <div class="table">
       <private-header></private-header>

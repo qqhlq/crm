@@ -21,3 +21,9 @@
     width: 100%;
   }
 }
+.el-autocomplete-suggestion__wrap {
+  max-height: 240px;
+}
+.el-autocomplete-suggestion {
+  box-shadow: 0 0 5px 0 #DDDDDD;
+}

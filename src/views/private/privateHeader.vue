@@ -1,15 +1,15 @@
 <template>
   <div class="table-header">
-    <ul v-if="choosed.length !== 0">
-      <li>
+    <ul v-if="choosed.length !== 0" class="table-operation">
+      <li v-if="role===3||role===2||role===1||role===0">
         <i class="fa fa-mail-forward"></i>
         <span>领取</span>
       </li>
-      <li>
+      <li v-if="role===2||role===1||role===0">
         <i class="fa fa-anchor"></i>
         <span>分配</span>
       </li>
-      <li>
+      <li v-if="role===0">
         <i class="fa fa-trash"></i>
         <span>删除</span>
       </li>
@@ -53,19 +53,22 @@
     computed: {
       ...mapGetters({
         choosed: 'privateList/choosed',
-        search: 'privateList/search'
+        search: 'privateList/search',
+        role: 'role'
       })
     },
     methods: {
       ...mapActions({
         getSearchList: 'privateList/getSearchList',
         chooseSearchList: 'privateList/chooseSearchList',
-        getList: 'privateList/getList'
+        getList: 'privateList/getList',
+        getMenusList: 'getMenusList'
       })
     },
     mounted() {
       let self = this
       self.getList()
+      self.getMenusList({url: self.$route.path})
     }
   }
 </script>
