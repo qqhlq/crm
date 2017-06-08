@@ -4,16 +4,31 @@
   margin: 0 auto;
   background: #fff;
   font-weight: 400;
-
-  th {
-    &>div {
-      overflow: inherit !important;
-    }
-  }
 }
 
 .table-header {
-  height: 80px;
+  background-color: #FFF;
+
+  &>span {
+    line-height: 80px;
+    padding-left: 30px;
+    color: #525666;
+  }
+
+  .table-search {
+    height: 80px;
+
+    input {
+      height: 40px;
+      border-color: #DDD;
+      color: #999;
+      font-size: 14px;
+
+      &:focus, &:hover {
+        border-color: #29cc29;
+      }
+    }
+  }
 }
 .table-header-authority {
   height: 80px;
@@ -22,24 +37,10 @@
   float: left;
 
   input {
-    border: none;
-    width: 87px;
-    font-size: 16px;
-    padding-right: 0px !important;
-  }
-
-  .el-input__icon{
-    color: #525666 !important;
-
+    font-weight: 300;
   }
 }
-.el-select-dropdown__list {
-  width: 140px;
 
-  li {
-    padding: 8px 20px;
-  }
-}
 .btn-green-mid {
   width: 90px;
   height: 40px;
@@ -52,9 +53,9 @@
   border-radius: 3px;
   cursor: pointer;
 }
+
 .el-table {
   border-color: #EAEAEA;
-  overflow: inherit;
   border-left: none;
 
   &::after {
@@ -72,8 +73,8 @@
   }
   .cell {
     background: inherit;
-    font-weight: 300;
-    padding-left: 0px;
+    font-weight: 400;
+    padding-left: 10px;
   }
 
   .el-table-column--selection {
@@ -125,30 +126,26 @@
     font-weight: 300;
 
   }
-}
-.el-table__header-wrapper {
-  overflow: inherit;
 
-  thead {
-    div {
-      background-color: inherit;
+  td.el-table_1_column_3,
+  td.el-table_1_column_4,
+  td.el-table_1_column_5 {
+    .cell {
+      color: #999;
     }
   }
-}
-td.el-table_1_column_3,
-td.el-table_1_column_4,
-td.el-table_1_column_5 {
-  .cell {
-    color: #999;
+  .table-header li {
+      height: 80px;
+      line-height: 80px;
+      margin-left: 20px;
+      float: left;
+      cursor: pointer;
+      color: #525666;
   }
-}
-.table-header li {
-    height: 80px;
-    line-height: 80px;
-    margin-left: 20px;
-    float: left;
-    cursor: pointer;
-    color: #525666;
+  .el-table__fixed {
+    box-shadow: none;
+    border-right: 1px solid #ddd;
+  }
 }
 
 .table-footer {
@@ -191,7 +188,6 @@ td.el-table_1_column_5 {
     span {
       margin-left: 10px;
       font-size: 14px;
-      letter-spacing: 4px;
       color: #999;
     }
     .table-next {
@@ -202,26 +198,5 @@ td.el-table_1_column_5 {
         color: #25c526;
       }
     }
-  }
-}
-
-.table-header-authority {
-  input {
-    font-weight: 300;
-  }
-}
-.el-select-dropdown {
-  .el-select-dropdown__item {
-    span {
-      font-weight: 300;
-    }
-  }
-}
-
-.b-table-cell {
-  color: #999999;
-
-  span {
-    color: #525666;
   }
 }

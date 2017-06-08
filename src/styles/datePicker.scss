@@ -1,15 +1,4 @@
-.b-table-data-picker {
-  .el-date-editor {
-    position: absolute;
-    width: 84px;
-    bottom: -5px;
-    left: 0px;
-    z-index: -10;
-  }
-}
-.b-data-picker-box {
-  border-bottom: none;
-
+.b-date-picker-box {
   .available{
 
     &.today {
@@ -27,16 +16,15 @@
     }
   }
 }
-.b-data-picker {
-  .b-data-picker-clear {
-    position: absolute;
-    background: #fff;
-    border: 1px solid #d1dbe5;
-    border-top: none;
-    top: 322px;
-    width: 520px;
-    height: 44px;
-    box-shadow: 0 2px 6px #ccc;
+.b-date-picker {
+   margin: 20px 0 20px 30px;
+   float: left;
+
+  &.ownerTime {
+    width: 240px;
+  }
+  &.updateTime {
+    width: 240px;
   }
 }
 .el-picker-panel__shortcut:nth-child(4){

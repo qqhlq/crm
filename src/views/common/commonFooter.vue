@@ -21,17 +21,17 @@
 <script>
   import { mapGetters, mapActions } from 'vuex'
   export default {
-    name: 'OpenFooter',
+    name: 'CommonFooter',
     computed: {
       ...mapGetters({
-        page: 'openList/page',
-        totalPage: 'openList/totalPage'
+        page: 'commonList/page',
+        totalPage: 'commonList/totalPage'
       })
     },
     methods: {
       ...mapActions({
-        changePage: 'openList/changePage',
-        getList: 'openList/getList'
+        changePage: 'commonList/changePage',
+        getList: 'commonList/getList'
       }),
       pushPrev() {
         let self = this
