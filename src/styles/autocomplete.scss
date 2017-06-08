@@ -27,3 +27,18 @@
 .el-autocomplete-suggestion {
   box-shadow: 0 0 5px 0 #DDDDDD;
 }
+.el-autocomplete-suggestion__list {
+  li {
+    &:active {
+      background-color: #29cc29 !important;
+      color: #FFF !important;
+    }
+    &:hover {
+      background-color: #FAFAFA ;
+      color: #525666;
+    }
+  }
+}
+.el-input__icon.is-clickable:hover+.el-input__inner {
+    border-color: #29cc29 !important;
+}

@@ -1,38 +1,41 @@
 <template>
   <div class="table-header">
-    <ul v-if="choosed.length !== 0" class="table-operation">
-      <li v-if="role===3||role===2||role===1||role===0" @click="getCustomConfirm">
-        <i class="fa fa-mail-forward"></i>
-        <span>领取</span>
-      </li>
-      <li v-if="role===2||role===1||role===0" @click="openAllotCustomModal">
-        <i class="fa fa-anchor"></i>
-        <span>分配</span>
-      </li>
-      <li v-if="role===0" @click="openDelCustomModal">
-        <i class="fa fa-trash"></i>
-        <span>删除</span>
-      </li>
-    </ul>
-    <div v-if="choosed.length === 0 && role===0" class="b-poollist">
-      <el-dropdown @command="handleCommand">
-        <span class="el-dropdown-link">
-          {{poolList.value.name}}<i class="el-icon-caret-bottom el-icon--right"></i>
-        </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item v-for="item of poolList.list" :command="item.id.toString()" :key="item.id">{{item.name}}</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </div>
-    <span v-if="role===3||role===2||role===1">{{role}}</span>
-    <div @click="openAddnewCustomModal" class="btn-green-mid">
-      新建客户
+    <div class="table-opera">
+      <ul v-if="choosed.length !== 0" class="table-operation">
+        <li v-if="role===3||role===2||role===1||role===0" @click="getCustomConfirm">
+          <i class="fa fa-mail-forward"></i>
+          <span>领取</span>
+        </li>
+        <li v-if="role===2||role===1||role===0" @click="openAllotCustomModal">
+          <i class="fa fa-anchor"></i>
+          <span>分配</span>
+        </li>
+        <li v-if="role===0" @click="openDelCustomModal">
+          <i class="fa fa-trash"></i>
+          <span>删除</span>
+        </li>
+      </ul>
+      <div v-if="choosed.length === 0 && role===0" class="b-poollist">
+        <el-dropdown @command="handleCommand">
+          <span class="el-dropdown-link">
+            {{poolList.value.name}}<i class="el-icon-caret-bottom el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="item of poolList.list" :command="item.id.toString()" :key="item.id">{{item.name}}</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+      <span v-if="role===3||role===2||role===1">{{role}}</span>
+      <div @click="openAddnewCustomModal" class="btn-green-mid">
+        新建客户
+      </div>
     </div>
     <div class="table-search">
       <b-autocomplete
         :list ="search.productName"
         @getSearchList = "getSearchList"
-        @chooseSearchList = "chooseSearchList">
+        @chooseSearchList = "chooseSearchList"
+        @getList = "getList">
       </b-autocomplete>
       <b-select
         :list ="search.tradeName"
@@ -41,7 +44,8 @@
       <b-autocomplete
         :list ="search.cityName"
         @getSearchList = "getSearchList"
-        @chooseSearchList = "chooseSearchList">
+        @chooseSearchList = "chooseSearchList"
+        @getList = "getList">
       </b-autocomplete>
       <b-date-picker
         :list ="search.updateTime"
@@ -119,7 +123,9 @@
         getCustomData: 'customerDetail/getCustomData',
         allotCustomdata: 'customerDetail/allotCustomdata',
         delCustomdata: 'customerDetail/delCustomdata',
-        addNewCustomData: 'commonList/addNewCustomData'
+        addNewCustomData: 'commonList/addNewCustomData',
+        customPoolName: 'commonList/customPoolName',
+
       })
     },
     methods: {

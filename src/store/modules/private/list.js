@@ -98,7 +98,9 @@ let mutations = {
     state.search[param.head] = param
   },
   [types.PRIVATE_TABLE_CHANG](state, param) {
-    state.data = param
+    state.data = param.records
+    state.page = param.page
+    state.totalPage = param.pageCount
   }
 }
 
@@ -149,7 +151,7 @@ let actions = {
       i.ownertime = (Vue.wFormatTime(i.ownertime))
       i.lastUpdatetime = (Vue.wFormatTime(i.lastUpdatetime))
     }
-    commit(types.PRIVATE_TABLE_CHANG, data.data.records)
+    commit(types.PRIVATE_TABLE_CHANG, data.data)
 
   },
 

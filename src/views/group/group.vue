@@ -33,9 +33,15 @@
       </div>
       <div class="b-crm-left-pageTurn">
         <div>
+<<<<<<< HEAD
           <span @click="getGroupListPage(groupList.data.page - 1)" class="fa fa-chevron-circle-left"></span>
           <span class="pageNumber"><input :value="groupList.data.page"><span>/ {{ groupList.data.pageCount}}</span></span>
           <span @click="getGroupListPage(groupList.data.page + 1)" class="fa fa-chevron-circle-right"></span>
+=======
+          <span @click="" class="fa fa-chevron-circle-left"></span>
+          <span class="pageNumber"><input value='1'><span>/ 1</span></span>
+          <span @click="" class="fa fa-chevron-circle-right"></span>
+>>>>>>> 768aa5f2478aff50b2817e699a1bf49173b3c38e
         </div>
       </div>
     </div>
@@ -84,7 +90,6 @@
         <div :class="newGroupSteps === 3 ? 'stepIn': 'stepOut'">
           <div :class="{empty: (newGroupData.groupMembers.value.length === 0) && newGroupData.groupMembers.isEmpty}">
             <div class="modal-grey-header" style="margin-top: 28px;">设置分组成员：</div>
-            <div class="modal-grey-explain">说明文字</div>
             <div class="new-group-input" @click="closeTips('newGroupData', 'groupMembers')">
               <b-complex-drop
                 :canChangeds = "newGroupData.groupMembers.value"
@@ -150,7 +155,6 @@
         <div :class="editorGroupSteps === 3 ? 'stepIn': 'stepOut'">
           <div :class="{empty: (editorGroupData.groupMembers.value.length === 0) && editorGroupData.groupMembers.isEmpty}">
             <div class="modal-grey-header" style="margin-top: 28px;">设置分组成员：</div>
-            <div class="modal-grey-explain">说明文字</div>
             <div class="new-group-input" @click="closeTips('editorGroupData', 'groupMembers')">
               <b-complex-drop
                 :canChangeds = "editorGroupData.groupMembers.value"

@@ -1,33 +1,38 @@
 <template>
   <div class="table-header">
-    <ul v-if="choosed.length !== 0" class="table-operation">
-      <li v-if="role===3||role===2||role===1||role===0"  @click="openTransferCustomModal">
-        <i class="fa fa fa-random"></i>
-        <span>转移</span>
-      </li>
-      <li v-if="role===2||role===1||role===0" @click="openReturnCustomModal">
-        <i class="fa fa-mail-reply"></i>
-        <span>退回</span>
-      </li>
-      <li v-if="role===0" @click="openDelCustomModal">
-        <i class="fa fa-trash"></i>
-        <span>删除</span>
-      </li>
-    </ul>
-    <span v-if="choosed.length === 0">私人池</span>
-    <div  @click="openAddnewCustomModal" class="btn-green-mid">
-      新建客户
+    <div class="table-opera">
+      <ul v-if="choosed.length !== 0" class="table-operation">
+        <li v-if="role===3||role===2||role===1||role===0"  @click="openTransferCustomModal">
+          <i class="fa fa fa-random"></i>
+          <span>转移</span>
+        </li>
+        <li v-if="role===2||role===1||role===0" @click="openReturnCustomModal">
+          <i class="fa fa-mail-reply"></i>
+          <span>退回</span>
+        </li>
+        <li v-if="role===0" @click="openDelCustomModal">
+          <i class="fa fa-trash"></i>
+          <span>删除</span>
+        </li>
+      </ul>
+      <span v-if="choosed.length === 0">私人池</span>
+      <div  @click="openAddnewCustomModal" class="btn-green-mid">
+        新建客户
+      </div>
     </div>
     <div class="table-search">
       <b-autocomplete
         :list ="search.productName"
         @getSearchList = "getSearchList"
-        @chooseSearchList = "chooseSearchList">
+        @chooseSearchList = "chooseSearchList"
+        @getList = "getList">
       </b-autocomplete>
       <b-autocomplete
+        v-if="role===0"
         :list ="search.ownerName"
         @getSearchList = "getSearchList"
-        @chooseSearchList = "chooseSearchList">
+        @chooseSearchList = "chooseSearchList"
+        @getList = "getList">
       </b-autocomplete>
       <b-select
         :list ="search.levelName"

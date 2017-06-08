@@ -66,5 +66,18 @@ export default {
       let data =  await Vue.wGet('/admin/user/list_menus.do', param)
       commit(types.HEADER_MEANSDATA, data)
     }
+  },
+
+  // 退出登录
+  async logout({commit, state}) {
+    let data = await Vue.wGet('/auth/logout.do')
+    if(data.data !== false) {
+      location.href = '/boss/user/login'
+    }
+  },
+
+  // 更改密码
+  async changePassword({ commit, state}) {
+    location.href = '/boss/user/change-pwd?username=' + encodeURIComponent(localStorage.getItem('email'))
   }
 }

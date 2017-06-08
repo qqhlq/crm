@@ -48,8 +48,8 @@
             <ul>
               <li @click.stop="nolyStationMailIn()"><span class="stationMail-news" style="display: none"></span><a href="javascript:void(0)" id="station-mail-out">站内信</a></li>
               <li><a href="/boss/new/system/mail-list">通讯录</a></li>
-              <li><a href="javascript:void(0)">修改密码</a></li>
-              <li><a href="javascript:void(0)">退出</a></li>
+              <li><a href="javascript:void(0)" @click="changePassword">修改密码</a></li>
+              <li><a href="javascript:void(0)" @click="logout">退出</a></li>
             </ul>
           </div>
         </div>
@@ -93,7 +93,9 @@
         stationMailIn: 'stationMailIn',
 
         // 获取导航和当前页面权限
-        getMenusList: 'getMenusList'
+        getMenusList: 'getMenusList',
+        logout: 'logout',
+        changePassword: 'changePassword'
       }),
 
       // 打开站内信，避免冒泡

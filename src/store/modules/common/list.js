@@ -7,6 +7,7 @@ let state = {
   choosed: [],
   page: 1,
   totalPage: 1,
+  customPoolName: '',
   data: [],
   poolList: {
     list: [],
@@ -50,7 +51,8 @@ let getters = {
   data: state => state.data,
   poolList: state => state.poolList,
   search: state => state.search,
-  addNewCustomData: state => state.addNewCustomData
+  addNewCustomData: state => state.addNewCustomData,
+  customPoolName: state => state.customPoolName
 }
 
 let mutations = {
@@ -82,7 +84,10 @@ let mutations = {
     }
   },
   [types.COMMON_TABLE_CHANGE](state, param) {
-    state.data = param
+    state.data = param.records
+    state.page = param.page
+    state.totalPage = param.pageCount
+    state.customPoolName = param.customPoolName
   },
   [types.COMMON_TABLE_GET_TRADE_LIST](state, param) {
     state.search.tradeName.searchList = param
@@ -99,6 +104,9 @@ let mutations = {
   [types.COMMON_TABLE_ADD_CUSTOM](state, param) {
     state.addNewCustomData = param
   },
+  [types.COMMON_TABLE_DELETE_CITYCODE](state) {
+    state.search.cityName.code = ''
+  }
 }
 
 let actions = {
@@ -135,6 +143,9 @@ let actions = {
       endDate: '',
       customPoolId: ''
     }
+    if(state.search.cityName.value === '') {
+      await commit(types.COMMON_TABLE_DELETE_CITYCODE)
+    }
     if(state.search.updateTime.value !== '' && state.search.updateTime.value.toString() !== ',') {
       obj.startDate = state.search.updateTime.value[0].toLocaleString().split(' ')[0]
       obj.endDate = state.search.updateTime.value[1].toLocaleString().split(' ')[0]
@@ -149,7 +160,7 @@ let actions = {
       i.lastUpdateMemo = i.lastUpdateMemo || '暂无具体跟进纪录'
       i.lastUpdatetime = (Vue.wFormatTime(i.lastUpdatetime))
     }
-    commit(types.COMMON_TABLE_CHANGE, data.data.records)
+    commit(types.COMMON_TABLE_CHANGE, data.data)
   },
 
   /**

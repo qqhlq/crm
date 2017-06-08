@@ -53,9 +53,11 @@
 
       <!-- 今日动态列 -->
       <el-table-column
-        prop="todayStatusDesc"
         min-width="260px"
         label="今日动态">
+        <template scope="scope">
+          <p class="b-poper" v-html="scope.row.todayStatusDesc"></p>
+        </template>
       </el-table-column>
 
       <!-- 最新动态时间 -->
