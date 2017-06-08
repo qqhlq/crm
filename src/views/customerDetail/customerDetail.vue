@@ -199,13 +199,14 @@
     <!--分配客户弹出框-->
     <b-modaler ref="allotCustomModal">
       <div class="modal-grey-header" slot="header">将该客户分配给：</div>
-      <b-complex-drop
-        :interfaceType='3'
-        :interfaceParam='{'customPoolId': customerDetail.customPoolId}'
-        style="width: 460px;"
-        slot="content"
-        @getCheckeds="getAllotedUsers">
-      </b-complex-drop>
+      <div slot="content">
+        <b-complex-drop
+          :interfaceType="3"
+          :interfaceParam="{'customPoolId': customerDetail.customPoolId}"
+          style="width: 460px;"
+          @getCheckeds="getAllotedUsers">
+        </b-complex-drop>
+      </div>
       <div class="modal-center-btn" slot="btn">
         <button @click="allotCustomConfirm" class="green">确认</button>
         <button @click="closeAllotCustomModal" class="grey">取消</button>
@@ -215,8 +216,8 @@
     <b-modaler ref="transferCustomModal">
       <div class="modal-grey-header" slot="header">将该客户转移给：</div>
       <b-complex-drop
-        :interfaceType='3'
-        :interfaceParam='{'customPoolId': }'
+        :interfaceType="3"
+        :interfaceParam="{'customPoolId': customerDetail.customPoolId}"
         style="width: 460px;"
         slot="content"
         @getCheckeds="getTransferedUsers">
@@ -243,8 +244,13 @@
       </div>
     </b-modaler>
     <!--退回客户弹出框-->
-    <b-modaler ref="returnCustomModal" class="min-modal">
-      <div class="modal-teps" slot="content">您确定退回该客户吗？</div>
+    <b-modaler ref="returnCustomModal" class="return-custom-modal">
+      <div slot="content">
+        <div class="check-return-tit">您确定退回该客户吗？</div>
+        <div class="empty">
+          <textarea v-model="returnCustomReason" placeholder="请填写退回原因"></textarea>
+        </div>
+      </div>
       <div class="modal-center-btn" slot="btn">
         <button @click="returnCustomConfirm" class="green">确认</button>
         <button @click="closeReturnCustomModal" class="grey">取消</button>
@@ -281,7 +287,7 @@
         dynamicList: '',
 
         // 客户详情
-        customerDetail: {},
+        customerDetail: {'customPoolId': ''},
 
         // 被分配的用户
         allotedUsers: [],
@@ -616,6 +622,7 @@
       // 确认退回客户
       returnCustomConfirm() {
         let self = this
+        console.log(self.returnCustomReason)
         if(self.returnCustomReason === '') {
           self.openMOdaltips('error', '请写明退回原因')
         } else {
@@ -711,6 +718,63 @@
 </script>
 
 <style scoped>
+  .closeTips {
+    transform-origin:0 0;
+    transform: scaleY(0);
+    height: 0;
 
+    -ms-transform-origin:0 0; 		/* IE 9 */
+    -ms-transform: scaleY(0); 	/* IE 9 */
+
+    -webkit-transform-origin:0 0;	/* Safari 和 Chrome */
+    -webkit-transform: scaleY(0); 	/* Safari 和 Chrome */
+
+    -moz-transform-origin:0 0;		/* Firefox */
+    -moz-transform: scaleY(0); 	 	/* Firefox */
+
+    -o-transform-origin:0 0;
+    -o-transform: scaleY(0);
+
+
+    transition: transform .3s;
+    -ms-transition: -ms-transform .3s;
+    -moz-transition: -moz-transform .3s;
+    -webkit-transition: -webkit-transform .3s;
+    -o-transition: -o-transform .3s;
+    transition: height .3s;
+    -ms-transition: height .3s;
+    -moz-transition: height .3s;
+    -webkit-transition: height .3s;
+    -o-transition: height .3s;
+  }
+
+  .openTips {
+    transform-origin:0 0;
+    transform: scaleY(1);
+    height: 20px;
+
+    -ms-transform-origin:0 0; 		/* IE 9 */
+    -ms-transform: scaleY(1); 	/* IE 9 */
+
+    -webkit-transform-origin:0 0;	/* Safari 和 Chrome */
+    -webkit-transform: scaleY(1); 	/* Safari 和 Chrome */
+
+    -moz-transform-origin:0 0;		/* Firefox */
+    -moz-transform: scaleY(1); 	 	/* Firefox */
+
+    -o-transform-origin:0 0;
+    -o-transform: scaleY(1);
+
+    transition: transform .3s;
+    -ms-transition: -ms-transform .3s;
+    -moz-transition: -moz-transform .3s;
+    -webkit-transition: -webkit-transform .3s;
+    -o-transition: -o-transform .3s;
+    transition: height .3s;
+    -ms-transition: height .3s;
+    -moz-transition: height .3s;
+    -webkit-transition: height .3s;
+    -o-transition: height .3s;
+  }
 </style>
 

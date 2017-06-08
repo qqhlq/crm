@@ -63,7 +63,7 @@ let actions = {
 
   async getTradeOptions({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    commit(types.GROUP_NEWCUSTOM_GET_TRADEOPTIONS, await Vue.wGet(' /crm/custom/trade_option.do', param))
+    commit(types.GROUP_NEWCUSTOM_GET_TRADEOPTIONS, await Vue.wGet('/crm/custom/trade_option.do', param))
   },
 
   /**

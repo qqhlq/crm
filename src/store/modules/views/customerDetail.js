@@ -205,7 +205,7 @@ let actions = {
 
   async returnCustom({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    commit(types.VIEWS_CUSTOMERDETAIL_RETURN_CUSTOM, await Vue.wPost(' /crm/custom/reback.do', param))
+    commit(types.VIEWS_CUSTOMERDETAIL_RETURN_CUSTOM, await Vue.wPost('/crm/custom/reback.do', param))
   },
 
 

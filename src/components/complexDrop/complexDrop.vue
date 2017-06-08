@@ -202,7 +202,7 @@ export default {
         })
       } else if(self.interfaceType === 3) {
         if(self.interfaceParam) {
-          if(self.interfaceParam !== null && self.interfaceParam !== '') {
+          if(self.interfaceParam !== null && self.interfaceParam !== '' && self.interfaceParam.customPoolId !== '') {
             self.getGroupMembers({
               param: param,
             }).then(() => {
