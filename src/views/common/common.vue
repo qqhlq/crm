@@ -6,6 +6,7 @@
       <common-main></common-main>
       <common-footer></common-footer>
     </div>
+    <b-page-bottom></b-page-bottom>
   </div>
 </template>
 

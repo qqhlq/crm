@@ -10,3 +10,7 @@
 .el-autocomplete-suggestion__wrap, .el-pager li {
   border: none;
 }
+.el-select-dropdown.is-multiple
+.el-select-dropdown__item.selected.hover, .el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+  background: #FAFAFA;
+}

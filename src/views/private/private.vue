@@ -6,6 +6,7 @@
       <private-main></private-main>
       <private-footer></private-footer>
     </div>
+    <b-page-bottom></b-page-bottom>
   </div>
 </template>
 
