@@ -57,7 +57,12 @@
             <div class="modal-grey-header" style="margin-top: 28px;">一、设置分组管理人员:</div>
             <div class="modal-grey-explain">建议设置为公司中较高权利的管理人员，需要管理所有销售自建的回收客户，拥有“分配”权限。</div>
             <div class="new-group-input" @click="closeTips('newGroupData', 'groupAdmins')">
-              <b-complex-drop style="width: 460px;" slot="content" @getCheckeds="getNewGroupAdmins"></b-complex-drop>
+              <b-complex-drop
+                :canChangeds = "newGroupData.groupAdmins.value"
+                :interfaceType = "2"
+                style="width: 460px;" slot="content"
+                @getCheckeds="getNewGroupAdmins">
+              </b-complex-drop>
             </div>
             <div class="error-tips" :class="(newGroupData.groupAdmins.value.length === 0) && newGroupData.groupAdmins.isEmpty ? 'openTips': 'closeTips'">请选择分组管理员</div>
           </div>
@@ -65,7 +70,13 @@
             <div class="modal-grey-header" style="margin-top: 28px;">二、设置默认分组管理员：</div>
             <div class="modal-grey-explain">客户回收时，默认分组管理员自动成为回收客户的负责人。</div>
             <div class="new-group-input"  @click="closeTips('newGroupData', 'groupDefaultAdmins')">
-              <b-complex-drop style="width: 460px;" slot="content" @getCheckeds="getNewGroupDefaultAdmins"></b-complex-drop>
+              <b-complex-drop
+                :canChangeds = "newGroupData.groupDefaultAdmins.value"
+                :interfaceType = "2"
+                style="width: 460px;"
+                slot="content"
+                @getCheckeds="getNewGroupDefaultAdmins">
+              </b-complex-drop>
             </div>
             <div class="error-tips" :class="(newGroupData.groupDefaultAdmins.value.length === 0) && newGroupData.groupDefaultAdmins.isEmpty ? 'openTips': 'closeTips'">请选择默认分组管理员</div>
           </div>
@@ -75,7 +86,13 @@
             <div class="modal-grey-header" style="margin-top: 28px;">设置分组成员：</div>
             <div class="modal-grey-explain">说明文字</div>
             <div class="new-group-input" @click="closeTips('newGroupData', 'groupMembers')">
-              <b-complex-drop style="width: 460px;" slot="content" @getCheckeds="getNewGroupMembers"></b-complex-drop>
+              <b-complex-drop
+                :canChangeds = "newGroupData.groupMembers.value"
+                :interfaceType = "2"
+                style="width: 460px;"
+                slot="content"
+                @getCheckeds="getNewGroupMembers">
+              </b-complex-drop>
             </div>
             <div class="error-tips" :class="(newGroupData.groupMembers.value.length === 0) && newGroupData.groupMembers.isEmpty ? 'openTips': 'closeTips'">请选择默认分组管理员</div>
           </div>
@@ -105,7 +122,13 @@
             <div class="modal-grey-header" style="margin-top: 28px;">一、设置分组管理人员:</div>
             <div class="modal-grey-explain">建议设置为公司中较高权利的管理人员，需要管理所有销售自建的回收客户，拥有“分配”权限。</div>
             <div class="new-group-input" @click="closeTips('editorGroupData', 'groupAdmins')">
-              <b-complex-drop :canChangeds="editorGroupData.groupAdmins.value" style="width: 460px;" slot="content" @getCheckeds="editorGroupAdmins"></b-complex-drop>
+              <b-complex-drop
+                :canChangeds = "editorGroupData.groupAdmins.value"
+                :interfaceType = "2"
+                :interfaceParam = "{'customPoolId': editorGroupData.groupId}"
+                style="width: 460px;" slot="content"
+                @getCheckeds="editorGroupAdmins">
+              </b-complex-drop>
             </div>
             <div class="error-tips" :class="(editorGroupData.groupAdmins.value.length === 0) && editorGroupData.groupAdmins.isEmpty ? 'openTips': 'closeTips'">请选择分组管理员</div>
           </div>
@@ -113,7 +136,13 @@
             <div class="modal-grey-header" style="margin-top: 28px;">二、设置默认分组管理员：</div>
             <div class="modal-grey-explain">客户回收时，默认分组管理员自动成为回收客户的负责人。</div>
             <div class="new-group-input" @click="closeTips('editorGroupData', 'groupDefaultAdmins')">
-              <b-complex-drop :canChangeds="editorGroupData.groupDefaultAdmins.value" style="width: 460px;" slot="content" @getCheckeds="editorGroupDefaultAdmins"></b-complex-drop>
+              <b-complex-drop
+                :canChangeds = "editorGroupData.groupDefaultAdmins.value"
+                :interfaceType = "2"
+                :interfaceParam = "{'customPoolId': editorGroupData.groupId}"
+                style="width: 460px;" slot="content"
+                @getCheckeds="editorGroupDefaultAdmins">
+              </b-complex-drop>
             </div>
             <div class="error-tips" :class="(editorGroupData.groupDefaultAdmins.value.length === 0) && editorGroupData.groupDefaultAdmins.isEmpty ? 'openTips': 'closeTips'">请选择默认管理员</div>
           </div>
@@ -123,7 +152,13 @@
             <div class="modal-grey-header" style="margin-top: 28px;">设置分组成员：</div>
             <div class="modal-grey-explain">说明文字</div>
             <div class="new-group-input" @click="closeTips('editorGroupData', 'groupMembers')">
-              <b-complex-drop :canChangeds="editorGroupData.groupMembers.value" style="width: 460px;" slot="content" @getCheckeds="editorGroupMembers"></b-complex-drop>
+              <b-complex-drop
+                :canChangeds = "editorGroupData.groupMembers.value"
+                :interfaceType = "2"
+                :interfaceParam = "{'customPoolId': editorGroupData.groupId}"
+                style="width: 460px;" slot="content"
+                @getCheckeds="editorGroupMembers">
+              </b-complex-drop>
             </div>
             <div class="error-tips" :class="(editorGroupData.groupMembers.value.length === 0) && editorGroupData.groupMembers.isEmpty ? 'openTips': 'closeTips'">请选择分组成员</div>
           </div>
@@ -135,7 +170,7 @@
     </b-modaler>
     <b-modaltips ref="openBModaltips"></b-modaltips>
     <b-page-bottom></b-page-bottom>
-    <b-modaler ref="delGroupModal">
+    <b-modaler ref="delGroupModal" class="min-modal">
       <div class="modal-teps" slot="content">您确认删除该客户公海池分组吗？</div>
       <div class="modal-center-btn" slot="btn">
         <button @click="checkdelGroup" class="green">确认</button>
@@ -150,6 +185,7 @@
     name: 'Group',
     data() {
       return {
+
         // 新建客户进度
         newGroupSteps: 1,
 
@@ -256,7 +292,7 @@
         })
       },
 
-      // 打开关闭编辑分组弹出框
+      // 打开关闭删除分组弹出框
       openDelGroupModal(delGroupId) {
         let self = this
         self.delGroupId = delGroupId
@@ -272,12 +308,12 @@
       checkdelGroup() {
         let self = this
         self.delGroup({param: {customPoolId: self.delGroupId}}).then(() => {
-          if(delGroupData.data) {
-            self.openBModaltips('success', '分组已被删除')
+          if(self.delGroupData.data) {
+            self.openMOdaltips('success', '分组已被删除')
             self.closeDelGroupModal()
             self.getGroupLsit()
           } else {
-            self.openBModaltips('error', '分组删除失败')
+            self.openMOdaltips('error', '分组删除失败')
           }
         })
       },
@@ -572,6 +608,9 @@
               groupDefaultAdmins.push(self.editorGroupData.groupDefaultAdmins.value[i].val)
             }
 
+            groupAdmins = JSON.stringify(groupAdmins)
+            groupDefaultAdmins = JSON.stringify(groupDefaultAdmins)
+
             self.changeGroupAdmins({param: {customPoolId: self.editorGroupData.groupId, managerIds: groupAdmins, defaultIds: groupDefaultAdmins}}).then(() => {
 
               if(self.changeGroupAdminsData.data) {
@@ -592,6 +631,7 @@
               groupMembers.push(self.editorGroupData.groupMembers.value[i].val)
             }
 
+            groupMembers = JSON.stringify(groupMembers)
             self.changeGroupMembers({param: {customPoolId: self.editorGroupData.groupId, memberIds: groupMembers}}).then(() => {
               if(self.changeGroupMembersData.data) {
                 self.openMOdaltips('success', '修改成功')
@@ -635,10 +675,30 @@
             if(self.addnewGroupData.data) {
               self.openMOdaltips('success', '分组新建成功')
               self.closeNewGroupModal()
+              self.getGroupLsit()
             } else {
               self.openMOdaltips('error', '分组新建失败')
             }
           })
+
+        self.newGroupData = {
+          groupName: {
+            isEmpty: false,
+            value: ''
+          },
+          groupAdmins: {
+            isEmpty: false,
+            value: []
+          },
+          groupDefaultAdmins: {
+            isEmpty: false,
+            value: []
+          },
+          groupMembers: {
+            isEmpty: false,
+            value: []
+          }
+        }
       }
 
 

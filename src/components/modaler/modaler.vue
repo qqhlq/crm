@@ -32,6 +32,7 @@
     },
     methods: {
 
+      // 关闭弹出框
       closeDrop() {
         let self = this
         if(!self.switchDrop) {
@@ -40,8 +41,9 @@
             self.switchDrop = true
           }, 300)
         }
-        // self.$emit('aaa', 'dd')
       },
+
+      // 打开弹出框
       openDrop() {
         let self = this
         if(self.switchDrop) {

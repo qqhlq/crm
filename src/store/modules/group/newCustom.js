@@ -5,29 +5,37 @@ let state = {
   tradeData: {},
   productlineData: {},
   provinceData: {},
-  cityData: {},
-  addNewCustomData: {},
-  updateCustomData: {}
+  cityData: {}
 }
 let getters = {
 
   tradeData: state => state.tradeData,
   productlineData: state => state.productlineData,
   provinceData: state => state.provinceData,
-  cityData: state => state.cityData,
-  addNewCustomData: state => state.addNewCustomData,
+  cityData: state => state.cityData
 }
 let mutations = {
 
-  /**
-   * 处理人员数据（添加已选和默选）
-   * @param {Object} payload {
-   * }
-   */
-
-  [types.GROUP_COMPLEXDROP_DATA_PREP](state, payload) {
-    state.vetUsers = payload.data.data.records
+  //获取分组列表返回数据
+  [types.GROUP_NEWCUSTOM_GET_TRADEOPTIONS](state, param) {
+    state.tradeData = param
   },
+
+  //获取分组列表返回数据
+  [types.GROUP_NEWCUSTOM_GET_PRODUCTLINEOPTIONS](state, param) {
+    state.productlineData = param
+  },
+
+  //获取分组列表返回数据
+  [types.GROUP_NEWCUSTOM_GET_PROVINCEOPTIONS](state, param) {
+    state.provinceData = param
+  },
+
+  //获取分组列表返回数据
+  [types.GROUP_NEWCUSTOM_GET_CITYSOPTIONS](state, param) {
+    state.cityData = param
+  },
+
 }
 let actions = {
 
@@ -55,7 +63,7 @@ let actions = {
 
   async getTradeOptions({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    state.tradeData =  await Vue.wGet(' /crm/custom/trade_option.do', param)
+    commit(types.GROUP_NEWCUSTOM_GET_TRADEOPTIONS, await Vue.wGet(' /crm/custom/trade_option.do', param))
   },
 
   /**
@@ -66,7 +74,7 @@ let actions = {
 
   async getProductlineOptions({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    state.productlineData =  await Vue.wGet('/crm/custom/product_line_option.do', param)
+    commit(types.GROUP_NEWCUSTOM_GET_PRODUCTLINEOPTIONS, await Vue.wGet('/crm/custom/product_line_option.do', param))
   },
 
   /**
@@ -77,7 +85,7 @@ let actions = {
 
   async getProvinceOptions({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    state.provinceData =  await Vue.wGet('/crm/custom/province_option.do', param)
+    commit(types.GROUP_NEWCUSTOM_GET_PROVINCEOPTIONS, await Vue.wGet('/crm/custom/province_option.do', param))
   },
 
   /**
@@ -88,19 +96,8 @@ let actions = {
 
   async getCitysOptions({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    state.cityData =  await Vue.wPost('/crm/custom/province_city_option.do', param)
-  },
-
-  /**
-   * 新建客户
-   * @param {Object} payload {
-   * }
-   */
-
-  async addNewCustom({ dispatch, commit }, payload) {
-    let param = await dispatch('isParamUndefind', payload)
-    state.addNewCustomData =  await Vue.wPost('/crm/custom/add.do', param)
-  },
+    commit(types.GROUP_NEWCUSTOM_GET_CITYSOPTIONS, await Vue.wPost('/crm/custom/province_city_option.do', param))
+  }
 
 }
 
