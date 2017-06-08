@@ -8,27 +8,27 @@ import BModaler from 'components/modaler'
 
 export default [
   {
-    path: '/group',
+    path: '/crm/group',
     name: 'Group',
     component: Group
   },
   {
-    path: '/common',
+    path: '/crm/common',
     name: 'Common',
     component: Common
   },
   {
-    path: '/processbar',
+    path: '/crm/processbar',
     name: 'BProcessBar',
     component: BProcessBar
   },
   {
-    path: '/private',
+    path: '/crm/private',
     name: 'Private',
     component: Private
   },
   {
-    path: '/customerDetail',
+    path: '/crm/customerDetail',
     name: 'customerDetail',
     component: customerDetail
   }
