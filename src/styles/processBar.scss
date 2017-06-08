@@ -2,6 +2,7 @@
 @import './core/var';
 .processBarWrap {
   width: 100%;
+  position: relative;
 
   .plinePointWrap {
     position: relative;
@@ -95,5 +96,29 @@
       width: 33%;
     }
 
+  }
+
+  .stpesclick {
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+  }
+
+  .firstSteps {
+    position: absolute;
+    top: 0;
+    left: -22px;
+  }
+  .towthSteps {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -50px;
+  }
+
+  .threethSteps {
+    position: absolute;
+    top: 0;
+    right: -22px;
   }
 }

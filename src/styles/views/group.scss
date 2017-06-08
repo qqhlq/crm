@@ -1,0 +1,140 @@
+.b-group-header {
+
+  height: 80px;
+  padding: 20px 30px;
+
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  .right {
+    float: right;
+  }
+
+  .left {
+    float: left;
+  }
+
+  span.headtit {
+    height: 40px;
+    padding: 9px 0;
+    font-size: 16px;
+    color: #525666;
+    font-weight: 600;
+  }
+
+  button.green {
+    border-radius: 4px;
+    border: none;
+    background-color: $color-green;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+    height: 40px;
+    outline: none;
+    width: 90px;
+
+    &:hover {
+      background-color: #26B31E;
+    }
+  }
+}
+
+.b-group-content {
+
+  .b-group-table {
+    border-collapse: collapse;
+    color:  #525666;
+    text-align: left;
+    width: 100%;
+
+    th {
+      background: #fafafa;
+      border-top: 1px solid #ededed;
+      border-bottom: 1px solid #ededed;
+      font-weight: normal;
+      height: 40px;
+      padding: 10px 0;
+    }
+
+    td {
+      border-bottom: 1px solid #ededed;
+      font-size: 0;
+      height: 60px;
+      padding: 20px 0;
+
+      a {
+        color: inherit;
+        display: inline-block;
+        font-size: 14px;
+        margin-right: 24px;
+        text-decoration: none;
+
+        &:hover {
+          color: $color-green;
+        }
+      }
+
+      span.name {
+        font-size: 14px;
+      }
+    }
+
+    .group-name {
+      padding-left: 30px;
+      width: 858px;
+    }
+  }
+}
+
+.newGroup-modal{
+
+  .new-group-input {
+
+    input {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      color: #999;
+      font-size: 14px;
+      font-family: inherit;
+      height: 40px;
+      outline: none;
+      padding: 10px 12px;
+      width: 460px;
+
+      &::-webkit-input-placeholder {
+          color: #ccc;
+      }
+      &:-moz-placeholder {
+        color: #ccc;
+      }
+
+      &:-ms-input-placeholder {
+          /* IE10+ */
+        color: #ccc;
+      }
+
+      &:focus {
+        border-color: $color-green;
+      }
+    }
+
+  }
+
+  .error-tips {
+    font-size: 12px;
+    color: #FF0000;
+    margin-top: 4px;
+  }
+
+  .empty {
+
+    input {
+      border-color: #FF0000;
+    }
+  }
+}

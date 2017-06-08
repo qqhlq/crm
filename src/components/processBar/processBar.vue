@@ -1,5 +1,5 @@
 <template>
-  <div class="processBarWrap" :active="active" style="margin-top: 150px;">
+  <div class="processBarWrap" :active="active">
     <div class="plinePointWrap">
       <div class="pline">
         <div :class="{'on': (active >= 2)}"></div>
@@ -16,6 +16,9 @@
       <div class="pnMiddle" :class="{'on': (active >= 2)}" >设置管理员</div>
       <div class="pnRight" :class="{'on': (active >= 3)}">设置成员</div>
     </div>
+    <div @click="changeActive(1)" class="firstSteps stpesclick"></div>
+    <div @click="changeActive(2)" class="towthSteps stpesclick"></div>
+    <div @click="changeActive(3)" class="threethSteps stpesclick"></div>
   </div>
 </template>
 <script>
@@ -23,15 +26,20 @@
 
   export default {
     name: 'BProcessBar',
+    data() {
+      return {
 
+      }
+    },
     props: [
       'active'
-    ]
-    // data() {
-    //   return {
-    //     active: 1
-    //   }
-    // }
+    ],
+    methods: {
+      changeActive(value) {
+        let self = this
+        self.$emit('getClickSteps', value)
+      }
+    }
   }
 </script>
 

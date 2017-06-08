@@ -27,7 +27,7 @@ export default {
    * @param {Object} payload {
    * }
    */
-  async stationMailIn({ commit }, ) {
+  async stationMailIn({ commit, state}, ) {
     commit(types.STATIONMAIL_IS_OUT, {'isStationMailOut': true})
   },
 
@@ -54,6 +54,16 @@ export default {
     }
   },
 
+
+  /**
+   * 获取导航栏内容
+   * @param {Object} payload {
+   * }
+   */
+
+  async getMenusList({ commit, state}, param) {
+    state.menusData =  await Vue.wGet('/admin/user/list_menus.do', param)
+  }
 
 
 

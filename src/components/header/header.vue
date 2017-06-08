@@ -76,7 +76,7 @@
       }
     },
     computed: {
-      ...mapGetters('groupHeader',{
+      ...mapGetters({
         menusData: 'menusData',
         navContentUlInOutGetter: 'navContentUlInOutGetter'
       }),
@@ -93,7 +93,7 @@
         stationMailIn: 'stationMailIn',
 
         // 获取导航和当前页面权限
-        getMenusList: 'groupHeader/getMenusList'
+        getMenusList: 'getMenusList'
       }),
 
       // 打开站内信，避免冒泡

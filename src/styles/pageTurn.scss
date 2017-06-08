@@ -1,0 +1,71 @@
+@import './core/var';
+.b-crm-left-pageTurn {
+
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  div {
+    font-size: 0;
+    float: right;
+    height: 70px;
+    line-height: 70px;
+
+    span.fa {
+      color: #CCC;
+      font-size: 14px;
+      padding: 8px 15px;
+      text-align: center;
+      cursor: pointer;
+      vertical-align: middle;
+
+      &:hover {
+        color: $color-green;
+      }
+
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Chrome/Safari/Opera */
+      -khtml-user-select: none; /* Konqueror */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none; /* Non-prefixed version, currently not supported by any browser */
+    }
+
+    span.pageNumber {
+      color: #999999;
+      font-size: 14px;
+      vertical-align: middle;
+
+      span {
+        margin-left: 10px;
+        display: inline-block;
+        padding-top: 5px;
+
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Chrome/Safari/Opera */
+        -khtml-user-select: none; /* Konqueror */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently not supported by any browser */
+      }
+
+      input {
+        font-size: 14px;
+        outline: none;
+        border: 1px solid #ddd;
+        color: $color-green;
+        width: 30px;
+        height: 30px;
+        border-radius: 4px;
+        text-align: center;
+
+        &:focus {
+          border-color: $color-green;
+        }
+      }
+    }
+  }
+
+}

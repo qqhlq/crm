@@ -126,7 +126,10 @@ export default {
     'noChangeds',
     'canChangeds'
   ],
-
+  watch: {
+    canChangeds: 'changeCanChangeds',
+    noChangeds: 'changeNochangeds'
+  },
   mounted () {
     let self = this
     self.on({el: self.$el, adEl: document, behavior: self.closeComplex})
@@ -169,6 +172,22 @@ export default {
       getVetusers: 'groupcomplexDrop/getVetusers'
 
     }),
+
+    changeCanChangeds() {
+      let self = this
+      if(self.canChangeds) {
+        self.newCheckedCanChangeds = {data: self.canChangeds}
+      }
+      self.realTimeVetUsers.data = self.vetUsersPrep({data: self.fullVetUsers, checkedNoChangeds: self.checkedNoChangeds.data, checkedCanChangeds: self.newCheckedCanChangeds.data})
+    },
+
+    changeNochangeds() {
+      let self = this
+      if(self.canChangeds) {
+        self.newCheckedNoChangeds = {data: self.noChangeds}
+      }
+      self.realTimeVetUsers.data = self.vetUsersPrep({data: self.fullVetUsers, checkedNoChangeds: self.checkedNoChangeds.data, checkedCanChangeds: self.newCheckedCanChangeds.data})
+    },
 
     // 点击收起选项
     putCheckeds() {

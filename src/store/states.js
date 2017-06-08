@@ -1,3 +1,4 @@
 export default {
-  isStationMailOut: false
+  isStationMailOut: false,
+  menusData: {}
 }

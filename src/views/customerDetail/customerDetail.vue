@@ -183,7 +183,7 @@
               </p>
             </div>
           </div>
-          <div class="cd-dynamic-content-page">
+          <div class="b-crm-left-pageTurn">
             <div>
               <span @click="getDynamicListPage(dynamicList.page - 1)" class="fa fa-chevron-circle-left"></span>
               <span class="pageNumber"><input :value="dynamicList.page"><span>/ {{ dynamicList.pageCount}}</span></span>

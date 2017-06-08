@@ -9,6 +9,7 @@ import groupHeader from './modules/group/header'
 import groupcomplexDrop from './modules/group/complexDrop'
 import newCustom from './modules/group/newCustom'
 import customerDetail from './modules/views/customerDetail'
+import crmGroup from './modules/views/crmGroup'
 
 Vue.use(Vuex)
 
@@ -18,7 +19,8 @@ export default new Vuex.Store({
     groupHeader,
     groupcomplexDrop,
     customerDetail,
-    newCustom
+    newCustom,
+    crmGroup
   },
   state,
   getters,

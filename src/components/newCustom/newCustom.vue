@@ -125,7 +125,7 @@
           </el-select>
         </span>
       </div>
-      <div class="errortips" :class="(cityCode === '') && cityCodeIsEmpty ? 'openTips': 'closeTips'">请选择城市</div>
+      <div class="errortips" :class="(cityCode === '') && cityCodeIsEmpty ? 'openTips': 'closeTips'" style="padding-left: 165px">请选择城市</div>
     </div>
     <div class="new-custom-line">
       <div class="line-wrap">
