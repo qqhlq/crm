@@ -102,7 +102,11 @@
       }
     }
   }
-
-
-
+  .new-custom-line {
+    input {
+      &:hover {
+        border-color: #29cc29;
+      }
+    }
+  }
 }

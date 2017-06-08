@@ -28,6 +28,7 @@
         @getList = "getList">
       </b-autocomplete>
       <b-autocomplete
+        v-if="role===0"
         :list ="search.ownerName"
         @getSearchList = "getSearchList"
         @chooseSearchList = "chooseSearchList"

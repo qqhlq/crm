@@ -80,7 +80,7 @@ function verify(response) {
   }
   switch (response.code) {
     case -100:
-      location.href = '/login'
+      location.href = '/boss/user/login'
       break
     default:
       ElementUI.Message(response.message)
