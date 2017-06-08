@@ -5,8 +5,10 @@
       <div class="cd-header">
         <div class="cd-header-name">{{ customerDetail.name }}</div>
         <div class="cd-header-operate">
-          <!--<button @click="openMOdaltips('success', 'chengong')"><span class="fa fa-mail-forward"></span>领取</button>-->
+          <button @click="getCustomConfirm"><span class="fa fa-mail-forward"></span>领取</button>
+          <button @click="openTransferCustomModal"><span class="fa fa-random"></span>转移</button>
           <button @click="openAllotCustomModal"><span class="fa fa-anchor"></span>分配</button>
+          <button @click="openReturnCustomModal"><span class="fa fa-mail-reply"></span>退回</button>
           <button @click="openDelCustomModal"><span class="fa fa-trash"></span>删除</button>
         </div>
       </div>
@@ -197,26 +199,61 @@
     <!--分配客户弹出框-->
     <b-modaler ref="allotCustomModal">
       <div class="modal-grey-header" slot="header">将该客户分配给：</div>
-      <b-complex-drop style="width: 460px;" slot="content" @getCheckeds="getCheckeds"></b-complex-drop>
+      <div slot="content">
+        <b-complex-drop
+          :interfaceType="3"
+          :interfaceParam="{'customPoolId': customerDetail.customPoolId}"
+          style="width: 460px;"
+          @getCheckeds="getAllotedUsers">
+        </b-complex-drop>
+      </div>
       <div class="modal-center-btn" slot="btn">
         <button @click="allotCustomConfirm" class="green">确认</button>
         <button @click="closeAllotCustomModal" class="grey">取消</button>
+      </div>
+    </b-modaler>
+    <!--转移客户弹出框-->
+    <b-modaler ref="transferCustomModal">
+      <div class="modal-grey-header" slot="header">将该客户转移给：</div>
+      <b-complex-drop
+        :interfaceType="3"
+        :interfaceParam="{'customPoolId': customerDetail.customPoolId}"
+        style="width: 460px;"
+        slot="content"
+        @getCheckeds="getTransferedUsers">
+      </b-complex-drop>
+      <div class="modal-center-btn" slot="btn">
+        <button @click="transferCustomConfirm" class="green">确认</button>
+        <button @click="closeTransferCustomModal" class="grey">取消</button>
       </div>
     </b-modaler>
     <!--领取客户弹出框-->
     <b-modaler ref="getCustomModal" class="min-modal">
       <div class="modal-teps" slot="content">您已成功领取该客户，请前往私人池进行跟进</div>
       <div class="modal-center-btn" slot="btn">
-        <button class="green">确认</button>
-        <button @click="closeDelCustomModal" class="grey">取消</button>
+        <button @click="gotoPrivate" class="green">确认</button>
+        <button @click="closeGetCustomModal" class="grey">取消</button>
       </div>
     </b-modaler>
     <!--删除客户弹出框-->
-    <b-modaler ref="delCustomModal">
+    <b-modaler ref="delCustomModal" class="min-modal">
       <div class="modal-teps" slot="content">您确定删除该客户吗？</div>
       <div class="modal-center-btn" slot="btn">
         <button @click="delCustomConfirm" class="green">确认</button>
         <button @click="closeDelCustomModal" class="grey">取消</button>
+      </div>
+    </b-modaler>
+    <!--退回客户弹出框-->
+    <b-modaler ref="returnCustomModal" class="return-custom-modal">
+      <div slot="content">
+        <div class="check-return-tit">您确定退回该客户吗？</div>
+        <div class="empty">
+          <textarea v-model="returnCustomReason" placeholder="请填写退回原因"></textarea>
+        </div>
+      </div>
+      <div class="modal-center-btn" slot="btn">
+        <button @click="returnCustomConfirm" class="green">确认</button>
+        <button @click="closeReturnCustomModal" class="grey">取消</button>
       </div>
     </b-modaler>
     <!--编辑客户弹出框-->
@@ -250,16 +287,22 @@
         dynamicList: '',
 
         // 客户详情
-        customerDetail: {},
+        customerDetail: {'customPoolId': ''},
 
         // 被分配的用户
         allotedUsers: [],
+
+        // 被转移的用户
+        transferedUsers: [],
 
         // 动态内容
         dynamicText: '',
 
         // 编辑结果
-        updateParam: {}
+        updateParam: {},
+
+        // 退回客户原因
+        returnCustomReason: ''
       }
     },
     computed: {
@@ -269,12 +312,11 @@
         delCustomdata: 'delCustomdata',
         allotCustomdata: 'allotCustomdata',
         releaseFollowDynamicdata: 'releaseFollowDynamicdata',
-        tradeData: 'tradeData',
-        productlineData: 'productlineData',
-        provinceData: 'provinceData',
-        cityData: 'cityData',
         dynamicListData: 'dynamicListData',
-        updateCustomData: 'updateCustomData'
+        updateCustomData: 'updateCustomData',
+        transferCustomData: 'transferCustomData',
+        returnCustomData: 'returnCustomData',
+        getCustomData: 'getCustomData',
       }),
     },
     created () {
@@ -330,6 +372,15 @@
 
         // 修改客户
         updateCustom: 'customerDetail/updateCustom',
+
+        // 转移客户
+        transferCustom: 'customerDetail/transferCustom',
+
+        // 领取客户
+        getCustom: 'customerDetail/getCustom',
+
+        // 退回客户
+        returnCustom: 'customerDetail/returnCustom',
 
       }),
 
@@ -427,10 +478,19 @@
         let self = this
         self.$refs.allotCustomModal.openDrop()
       },
-
       closeAllotCustomModal() {
         let self = this
         self.$refs.allotCustomModal.closeDrop()
+      },
+
+      // 打开关闭转移客户弹出框
+      openTransferCustomModal() {
+        let self = this
+        self.$refs.transferCustomModal.openDrop()
+      },
+      closeTransferCustomModal() {
+        let self = this
+        self.$refs.transferCustomModal.closeDrop()
       },
 
       // 打开关闭领取客户弹出框
@@ -438,7 +498,6 @@
         let self = this
         self.$refs.getCustomModal.openDrop()
       },
-
       closeGetCustomModal() {
         let self = this
         self.$refs.getCustomModal.closeDrop()
@@ -449,10 +508,19 @@
         let self = this
         self.$refs.delCustomModal.openDrop()
       },
-
       closeDelCustomModal() {
         let self = this
         self.$refs.delCustomModal.closeDrop()
+      },
+
+      // 打开关闭退回客户弹出框
+      openReturnCustomModal() {
+        let self = this
+        self.$refs.returnCustomModal.openDrop()
+      },
+      closeReturnCustomModal() {
+        let self = this
+        self.$refs.returnCustomModal.closeDrop()
       },
 
       // 打开关闭编辑客户弹出框
@@ -460,17 +528,21 @@
         let self = this
         self.$refs.editorCustom.openDrop()
       },
-
       closeEditorCustomModal() {
         let self = this
         self.$refs.editorCustom.closeDrop()
       },
 
-      // 获取复杂下拉框选中数据
-      getCheckeds(checkeds) {
+      // 获取分配目标人
+      getAllotedUsers(checkeds) {
         let self = this
         self.allotedUsers = checkeds
+      },
 
+      // 获取转移目标人
+      getTransferedUsers(checkeds) {
+        let self = this
+        self.transferedUsers = checkeds
       },
 
       // 确认分配客户
@@ -483,12 +555,12 @@
         } else {
           self.allotCustom({param: {customIds: `${JSON.stringify([self.$route.query.id])}`, userId: self.allotedUsers[0].val}})
             .then(() => {
-              if(self.delCustomdata.data) {
+              if(self.allotCustomdata.data) {
                 self.openMOdaltips('success', '客户分配成功')
                 self.closeAllotCustomModal()
+                self.getDynamicListPage(1)
               } else {
                 self.openMOdaltips('error', '客户分配失败')
-                self.closeAllotCustomModal()
               }
             })
         }
@@ -502,10 +574,68 @@
           .then(() => {
             if(self.delCustomdata.data) {
               self.openMOdaltips('success', '客户删除成功')
+              self.closeDelCustomModal()
             } else {
               self.openMOdaltips('error', '客户删除失败')
             }
           })
+      },
+
+      // 确认领取客户
+      getCustomConfirm() {
+        let self = this
+        self.getCustom({param: {customIds: `${JSON.stringify([self.$route.query.id])}`}})
+          .then(() => {
+            if(self.getCustomData.data) {
+              self.openGetCustomModal()
+            } else {
+              self.openMOdaltips('error', '客户退回失败')
+            }
+          })
+      },
+
+      // 跳转私人池
+      gotoPrivate() {
+        location.herf = '/crm/private'
+      },
+
+      // 确认转移客户
+      transferCustomConfirm() {
+        let self = this
+        if(self.transferedUsers.length > 1) {
+          self.openMOdaltips('error', '客户只能转移给单一用户')
+        } else if(self.transferedUsers.length < 1) {
+          self.openMOdaltips('error', '请选择被转移的用户')
+        } else {
+          self.transferCustom({param: {customIds: `${JSON.stringify([self.$route.query.id])}`, targetId: self.transferedUsers[0].val}})
+            .then(() => {
+              if(self.transferCustomData.data) {
+                self.openMOdaltips('success', '客户转移成功')
+                self.closeAllotCustomModal()
+              } else {
+                self.openMOdaltips('error', '客户转移失败')
+              }
+            })
+        }
+      },
+
+      // 确认退回客户
+      returnCustomConfirm() {
+        let self = this
+        console.log(self.returnCustomReason)
+        if(self.returnCustomReason === '') {
+          self.openMOdaltips('error', '请写明退回原因')
+        } else {
+          self.returnCustom({param: {customIds: `${JSON.stringify([self.$route.query.id])}`, reason: self.returnCustomReason}})
+            .then(() => {
+              if(self.returnCustomData.data) {
+                self.openMOdaltips('success', '客户退回成功')
+                self.closeTransferCustomModal()
+              } else {
+                self.openMOdaltips('error', '客户退回失败')
+              }
+            })
+        }
       },
 
       // 显示提示框
@@ -553,6 +683,7 @@
       getCustomEditorData(updateParam) {
         let self = this
         self.updateParam = updateParam
+        self.updateParam.param.id = self.customerDetail.id
       },
 
       // 确认提价客户编辑
@@ -564,6 +695,16 @@
             if(self.updateCustomData.data) {
               self.openMOdaltips('success', '修改成功')
               self.closeEditorCustomModal()
+
+              // 重新请求客户详情接口
+              self.getCustomerDetail({param: {customId: self.$route.query.id}}).then(() => {
+                self.customerDetail = self.customerDetailData.data
+                self.customerDetail.lastUpdatetime = self.getLocalTime(self.customerDetail.lastUpdatetime)
+                self.customerDetail.ownertime = self.getLocalTime(self.customerDetail.ownertime).split(' ')[0]
+                self.customerDetail.posttime = self.getLocalTime(self.customerDetail.posttime).split(' ')[0]
+                self.customerDetail.resttime = self.getTimeDiff(self.customerDetail.resttime)
+                self.$refs.CustomEditor.changeCustomerDetail(self.customerDetail)
+              })
             } else {
               self.openMOdaltips('error', '修改失败')
             }
@@ -577,6 +718,63 @@
 </script>
 
 <style scoped>
+  .closeTips {
+    transform-origin:0 0;
+    transform: scaleY(0);
+    height: 0;
 
+    -ms-transform-origin:0 0; 		/* IE 9 */
+    -ms-transform: scaleY(0); 	/* IE 9 */
+
+    -webkit-transform-origin:0 0;	/* Safari 和 Chrome */
+    -webkit-transform: scaleY(0); 	/* Safari 和 Chrome */
+
+    -moz-transform-origin:0 0;		/* Firefox */
+    -moz-transform: scaleY(0); 	 	/* Firefox */
+
+    -o-transform-origin:0 0;
+    -o-transform: scaleY(0);
+
+
+    transition: transform .3s;
+    -ms-transition: -ms-transform .3s;
+    -moz-transition: -moz-transform .3s;
+    -webkit-transition: -webkit-transform .3s;
+    -o-transition: -o-transform .3s;
+    transition: height .3s;
+    -ms-transition: height .3s;
+    -moz-transition: height .3s;
+    -webkit-transition: height .3s;
+    -o-transition: height .3s;
+  }
+
+  .openTips {
+    transform-origin:0 0;
+    transform: scaleY(1);
+    height: 20px;
+
+    -ms-transform-origin:0 0; 		/* IE 9 */
+    -ms-transform: scaleY(1); 	/* IE 9 */
+
+    -webkit-transform-origin:0 0;	/* Safari 和 Chrome */
+    -webkit-transform: scaleY(1); 	/* Safari 和 Chrome */
+
+    -moz-transform-origin:0 0;		/* Firefox */
+    -moz-transform: scaleY(1); 	 	/* Firefox */
+
+    -o-transform-origin:0 0;
+    -o-transform: scaleY(1);
+
+    transition: transform .3s;
+    -ms-transition: -ms-transform .3s;
+    -moz-transition: -moz-transform .3s;
+    -webkit-transition: -webkit-transform .3s;
+    -o-transition: -o-transform .3s;
+    transition: height .3s;
+    -ms-transition: height .3s;
+    -moz-transition: height .3s;
+    -webkit-transition: height .3s;
+    -o-transition: height .3s;
+  }
 </style>
 

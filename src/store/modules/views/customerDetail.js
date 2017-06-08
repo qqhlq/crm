@@ -8,7 +8,10 @@ let state = {
   delCustomdata: {},
   allotCustomdata: {},
   releaseFollowDynamicdata: {},
-  updateCustomData: {}
+  updateCustomData: {},
+  transferCustomData: {},
+  returnCustomData: {},
+  getCustomData: {}
 
 }
 let getters = {
@@ -18,10 +21,63 @@ let getters = {
   allotCustomdata: state => state.allotCustomdata,
   releaseFollowDynamicdata: state => state.releaseFollowDynamicdata,
   dynamicListData: state => state.dynamicListData,
-  updateCustomData: state => state.updateCustomData
+  updateCustomData: state => state.updateCustomData,
+  transferCustomData: state => state.transferCustomData,
+  returnCustomData: state => state.returnCustomData,
+  getCustomData: state => state.getCustomData
+
 }
 let mutations = {
 
+  //获取分组列表返回数据
+  [types.VIEWS_CUSTOMERDETAIL_GET_CUSTOMERDETAIL](state, param) {
+    state.customerDetailData = param
+  },
+
+  //获取客户所有动态类型返回数据
+  [types.VIEWS_CUSTOMERDETAIL_GET_DYNAMICOPTIONS](state, param) {
+    state.dynamicTypesData = param
+  },
+
+  //获取删除客户返回数据
+  [types.VIEWS_CUSTOMERDETAIL_DEL_CUSTOM](state, param) {
+    state.delCustomdata = param
+  },
+
+  //获取分配客户返回数据
+  [types.VIEWS_CUSTOMERDETAIL_ALLOT_CUSTOM](state, param) {
+    state.allotCustomdata = param
+  },
+
+  //获取发布动态返回数据
+  [types.VIEWS_CUSTOMERDETAIL_RELEASE_FOLLOWDYNAMIC](state, param) {
+    state.releaseFollowDynamicdata = param
+  },
+
+  //获取用户动态列表返回数据
+  [types.VIEWS_CUSTOMERDETAIL_GET_DYNAMICLIST](state, param) {
+    state.dynamicListData = param
+  },
+
+  //获取修改客户返回数据
+  [types.VIEWS_CUSTOMERDETAIL_GET_UPDATECUSTOML](state, param) {
+    state.updateCustomData = param
+  },
+
+  //获取转移客户返回数据
+  [types.VIEWS_CUSTOMERDETAIL_TRANSFER_CUSTOM](state, param) {
+    state.transferCustomData = param
+  },
+
+  //获取领取客户返回数据
+  [types.VIEWS_CUSTOMERDETAIL_GET_CUSTOM](state, param) {
+    state.getCustomData = param
+  },
+
+  //获取退回客户返回数据
+  [types.VIEWS_CUSTOMERDETAIL_RETURN_CUSTOM](state, param) {
+    state.returnCustomData = param
+  },
 }
 let actions = {
 
@@ -49,7 +105,7 @@ let actions = {
 
   async getCustomerDetail({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    state.customerDetailData =  await Vue.wGet('/crm/custom/detail.do', param)
+    commit(types.VIEWS_CUSTOMERDETAIL_GET_CUSTOMERDETAIL, await Vue.wGet('/crm/custom/detail.do', param))
   },
 
   /**
@@ -60,7 +116,7 @@ let actions = {
 
   async getDynamicOptions({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    state.dynamicTypesData =  await Vue.wGet('/crm/custom/update_type_option.do', param)
+    commit(types.VIEWS_CUSTOMERDETAIL_GET_DYNAMICOPTIONS, await Vue.wGet('/crm/custom/update_type_option.do', param))
   },
 
 
@@ -72,7 +128,7 @@ let actions = {
 
   async delCustom({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    state.delCustomdata = await Vue.wGet('/crm/custom/del.do', param)
+    commit(types.VIEWS_CUSTOMERDETAIL_DEL_CUSTOM, await Vue.wGet('/crm/custom/del.do', param))
   },
 
   /**
@@ -83,7 +139,7 @@ let actions = {
 
   async allotCustom({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    state.allotCustomdata = await Vue.wPost('/crm//custom/allocate.do', param)
+    commit(types.VIEWS_CUSTOMERDETAIL_ALLOT_CUSTOM, await Vue.wPost('/crm//custom/allocate.do', param))
   },
 
   /**
@@ -94,18 +150,18 @@ let actions = {
 
   async releaseFollowDynamic({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    state.releaseFollowDynamicdata = await Vue.wPost('/crm/custom/post_custom_news.do', param)
+    commit(types.VIEWS_CUSTOMERDETAIL_RELEASE_FOLLOWDYNAMIC, await Vue.wPost('/crm/custom/post_custom_news.do', param))
   },
 
   /**
-   * 获取用户动态列表
+   * 获取客户动态列表
    * @param {Object} payload {
    * }
    */
 
   async getDynamicList({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    state.dynamicListData = await Vue.wGet('/crm/custom/custom_news_list.do', param)
+    commit(types.VIEWS_CUSTOMERDETAIL_GET_DYNAMICLIST, await Vue.wGet('/crm/custom/custom_news_list.do', param))
   },
 
   /**
@@ -116,7 +172,40 @@ let actions = {
 
   async updateCustom({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    state.updateCustom =  await Vue.wPost('/crm/custom/update.do', param)
+    commit(types.VIEWS_CUSTOMERDETAIL_GET_UPDATECUSTOML, await Vue.wPost('/crm/custom/update.do', param))
+  },
+
+  /**
+   * 转移客户
+   * @param {Object} payload {
+   * }
+   */
+
+  async transferCustom({ dispatch, commit }, payload) {
+    let param = await dispatch('isParamUndefind', payload)
+    commit(types.VIEWS_CUSTOMERDETAIL_TRANSFER_CUSTOM, await Vue.wPost('/crm/custom/transfer.do', param))
+  },
+
+  /**
+   * 领取客户
+   * @param {Object} payload {
+   * }
+   */
+
+  async getCustom({ dispatch, commit }, payload) {
+    let param = await dispatch('isParamUndefind', payload)
+    commit(types.VIEWS_CUSTOMERDETAIL_GET_CUSTOM, await Vue.wPost('/crm/custom/draw.do', param))
+  },
+
+  /**
+   * 退回客户
+   * @param {Object} payload {
+   * }
+   */
+
+  async returnCustom({ dispatch, commit }, payload) {
+    let param = await dispatch('isParamUndefind', payload)
+    commit(types.VIEWS_CUSTOMERDETAIL_RETURN_CUSTOM, await Vue.wPost('/crm/custom/reback.do', param))
   },
 
 
