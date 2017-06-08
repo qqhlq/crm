@@ -22,9 +22,17 @@
 
   &.ownerTime {
     width: 240px;
+
+    .el-input {
+      width: 100%;
+    }
   }
   &.updateTime {
     width: 240px;
+
+    .el-input {
+      width: 100%;
+    }
   }
 }
 .el-picker-panel__shortcut:nth-child(4){

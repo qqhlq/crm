@@ -10,12 +10,16 @@
 .table-header {
   background-color: #FFF;
 
-  &>span {
-    line-height: 80px;
-    padding-left: 30px;
-    color: #525666;
-  }
+  .table-opera {
+    overflow: auto;
+    height: 80px;
 
+    &>span {
+      line-height: 80px;
+      padding-left: 30px;
+      color: #525666;
+    }
+  }
   .table-search {
     height: 80px;
     border-top: 1px solid #DDD;
@@ -218,7 +222,6 @@
 .table-operation {
   height: 40px;
   line-height: 40px;
-  display: inline-block;
   margin: 20px 0px;
 
   li {
@@ -294,5 +297,12 @@
   line-height: 20px;
 }
 .popper__arrow {
-  border-color:#ddd;
+  border-color: transparent !important;
+}
+.b-poper {
+  color: #999;
+
+  span {
+    color: #525666
+  }
 }

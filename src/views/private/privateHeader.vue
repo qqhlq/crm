@@ -22,12 +22,14 @@
       <b-autocomplete
         :list ="search.productName"
         @getSearchList = "getSearchList"
-        @chooseSearchList = "chooseSearchList">
+        @chooseSearchList = "chooseSearchList"
+        @getList = "getList">
       </b-autocomplete>
       <b-autocomplete
         :list ="search.ownerName"
         @getSearchList = "getSearchList"
-        @chooseSearchList = "chooseSearchList">
+        @chooseSearchList = "chooseSearchList"
+        @getList = "getList">
       </b-autocomplete>
       <b-select
         :list ="search.levelName"
