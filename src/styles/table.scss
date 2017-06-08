@@ -58,7 +58,7 @@
 
 .el-table {
   border-color: #EAEAEA;
-  border-left: none;
+  border: none;
 
   &::after {
     width: 0px;
@@ -73,11 +73,30 @@
     border-color: #EAEAEA;
     height: 60px;
   }
+
+  tr {
+    &:hover {
+      .el-button {
+        background-color: #EEF1F6;
+      }
+    }
+  }
   .cell {
     background: inherit;
     font-weight: 400;
     padding-left: 10px;
     overflow: visible;
+
+    .el-button {
+      color: inherit;
+      border: none;
+      background-color: #FFF;
+
+       span{
+        color: #999;
+        margin: 0px 8px;
+      }
+    }
   }
 
   .el-table-column--selection {
@@ -263,30 +282,17 @@
     }
   }
 }
-.b-table-poper {
-  display: none;
-  position: absolute;
-  top: -55px;
-  left: -5px;
+.el-tooltip__popper {
   box-shadow: 0 0 5px 0 #DDDDDD;
   width: 320px;
   min-height: 60px;
   padding: 20px 15px;
   border-radius: 4px;
+  border: 0px !important;
   background-color: #FAFAFA;
   font-size: 14px;
   line-height: 20px;
 }
-.b-table-cell {
-
-  &:hover+div {
-    display: block;
-  }
-
-  p {
-    span{
-      color: #999;
-      margin: 0px 8px;
-    }
-  }
+.popper__arrow {
+  border-color:#ddd;
 }

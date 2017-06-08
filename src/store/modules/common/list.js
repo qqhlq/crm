@@ -138,6 +138,7 @@ let actions = {
     obj.customPoolId = state.poolList.value.id
     let data = await Vue.wGet('/crm/custom/list.do',obj)
     for(let i of data.data.records) {
+      i.lastUpdateMemo = i.lastUpdateMemo || '暂无具体跟进纪录'
       i.lastUpdatetime = (Vue.wFormatTime(i.lastUpdatetime))
     }
     commit(types.COMMON_TABLE_CHANGE, data.data.records)

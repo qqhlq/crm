@@ -34,8 +34,9 @@
         label="最新动态记录"
         min-width="320px">
         <template scope="scope">
-          <p class="b-table-cell" v-html="scope.row.lastUpdateStatusDesc"></p>
-          <div class="b-table-poper" v-html="scope.row.lastUpdateMemo"></div>
+          <el-tooltip :content="scope.row.lastUpdateMemo" placement="top" effect="light">
+            <p class="b-poper" v-html="scope.row.lastUpdateStatusDesc"></p>
+          </el-tooltip>
         </template>
       </el-table-column>
     </el-table>
