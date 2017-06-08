@@ -339,4 +339,17 @@
       color: #ccc;
     }
   }
+
+  .errortips {
+    color: #FF0000;
+    font-size: 12px;
+  }
+
+  .empty {
+    textarea {
+      border-color: #FF0000;
+    }
+
+
+  }
 }

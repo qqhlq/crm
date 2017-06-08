@@ -246,9 +246,12 @@
     <!--退回客户弹出框-->
     <b-modaler ref="returnCustomModal" class="return-custom-modal">
       <div slot="content">
-        <div class="check-return-tit">您确定退回该客户吗？</div>
-        <div class="empty">
-          <textarea v-model="returnCustomReason" placeholder="请填写退回原因"></textarea>
+        <div :class="{empty: (returnCustomReason.value === '') && returnCustomReason.isEmpty}">
+          <div class="check-return-tit">您确定退回该客户吗？</div>
+          <div @click="closeTips('returnCustomReason') ">
+            <textarea v-model="returnCustomReason.value" placeholder="请填写退回原因"></textarea>
+          </div>
+          <div class="errortips" :class="(returnCustomReason.value === '') && returnCustomReason.isEmpty ? 'openTips': 'closeTips'">请填写退回原因</div>
         </div>
       </div>
       <div class="modal-center-btn" slot="btn">
@@ -302,21 +305,24 @@
         updateParam: {},
 
         // 退回客户原因
-        returnCustomReason: ''
+        returnCustomReason:{
+          value: '',
+          isEmpty: false
+        }
       }
     },
     computed: {
       ...mapGetters('customerDetail',{
         customerDetailData: 'customerDetailData',
         dynamicTypesData: 'dynamicTypesData',
-        delCustomdata: 'delCustomdata',
-        allotCustomdata: 'allotCustomdata',
         releaseFollowDynamicdata: 'releaseFollowDynamicdata',
         dynamicListData: 'dynamicListData',
         updateCustomData: 'updateCustomData',
         transferCustomData: 'transferCustomData',
         returnCustomData: 'returnCustomData',
         getCustomData: 'getCustomData',
+        allotCustomdata: 'allotCustomdata',
+        delCustomdata: 'delCustomdata',
       }),
     },
     created () {
@@ -589,14 +595,15 @@
             if(self.getCustomData.data) {
               self.openGetCustomModal()
             } else {
-              self.openMOdaltips('error', '客户退回失败')
+              self.openMOdaltips('error', '客户领取失败')
             }
           })
       },
 
       // 跳转私人池
       gotoPrivate() {
-        location.herf = '/crm/private'
+        let self = this
+        self.$router.go('/crm/private')
       },
 
       // 确认转移客户
@@ -622,15 +629,14 @@
       // 确认退回客户
       returnCustomConfirm() {
         let self = this
-        console.log(self.returnCustomReason)
-        if(self.returnCustomReason === '') {
-          self.openMOdaltips('error', '请写明退回原因')
+        if(self.returnCustomReason.value === '') {
+          self.returnCustomReason.isEmpty = true
         } else {
-          self.returnCustom({param: {customIds: `${JSON.stringify([self.$route.query.id])}`, reason: self.returnCustomReason}})
+          self.returnCustom({param: {customIds: `${JSON.stringify([self.$route.query.id])}`, reason: self.returnCustomReason.value}})
             .then(() => {
               if(self.returnCustomData.data) {
                 self.openMOdaltips('success', '客户退回成功')
-                self.closeTransferCustomModal()
+                self.closeReturnCustomModal()
               } else {
                 self.openMOdaltips('error', '客户退回失败')
               }
@@ -686,7 +692,7 @@
         self.updateParam.param.id = self.customerDetail.id
       },
 
-      // 确认提价客户编辑
+      // 确认提交客户编辑
       updateCustomConfirm() {
         let self = this
         self.$refs.CustomEditor.addEditor()
@@ -711,7 +717,15 @@
           })
         }
 
-      }
+      },
+
+      // 取消空值提示
+      closeTips(type) {
+        let self = this
+        if(self[type].isEmpty) {
+          self[type].isEmpty = false
+        }
+      },
 
     }
   }

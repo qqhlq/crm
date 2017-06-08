@@ -191,18 +191,22 @@ export default {
           self.loading = false
         })
       } else if(self.interfaceType === 2) {
-        self.getNoPoolAndGroup({
-          param: param,
-        }).then(() => {
-          //处理和赋值
-          self.realTimeVetUsers.data = self.vetUsersPrep({data: self.noPoolAndGroup, checkedNoChangeds: self.checkedNoChangeds.data, checkedCanChangeds: self.newCheckedCanChangeds.data})
-          self.fullVetUsers = self.realTimeVetUsers.data
-          self.firstGetVetUsers = true
-          self.loading = false
-        })
+        if(self.interfaceParam) {
+          if(self.interfaceParam.customPoolId !== 'none') {
+            self.getNoPoolAndGroup({
+              param: param,
+            }).then(() => {
+              //处理和赋值
+              self.realTimeVetUsers.data = self.vetUsersPrep({data: self.noPoolAndGroup, checkedNoChangeds: self.checkedNoChangeds.data, checkedCanChangeds: self.newCheckedCanChangeds.data})
+              self.fullVetUsers = self.realTimeVetUsers.data
+              self.firstGetVetUsers = true
+              self.loading = false
+            })
+          }
+        }
       } else if(self.interfaceType === 3) {
         if(self.interfaceParam) {
-          if(self.interfaceParam !== null && self.interfaceParam !== '' && self.interfaceParam.customPoolId !== '') {
+          if(self.interfaceParam !== null && self.interfaceParam !== '' && self.interfaceParam.customPoolId && self.interfaceParam.customPoolId !== '') {
             self.getGroupMembers({
               param: param,
             }).then(() => {

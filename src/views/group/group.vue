@@ -33,9 +33,9 @@
       </div>
       <div class="b-crm-left-pageTurn">
         <div>
-          <span @click="" class="fa fa-chevron-circle-left"></span>
-          <span class="pageNumber"><input><span>/ 1</span></span>
-          <span @click="" class="fa fa-chevron-circle-right"></span>
+          <span @click="getGroupListPage(groupList.data.page - 1)" class="fa fa-chevron-circle-left"></span>
+          <span class="pageNumber"><input :value="groupList.data.page"><span>/ {{ groupList.data.pageCount}}</span></span>
+          <span @click="getGroupListPage(groupList.data.page + 1)" class="fa fa-chevron-circle-right"></span>
         </div>
       </div>
     </div>
@@ -193,7 +193,7 @@
         editorGroupSteps: 1,
 
         // 分组列表数据
-        groupList: { data: {records: []}},
+        groupList: {data: {pageCount:0 ,page:1, records: []}},
 
         // 新建客户数据
         newGroupData: {
@@ -217,7 +217,7 @@
 
         // 编辑客户数据
         editorGroupData: {
-          groupId: '',
+          groupId: 'none',
           editorType: '',
           groupName: {
             isEmpty: false,
@@ -243,7 +243,7 @@
     },
     created() {
       let self = this
-      self.getGroupLsit()
+      self.getGroupLsit(1)
     },
     computed: {
       ...mapGetters('crmGroup',{
@@ -270,6 +270,15 @@
         delGroup: 'delGroup',
 
       }),
+
+
+      // 获取列表并进行分页处理
+      getGroupListPage(page) {
+        let self = this
+        if(page <= self.groupList.pageCount && page >= 1) {
+          self.getGroupLsit(page)
+        }
+      },
       // 显示提示框
       openMOdaltips(type, tips) {
         let self = this
@@ -285,9 +294,9 @@
       },
 
       // 获取列表数据
-      getGroupLsit() {
+      getGroupLsit(page) {
         let self = this
-        self.getGroupList({param: {page: 1}}).then(() => {
+        self.getGroupList({param: {page: page}}).then(() => {
           self.groupList = self.groupListData
         })
       },
@@ -311,7 +320,7 @@
           if(self.delGroupData.data) {
             self.openMOdaltips('success', '分组已被删除')
             self.closeDelGroupModal()
-            self.getGroupLsit()
+            self.getGroupLsit(1)
           } else {
             self.openMOdaltips('error', '分组删除失败')
           }
@@ -453,7 +462,7 @@
         let self = this
 
         // 清空编辑数据
-        self.editorGroupData.groupId = ''
+        self.editorGroupData.groupId = 'none'
         self.editorGroupData.editorType = ''
         self.editorGroupData.groupName.value = ''
         self.editorGroupData.groupAdmins.value = []
@@ -575,7 +584,7 @@
               if(self.changeGroupNameData.data) {
                 self.openMOdaltips('success', '修改成功')
                 self.closeEditorGroupModal()
-                self.getGroupLsit()
+                self.getGroupLsit(1)
               } else {
                 self.openMOdaltips('error', '修改失败')
               }
@@ -636,7 +645,7 @@
               if(self.changeGroupMembersData.data) {
                 self.openMOdaltips('success', '修改成功')
                 self.closeEditorGroupModal()
-                self.getGroupLsit()
+                self.getGroupLsit(1)
               } else {
                 self.openMOdaltips('error', '修改失败')
               }
@@ -675,7 +684,7 @@
             if(self.addnewGroupData.data) {
               self.openMOdaltips('success', '分组新建成功')
               self.closeNewGroupModal()
-              self.getGroupLsit()
+              self.getGroupLsit(1)
             } else {
               self.openMOdaltips('error', '分组新建失败')
             }

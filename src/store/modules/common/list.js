@@ -38,7 +38,9 @@ let state = {
       head: 'updateTime',
       value: ''
     }
-  }
+  },
+
+  addNewCustomData: {},
 }
 
 let getters = {
@@ -47,7 +49,8 @@ let getters = {
   totalPage: state => state.totalPage,
   data: state => state.data,
   poolList: state => state.poolList,
-  search: state => state.search
+  search: state => state.search,
+  addNewCustomData: state => state.addNewCustomData
 }
 
 let mutations = {
@@ -90,7 +93,12 @@ let mutations = {
         param.code = param.searchList[i].id
       }
     }
-  }
+  },
+
+//
+  [types.COMMON_TABLE_ADD_CUSTOM](state, param) {
+    state.addNewCustomData = param
+  },
 }
 
 let actions = {
@@ -224,6 +232,17 @@ let actions = {
       item.value = item.id
     }
     commit(types.COMMON_TABLE_GET_TRADE_LIST, data.data)
+  },
+
+
+  /**
+   * 新建客户
+   * @param {Object} payload
+   */
+
+  async addNewCustom({ commit }, payload) {
+    let _data=  await Vue.wGet('/crm/custom/add.do', payload.param)
+    commit(types.COMMON_TABLE_ADD_CUSTOM, {data:_data})
   }
 }
 

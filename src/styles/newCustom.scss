@@ -65,6 +65,10 @@
             /* IE10+ */
           color: #ccc;
         }
+
+        &:focus {
+          border-color: $color-green;
+        }
       }
 
       >input  {
