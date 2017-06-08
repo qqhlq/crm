@@ -1,6 +1,7 @@
 export default {
   isStationMailOut: state => state.isStationMailOut,
   menusData: state => state.menusData,
+  role: state => state.role,
   navContentUlInOutGetter: state => {
     // 隐藏所有二级菜单
     let navContentUlInOutGetter ={}

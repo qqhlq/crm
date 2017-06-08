@@ -61,10 +61,22 @@ plugin.install = Vue => {
     return Number(str.replace(/\,/g, ''))
   }
 
+    /**
+   * 将格式时间戳为时间
+   * @param {String} num 时间措
+   * @returns {String} str
+   */
+  Vue.prototype.$wFormatTime = num => {
+    num = Number(num)
+    let str = new Date(num).toLocaleString().split(' ')[0]
+    return str
+  }
+
   Vue.wFormatInt = Vue.prototype.$wFormatInt
   Vue.wRFormatInt = Vue.prototype.$wRFormatInt
   Vue.wFormatDeci = Vue.prototype.$wFormatDeci
   Vue.wRFormatDeci = Vue.prototype.$wRFormatDeci
+  Vue.wFormatTime = Vue.prototype.$wFormatTime
 }
 
 export default plugin

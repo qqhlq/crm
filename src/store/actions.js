@@ -62,10 +62,9 @@ export default {
    */
 
   async getMenusList({ commit, state}, param) {
-    state.menusData =  await Vue.wGet('/admin/user/list_menus.do', param)
+    if(!state.menusData.data) {
+      let data =  await Vue.wGet('/admin/user/list_menus.do', param)
+      commit(types.HEADER_MEANSDATA, data)
+    }
   }
-
-
-
-
 }

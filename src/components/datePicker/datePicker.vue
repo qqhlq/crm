@@ -1,11 +1,12 @@
 <template>
-  <el-date-picker
-    v-model="list.value"
-    type="daterange"
-    popper-class="b-data-picker-box"
-    :picker-options="list.pickerOptions"
-    @change="changeDate">
-  </el-date-picker>
+  <div :class="['b-date-picker',list.head]">
+    <el-date-picker
+      v-model="list.value"
+      type="daterange"
+      popper-class="b-date-picker-box"
+      @change="changeDate">
+    </el-date-picker>
+  </div>
 </template>
 
 <script>
@@ -18,8 +19,9 @@
       }
     },
     methods: {
-      changeDate() {
-        this.$emit('changeState','date')
+      changeDate(value) {
+        let self = this
+        self.$emit('getList')
       }
     }
   }

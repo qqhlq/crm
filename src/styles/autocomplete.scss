@@ -1,0 +1,29 @@
+.b-autocomplete {
+  width: auto;
+  height: 40px;
+  float: left;
+  margin: 20px 0px 20px 30px;
+
+  &.productName {
+    width: 280px;
+  }
+  &.ownerName {
+    width: 200px;
+  }
+  &.levelName {
+    width: 150px;
+  }
+  &.restTime {
+    width: 150px;
+  }
+
+  .el-autocomplete {
+    width: 100%;
+  }
+}
+.el-autocomplete-suggestion__wrap {
+  max-height: 240px;
+}
+.el-autocomplete-suggestion {
+  box-shadow: 0 0 5px 0 #DDDDDD;
+}

@@ -1,4 +1,5 @@
 export default {
   isStationMailOut: false,
-  menusData: {}
+  menusData: {},
+  role: -1
 }

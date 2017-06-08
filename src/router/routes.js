@@ -1,28 +1,34 @@
 import Group from 'views/group'
 import Indexv from 'views/indexv'
-import Open from 'views/open'
+import Common from 'views/common'
+import Private from 'views/private'
 import customerDetail from 'views/customerDetail'
 import BProcessBar from 'components/processBar'
 import BModaler from 'components/modaler'
 
 export default [
   {
-    path: '/group',
+    path: '/crm/group',
     name: 'Group',
     component: Group
   },
   {
-    path: '/open',
-    name: 'Open',
-    component: Open
+    path: '/crm/common',
+    name: 'Common',
+    component: Common
   },
   {
-    path: '/processbar',
+    path: '/crm/processbar',
     name: 'BProcessBar',
     component: BProcessBar
   },
   {
-    path: '/customerDetail',
+    path: '/crm/private',
+    name: 'Private',
+    component: Private
+  },
+  {
+    path: '/crm/customerDetail',
     name: 'customerDetail',
     component: customerDetail
   }

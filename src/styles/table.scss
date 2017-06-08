@@ -1,19 +1,36 @@
+@import './mixins/clearfix';
+
 .table {
   width: 1200px;
   height: 80px;
   margin: 0 auto;
   background: #fff;
-  font-weight: 400;
-
-  th {
-    &>div {
-      overflow: inherit !important;
-    }
-  }
 }
 
 .table-header {
-  height: 80px;
+  background-color: #FFF;
+
+  &>span {
+    line-height: 80px;
+    padding-left: 30px;
+    color: #525666;
+  }
+
+  .table-search {
+    height: 80px;
+    border-top: 1px solid #DDD;
+
+    input {
+      height: 40px;
+      border-color: #DDD;
+      color: #999;
+      font-size: 14px;
+
+      &:focus, &:hover {
+        border-color: #29cc29;
+      }
+    }
+  }
 }
 .table-header-authority {
   height: 80px;
@@ -22,24 +39,10 @@
   float: left;
 
   input {
-    border: none;
-    width: 87px;
-    font-size: 16px;
-    padding-right: 0px !important;
-  }
-
-  .el-input__icon{
-    color: #525666 !important;
-
+    font-weight: 300;
   }
 }
-.el-select-dropdown__list {
-  width: 140px;
 
-  li {
-    padding: 8px 20px;
-  }
-}
 .btn-green-mid {
   width: 90px;
   height: 40px;
@@ -52,10 +55,10 @@
   border-radius: 3px;
   cursor: pointer;
 }
+
 .el-table {
   border-color: #EAEAEA;
-  overflow: inherit;
-  border-left: none;
+  border: none;
 
   &::after {
     width: 0px;
@@ -70,10 +73,30 @@
     border-color: #EAEAEA;
     height: 60px;
   }
+
+  tr {
+    &:hover {
+      .el-button {
+        background-color: #EEF1F6;
+      }
+    }
+  }
   .cell {
     background: inherit;
-    font-weight: 300;
-    padding-left: 0px;
+    font-weight: 400;
+    padding-left: 10px;
+    overflow: visible;
+
+    .el-button {
+      color: inherit;
+      border: none;
+      background-color: #FFF;
+
+       span{
+        color: #999;
+        margin: 0px 8px;
+      }
+    }
   }
 
   .el-table-column--selection {
@@ -125,30 +148,19 @@
     font-weight: 300;
 
   }
-}
-.el-table__header-wrapper {
-  overflow: inherit;
 
-  thead {
-    div {
-      background-color: inherit;
-    }
+  .table-header li {
+      height: 80px;
+      line-height: 80px;
+      margin-left: 20px;
+      float: left;
+      cursor: pointer;
+      color: #525666;
   }
-}
-td.el-table_1_column_3,
-td.el-table_1_column_4,
-td.el-table_1_column_5 {
-  .cell {
-    color: #999;
+  .el-table__fixed {
+    box-shadow: none;
+    border-right: 1px solid #ddd;
   }
-}
-.table-header li {
-    height: 80px;
-    line-height: 80px;
-    margin-left: 20px;
-    float: left;
-    cursor: pointer;
-    color: #525666;
 }
 
 .table-footer {
@@ -191,7 +203,6 @@ td.el-table_1_column_5 {
     span {
       margin-left: 10px;
       font-size: 14px;
-      letter-spacing: 4px;
       color: #999;
     }
     .table-next {
@@ -204,24 +215,84 @@ td.el-table_1_column_5 {
     }
   }
 }
+.table-operation {
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  margin: 20px 0px;
 
-.table-header-authority {
-  input {
-    font-weight: 300;
+  li {
+    float: left;
+    margin-left: 30px;
+    color: #525666;
+    cursor: pointer;
+
+    &:hover {
+      color: #25c526;
+    }
+
+    &.active {
+      color: #25c526;
+    }
   }
 }
-.el-select-dropdown {
-  .el-select-dropdown__item {
-    span {
-      font-weight: 300;
+.common-table {
+  td.el-table_1_column_2{
+    .cell {
+      color: #525666;
+    }
+  }
+  td.el-table_1_column_3,
+  td.el-table_1_column_4,
+  td.el-table_1_column_5,
+  td.el-table_1_column_6 {
+    .cell {
+      color: #999;
+    }
+  }
+}
+.private-table {
+  td.el-table_1_column_2{
+    .cell {
+      color: #525666;
+    }
+  }
+  td.el-table_1_column_3,
+  td.el-table_1_column_4,
+  td.el-table_1_column_5,
+  td.el-table_1_column_6,
+  td.el-table_1_column_9 {
+    .cell {
+      color: #999;
     }
   }
 }
 
-.b-table-cell {
-  color: #999999;
+.el-table th>.cell {
+  color: #525666;
+}
 
-  span {
+.b-poollist {
+  .el-dropdown-link {
+    font-size: 16px;
     color: #525666;
+
+    i {
+      font-size: 12px;
+    }
   }
+}
+.el-tooltip__popper {
+  box-shadow: 0 0 5px 0 #DDDDDD;
+  width: 320px;
+  min-height: 60px;
+  padding: 20px 15px;
+  border-radius: 4px;
+  border: 0px !important;
+  background-color: #FAFAFA;
+  font-size: 14px;
+  line-height: 20px;
+}
+.popper__arrow {
+  border-color:#ddd;
 }
