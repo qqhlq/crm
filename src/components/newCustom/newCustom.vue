@@ -11,6 +11,7 @@
         </span>
       </div>
       <div class="errortips" :class="(name === '') && nameIsEmpty ? 'openTips': 'closeTips'">请输入客户产品名</div>
+      <div class="errortips" :class="(name !== '') && nameIsHad ? 'openTips': 'closeTips'">已存在同名客户</div>
     </div>
     <div class="new-custom-line" :class="{empty: (levelId === '') && levelIdIsEmpty}">
       <div class="line-wrap">
@@ -280,6 +281,9 @@ export default {
       // 错误提示
       phoneIsError: false,
 
+      // 客户名称已存在提示
+      nameIsHad: false,
+
       // 是否清空城市选择
       iSEmptyCityCode: false,
 
@@ -476,6 +480,11 @@ export default {
       } else {
         self[type + 'IsEmpty'] = false
       }
+    },
+
+    // 客户名称唯一性验证
+    checkNameIsHad() {
+
     },
 
     // 提交

@@ -59,6 +59,7 @@
             <div class="new-group-input" @click="closeTips('newGroupData', 'groupAdmins')">
               <b-complex-drop
                 :canChangeds = "newGroupData.groupAdmins.value"
+                :interfaceParam = "{'customPoolId': ''}"
                 :interfaceType = "2"
                 style="width: 460px;" slot="content"
                 @getCheckeds="getNewGroupAdmins">
@@ -73,6 +74,7 @@
               <b-complex-drop
                 :canChangeds = "newGroupData.groupDefaultAdmins.value"
                 :interfaceType = "2"
+                :interfaceParam = "{'customPoolId': ''}"
                 style="width: 460px;"
                 slot="content"
                 @getCheckeds="getNewGroupDefaultAdmins">
@@ -88,6 +90,7 @@
               <b-complex-drop
                 :canChangeds = "newGroupData.groupMembers.value"
                 :interfaceType = "2"
+                :interfaceParam = "{'customPoolId': ''}"
                 style="width: 460px;"
                 slot="content"
                 @getCheckeds="getNewGroupMembers">
