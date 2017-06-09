@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-crumbs :crumbs="[{name: 'CRM'}, {name: '客户公海池'}, {name: '客户详情'}]"></b-crumbs>
+    <b-crumbs v-if="customerDetail.status === -1" :crumbs="[{name: 'CRM'}, {name: '客户公海池'}, {name: '客户详情'}]"></b-crumbs>
+    <b-crumbs v-if="customerDetail.status !== -1" :crumbs="[{name: 'CRM'}, {name: '私人池'}, {name: '客户详情'}]"></b-crumbs>
     <div class="crm-content">
       <div class="cd-header">
         <div class="cd-header-name">{{ customerDetail.name }}</div>
@@ -686,8 +687,6 @@
           self.openMOdaltips('error', '跟进记录必须保持在50个字以内')
         } else if(self.dynamicValue === null || self.dynamicValue === '' || self.dynamicValue === 'clear') {
           self.openMOdaltips('error', '请选择跟进程度')
-        } else if(self.dynamicText === null || self.dynamicText === '') {
-          self.openMOdaltips('error', '请填写跟进内容')
         } else {
           self.releaseFollowDynamic({param: {actionId: self.dynamicValue, customId: self.$route.query.id, memo: self.dynamicText}})
             .then(() => {
@@ -696,7 +695,6 @@
               self.dynamicValue = ''
               self.dynamicText = ''
               self.getDynamicListPage(1)
-
             })
         }
       },
