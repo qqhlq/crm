@@ -5,14 +5,16 @@ let state = {
   tradeData: {},
   productlineData: {},
   provinceData: {},
-  cityData: {}
+  cityData: {},
+  vaildNameData: {}
 }
 let getters = {
 
   tradeData: state => state.tradeData,
   productlineData: state => state.productlineData,
   provinceData: state => state.provinceData,
-  cityData: state => state.cityData
+  cityData: state => state.cityData,
+  vaildNameData:state => state.vaildNameData
 }
 let mutations = {
 
@@ -33,6 +35,11 @@ let mutations = {
 
   //获取分组列表返回数据
   [types.GROUP_NEWCUSTOM_GET_CITYSOPTIONS](state, param) {
+    state.cityData = param
+  },
+
+  //获取验证名称唯一性返回数据
+  [types.GROUP_NEWCUSTOM_VAILD_NAME](state, param) {
     state.cityData = param
   },
 
@@ -97,8 +104,18 @@ let actions = {
   async getCitysOptions({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
     commit(types.GROUP_NEWCUSTOM_GET_CITYSOPTIONS, await Vue.wPost('/crm/custom/province_city_option.do', param))
-  }
+  },
 
+  /**
+   * 验证名称唯一性
+   * @param {Object} payload {
+   * }
+   */
+
+  async vaildName({ dispatch, commit }, payload) {
+    let param = await dispatch('isParamUndefind', payload)
+    commit(types.GROUP_NEWCUSTOM_VAILD_NAME, await Vue.wPost('/crm/custom/vaild_name', param))
+  }
 }
 
 export default {
