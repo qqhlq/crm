@@ -104,7 +104,7 @@
         let self = this
         let temp = []
         for(let item in row) {
-          temp.push(row[item].id)
+          temp.push({id: row[item].id, customPoolId: row[item].customPoolId})
         }
         self.changeChoosed(temp)
       },

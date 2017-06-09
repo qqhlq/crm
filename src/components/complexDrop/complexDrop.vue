@@ -107,7 +107,7 @@ export default {
       searchGetVetUsers: false,
 
       // 是否处于加载状态
-      loading: true,
+      loading: false,
 
       // 下拉框是否打开
       openComplexDrop: false,
@@ -174,13 +174,13 @@ export default {
     // 获取初始人员数据
     getInitVetusers() {
       let self = this
-      self.loading = true
       let param = {}
       if(self.interfaceParam) {
         param = self.interfaceParam
       }
 
       if(!self.interfaceType || self.interfaceType === '' || self.interfaceType === 1) {
+        self.loading = true
         self.getallVetusers({
           param: param,
         }).then(() => {
@@ -193,6 +193,7 @@ export default {
       } else if(self.interfaceType === 2) {
         if(self.interfaceParam) {
           if(self.interfaceParam.customPoolId !== 'none') {
+            self.loading = true
             self.getNoPoolAndGroup({
               param: param,
             }).then(() => {
@@ -206,7 +207,8 @@ export default {
         }
       } else if(self.interfaceType === 3) {
         if(self.interfaceParam) {
-          if(self.interfaceParam !== null && self.interfaceParam !== '' && self.interfaceParam.customPoolId && self.interfaceParam.customPoolId !== '') {
+          if(self.interfaceParam !== null && self.interfaceParam !== '' && self.interfaceParam.customPoolId && self.interfaceParam.customPoolId !== '' && self.interfaceParam.customPoolId !== 'none') {
+            self.loading = true
             self.getGroupMembers({
               param: param,
             }).then(() => {
@@ -278,12 +280,12 @@ export default {
         param = {key: self.searchVal}
       }
 
-      self.loading = true
       self.firstGetVetUsers = false
       self.searchGetVetUsers =  false
       self.isSearching = true
 
       if(!self.interfaceType || self.interfaceType === '' || self.interfaceType === 1) {
+        self.loading = true
         self.getallVetusers({param: param}).then(() => {
           self.realTimeVetUsers.data = self.vetUsersPrep({data: self.allvetUsers, checkedNoChangeds: self.checkedNoChangeds.data, checkedCanChangeds: self.newCheckedCanChangeds.data, type: 'search'})
           self.isSearching = true
@@ -291,7 +293,7 @@ export default {
           self.loading = false
         })
       } else if(self.interfaceType === 2) {
-
+        self.loading = true
         self.getNoPoolAndGroup({param: param}).then(() => {
           self.realTimeVetUsers.data = self.vetUsersPrep({data: self.noPoolAndGroup, checkedNoChangeds: self.checkedNoChangeds.data, checkedCanChangeds: self.newCheckedCanChangeds.data, type: 'search'})
           self.isSearching = true
@@ -299,6 +301,7 @@ export default {
           self.loading = false
         })
       } else if(self.interfaceType === 3) {
+        self.loading = true
         self.getGroupMembers({param: param}).then(() => {
           self.realTimeVetUsers.data = self.vetUsersPrep({data: self.getGroupMembers, checkedNoChangeds: self.checkedNoChangeds.data, checkedCanChangeds: self.newCheckedCanChangeds.data, type: 'search'})
           self.isSearching = true
@@ -349,7 +352,6 @@ export default {
       if(CanChanged) {
         self.realTimeVetUsers = {data: self.changeRealTimeVetUsers(id, 'checkedCanChanged', self.realTimeVetUsers.data, val)}
       }
-
     },
 
     // 点击打开关闭子节点

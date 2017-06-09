@@ -52,7 +52,8 @@
     <b-modaler ref="transferCustomModal">
       <div class="modal-grey-header" slot="header">将该客户转移给：</div>
       <b-complex-drop
-
+        :interfaceType="3"
+        :interfaceParam="{'customPoolId': choosedCustomPoolId}"
         style="width: 460px;"
         slot="content"
         @getCheckeds="getTransferedUsers">
@@ -61,8 +62,6 @@
         <button @click="transferCustomConfirm" class="green">确认</button>
         <button @click="closeTransferCustomModal" class="grey">取消</button>
       </div>
-              <!--:interfaceType="3"-->
-        <!--:interfaceParam="{'customPoolId': poolList.value.id}"-->
     </b-modaler>
     <!--退回客户弹出框-->
     <b-modaler ref="returnCustomModal" class="return-custom-modal">
@@ -120,7 +119,10 @@
         returnCustomReason:{
           value: '',
           isEmpty: false
-        }
+        },
+
+        // 被选中客户的公海池分组Id
+        choosedCustomPoolId: 'none'
       }
     },
     computed: {
@@ -159,7 +161,11 @@
       // 确认删除客户
       delCustomConfirm() {
         let self = this
-        self.delCustom({param: {customIds: `${JSON.stringify(self.choosed)}`}})
+        let customIds = []
+        for(let i=0; i<self.choosed.length; i++) {
+          customIds.push(self.choosed[i].id)
+        }
+        self.delCustom({param: {customIds: `${JSON.stringify(customIds)}`}})
           .then(() => {
             if(self.delCustomdata.data) {
               self.openMOdaltips('success', '客户删除成功')
@@ -225,7 +231,11 @@
         } else if(self.transferedUsers.length < 1) {
           self.openMOdaltips('error', '请选择被转移的用户')
         } else {
-          self.transferCustom({param: {customIds: `${JSON.stringify(self.choosed)}`, targetId: self.transferedUsers[0].val}})
+          let customIds = []
+          for(let i=0; i<self.choosed.length; i++) {
+            customIds.push(self.choosed[i].id)
+          }
+          self.transferCustom({param: {customIds: `${JSON.stringify(customIds)}`, targetId: self.transferedUsers[0].val}})
             .then(() => {
               if(self.transferCustomData.data) {
                 self.openMOdaltips('success', '客户转移成功')
@@ -241,7 +251,24 @@
       // 打开关闭转移客户弹出框
       openTransferCustomModal() {
         let self = this
-        self.$refs.transferCustomModal.openDrop()
+        let canTransfer = true
+        let nowCustomPoolId = self.choosed[0].customPoolId
+
+        for(let i=1; i<self.choosed.length; i++) {
+          console.log(self.choosed[i].customPoolId)
+          console.log(nowCustomPoolId)
+          if(self.choosed[i].customPoolId !== nowCustomPoolId) {
+            canTransfer = false
+            break
+          }
+        }
+
+        if(canTransfer) {
+          self.choosedCustomPoolId = nowCustomPoolId
+          self.$refs.transferCustomModal.openDrop()
+        } else {
+          self.openMOdaltips('error', '所选客户不在同一分组，无法同时进行转移')
+        }
       },
       closeTransferCustomModal() {
         let self = this
@@ -270,7 +297,11 @@
         if(self.returnCustomReason.value === '') {
           self.returnCustomReason.isEmpty = true
         } else {
-          self.returnCustom({param: {customIds: `${JSON.stringify(self.choosed)}`, reason: self.returnCustomReason.value}})
+          let customIds = []
+          for(let i=0; i<self.choosed.length; i++) {
+            customIds.push(self.choosed[i].id)
+          }
+          self.returnCustom({param: {customIds: `${JSON.stringify(customIds)}`, reason: self.returnCustomReason.value}})
             .then(() => {
               if(self.returnCustomData.data) {
                 self.openMOdaltips('success', '客户退回成功')

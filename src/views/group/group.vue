@@ -33,15 +33,9 @@
       </div>
       <div class="b-crm-left-pageTurn">
         <div>
-<<<<<<< HEAD
           <span @click="getGroupListPage(groupList.data.page - 1)" class="fa fa-chevron-circle-left"></span>
           <span class="pageNumber"><input :value="groupList.data.page"><span>/ {{ groupList.data.pageCount}}</span></span>
           <span @click="getGroupListPage(groupList.data.page + 1)" class="fa fa-chevron-circle-right"></span>
-=======
-          <span @click="" class="fa fa-chevron-circle-left"></span>
-          <span class="pageNumber"><input value='1'><span>/ 1</span></span>
-          <span @click="" class="fa fa-chevron-circle-right"></span>
->>>>>>> 768aa5f2478aff50b2817e699a1bf49173b3c38e
         </div>
       </div>
     </div>
