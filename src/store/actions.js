@@ -5,6 +5,21 @@ export default {
 
 
   /**
+   * 判断参数是否为空
+   * @param {Object} payload
+   */
+
+  async isParamUndefind({ dispatch, commit }, payload) {
+    let param = {}
+    if(payload) {
+      if(payload.param) {
+        param = payload.param
+      }
+    }
+    return param
+  },
+
+  /**
    * 开关站内信
    * @param {Object} payload {
    * }
@@ -79,5 +94,11 @@ export default {
   // 更改密码
   async changePassword({ commit, state}) {
     location.href = '/boss/user/change-pwd?username=' + encodeURIComponent(localStorage.getItem('email'))
+  },
+
+  // 验证客户上限
+  async checkCustomLimit({dispatch, commit}, payload) {
+    let param = await dispatch('isParamUndefind', payload)
+    commit(types.CHECK_CUSTOMS_LIMIT, await Vue.wPost('/crm/custom/vaild_count_limit.do', param))
   }
 }

@@ -9,7 +9,8 @@
         min-width="256px"
         label="客户产品名">
         <template scope="scope">
-          <a class="b-table-link" :href="`/crm/customerDetail?id=${scope.row.id}&type=common`">{{scope.row.name}}</a>
+          <a class="b-table-link" v-if="role === 0 || role === 1 || role === 2" :href="`/crm/customerDetail?id=${scope.row.id}&type=common`">{{scope.row.name}}</a>
+          <a class="b-table-link" v-if="role !== 0 && role !== 1 && role !== 2" >{{scope.row.name}}</a>
         </template>
       </el-table-column>
       <el-table-column
@@ -53,6 +54,7 @@
     computed: {
       ...mapGetters({
         data: 'commonList/data',
+        role: 'role'
       })
     },
     methods: {

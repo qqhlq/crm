@@ -40,7 +40,7 @@ let mutations = {
 
   //获取验证名称唯一性返回数据
   [types.GROUP_NEWCUSTOM_VAILD_NAME](state, param) {
-    state.cityData = param
+    state.vaildNameData = param
   },
 
 }
@@ -114,7 +114,7 @@ let actions = {
 
   async vaildName({ dispatch, commit }, payload) {
     let param = await dispatch('isParamUndefind', payload)
-    commit(types.GROUP_NEWCUSTOM_VAILD_NAME, await Vue.wPost('/crm/custom/vaild_name', param))
+    commit(types.GROUP_NEWCUSTOM_VAILD_NAME, await Vue.wPost('/crm/custom/vaild_name.do', param))
   }
 }
 

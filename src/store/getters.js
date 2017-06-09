@@ -9,5 +9,6 @@ export default {
       navContentUlInOutGetter[i] = true
     }
     return navContentUlInOutGetter
-  }
+  },
+  checkCustomsLimitData: state=> state.checkCustomsLimitData
 }

@@ -120,6 +120,7 @@
         search: 'commonList/search',
         poolList: 'commonList/poolList',
         role: 'role',
+        checkCustomsLimitData: 'checkCustomsLimitData',
         getCustomData: 'customerDetail/getCustomData',
         allotCustomdata: 'customerDetail/allotCustomdata',
         delCustomdata: 'customerDetail/delCustomdata',
@@ -137,6 +138,7 @@
         getTradeList: 'commonList/getTradeList',
         changePoolValue: 'commonList/changePoolValue',
         getMenusList: 'getMenusList',
+        checkCustomLimit: 'checkCustomLimit',
         delCustom: 'customerDetail/delCustom',
         allotCustom: 'customerDetail/allotCustom',
         getCustom: 'customerDetail/getCustom',
@@ -249,7 +251,13 @@
       // 打开关闭新建客户弹出框
       openAddnewCustomModal() {
         let self = this
-        self.$refs.addnewCustom.openDrop()
+        self.checkCustomLimit().then(() => {
+          if(self.checkCustomsLimitData.data) {
+            self.$refs.addnewCustom.openDrop()
+          } else {
+            self.openMOdaltips('error',self.checkCustomsLimitData.message)
+          }
+        })
       },
       closeAddnewCustomModal() {
         let self = this

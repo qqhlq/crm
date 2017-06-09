@@ -4,12 +4,32 @@
     <div class="crm-content">
       <div class="cd-header">
         <div class="cd-header-name">{{ customerDetail.name }}</div>
-        <div class="cd-header-operate">
-          <button @click="getCustomConfirm"><span class="fa fa-mail-forward"></span>领取</button>
-          <button @click="openTransferCustomModal"><span class="fa fa-random"></span>转移</button>
-          <button @click="openAllotCustomModal"><span class="fa fa-anchor"></span>分配</button>
-          <button @click="openReturnCustomModal"><span class="fa fa-mail-reply"></span>退回</button>
-          <button @click="openDelCustomModal"><span class="fa fa-trash"></span>删除</button>
+        <div v-if="menusData.data" class="cd-header-operate">
+          <button
+            v-if="customerDetail.status === -1 && (menusData.data.crmRole === 0 || menusData.data.crmRole === 1 || menusData.data.crmRole === 2 || menusData.data.crmRole === 3)"
+            @click="getCustomConfirm">
+              <span class="fa fa-mail-forward"></span>领取
+          </button>
+          <button
+            v-if="customerDetail.status !== -1 && (menusData.data.crmRole === 0)"
+            @click="openTransferCustomModal">
+              <span class="fa fa-random"></span>转移
+          </button>
+          <button
+            v-if="customerDetail.status === -1 && (menusData.data.crmRole === 0 || menusData.data.crmRole === 1 || menusData.data.crmRole === 2)"
+            @click="openAllotCustomModal">
+              <span class="fa fa-anchor"></span>分配
+          </button>
+          <button
+            v-if="customerDetail.status !== -1 && (menusData.data.crmRole === 0 || menusData.data.crmRole === 1 || menusData.data.crmRole === 2 || menusData.data.crmRole === 3)"
+            @click="openReturnCustomModal">
+              <span class="fa fa-mail-reply"></span>退回
+          </button>
+          <button
+            v-if="(customerDetail.status === -1 && (menusData.data.crmRole === 0)) || (customerDetail.status !== -1 && (menusData.data.crmRole === 0 || menusData.data.crmRole === 1 || menusData.data.crmRole === 2 || menusData.data.crmRole === 3))"
+            @click="openDelCustomModal">
+              <span class="fa fa-trash"></span>删除
+          </button>
         </div>
       </div>
       <div class="cd-simple-info">
@@ -262,7 +282,7 @@
     <!--编辑客户弹出框-->
     <b-modaler ref="editorCustom" class="editorCustom-modal">
       <div class="modal-green-header" slot="header">编辑客户</div>
-      <b-new-custom @getCustomEditorData="getCustomEditorData" slot="content" ref="CustomEditor"></b-new-custom>
+      <b-new-custom @getCustomEditorData="getCustomEditorData" :oldCustomName="customerDetail.name" slot="content" ref="CustomEditor"></b-new-custom>
       <div class="modal-center-btn" slot="btn">
         <button @click="updateCustomConfirm" class="green">确定</button>
       </div>
@@ -290,7 +310,7 @@
         dynamicList: '',
 
         // 客户详情
-        customerDetail: {'customPoolId': ''},
+        customerDetail: {'customPoolId': '', name: '', status: '-2'},
 
         // 被分配的用户
         allotedUsers: [],
@@ -308,23 +328,30 @@
         returnCustomReason:{
           value: '',
           isEmpty: false
-        }
+        },
       }
     },
     computed: {
-      ...mapGetters('customerDetail',{
-        customerDetailData: 'customerDetailData',
-        dynamicTypesData: 'dynamicTypesData',
-        releaseFollowDynamicdata: 'releaseFollowDynamicdata',
-        dynamicListData: 'dynamicListData',
-        updateCustomData: 'updateCustomData',
-        transferCustomData: 'transferCustomData',
-        returnCustomData: 'returnCustomData',
-        getCustomData: 'getCustomData',
-        allotCustomdata: 'allotCustomdata',
-        delCustomdata: 'delCustomdata',
+      ...mapGetters({
+         // 导航栏数据
+        menusData: 'menusData',
+        customerDetailData: 'customerDetail/customerDetailData',
+        dynamicTypesData: 'customerDetail/dynamicTypesData',
+        releaseFollowDynamicdata: 'customerDetail/releaseFollowDynamicdata',
+        dynamicListData: 'customerDetail/dynamicListData',
+        updateCustomData: 'customerDetail/updateCustomData',
+        transferCustomData: 'customerDetail/transferCustomData',
+        returnCustomData: 'customerDetail/returnCustomData',
+        getCustomData: 'customerDetail/getCustomData',
+        allotCustomdata: 'customerDetail/allotCustomdata',
+        delCustomdata: 'customerDetail/delCustomdata',
       }),
     },
+
+    // watch: {
+    //   'menusData': 'getVisiterInfo'
+    // },
+
     created () {
       let self = this
 
@@ -355,9 +382,11 @@
 
       })
     },
+
     methods: {
       ...mapActions({
         on: 'on',
+
         // 获取人员数据
         getCustomerDetail: 'customerDetail/getCustomerDetail',
 
@@ -726,7 +755,6 @@
           self[type].isEmpty = false
         }
       },
-
     }
   }
 </script>

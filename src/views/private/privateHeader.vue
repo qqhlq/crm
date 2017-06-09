@@ -130,6 +130,7 @@
         choosed: 'privateList/choosed',
         search: 'privateList/search',
         role: 'role',
+        checkCustomsLimitData: 'checkCustomsLimitData',
         returnCustomData: 'customerDetail/returnCustomData',
         transferCustomData: 'customerDetail/transferCustomData',
         delCustomdata: 'customerDetail/delCustomdata',
@@ -142,10 +143,12 @@
         chooseSearchList: 'privateList/chooseSearchList',
         getList: 'privateList/getList',
         getMenusList: 'getMenusList',
+        checkCustomLimit: 'checkCustomLimit',
         delCustom: 'customerDetail/delCustom',
         transferCustom: 'customerDetail/transferCustom',
         returnCustom: 'customerDetail/returnCustom',
-        addNewCustom: 'commonList/addNewCustom'
+        addNewCustom: 'commonList/addNewCustom',
+
       }),
 
       // 打开关闭删除客户弹出框
@@ -186,7 +189,13 @@
       // 打开关闭新建客户弹出框
       openAddnewCustomModal() {
         let self = this
-        self.$refs.addnewCustom.openDrop()
+        self.checkCustomLimit().then(() => {
+          if(self.checkCustomsLimitData.data) {
+            self.$refs.addnewCustom.openDrop()
+          } else {
+            self.openMOdaltips('error',self.checkCustomsLimitData.message)
+          }
+        })
       },
       closeAddnewCustomModal() {
         let self = this
@@ -239,7 +248,7 @@
             .then(() => {
               if(self.transferCustomData.data) {
                 self.openMOdaltips('success', '客户转移成功')
-                self.closeAllotCustomModal()
+                self.closeTransferCustomModal()
                 self.getList()
               } else {
                 self.openMOdaltips('error', '客户转移失败')

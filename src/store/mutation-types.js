@@ -4,7 +4,8 @@
  * 2. 使用常量定义。变量名全部大写
  */
 // 公共部分
-export const HEADER_MEANSDATA = 'HEADER_MEANSDATA'
+export const HEADER_MEANSDATA    = 'HEADER_MEANSDATA'
+export const CHECK_CUSTOMS_LIMIT = 'CHECK_CUSTOMS_LIMIT'
 
 // 公有池
 export const COMMON_TABLE_CHOOSED_LIST_CHANGE   = 'common/COMMON_TABLE_CHOOSED_LIST_CHANGE'

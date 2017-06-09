@@ -1,13 +1,13 @@
 <template>
   <div class="new-custom">
-    <div class="new-custom-line" :class="{empty: (name === '') && nameIsEmpty}">
+    <div class="new-custom-line" :class="{empty: nameIsEmpty || nameIsHad}">
       <div class="line-wrap">
         <label>
           <span class="new-custom-hint">*</span>
           <span class="new-custom-lineName">客户产品名</span>
         </label>
         <span class="new-custom-editor" @click="closeTips('name')">
-          <input placeholder="请输入客户产品名" v-model="name">
+          <input @blur="checkNameIsHad" placeholder="请输入客户产品名" v-model="name">
         </span>
       </div>
       <div class="errortips" :class="(name === '') && nameIsEmpty ? 'openTips': 'closeTips'">请输入客户产品名</div>
@@ -293,12 +293,18 @@ export default {
     }
   },
 
+  props: [
+    'oldCustomName'
+  ]
+  ,
+
   computed: {
     ...mapGetters('newCustom',{
       tradeData: 'tradeData',
       productlineData: 'productlineData',
       provinceData: 'provinceData',
       cityData: 'cityData',
+      vaildNameData: 'vaildNameData'
     }),
   },
 
@@ -363,8 +369,8 @@ export default {
       // 获取城市
       getCitysOptions: 'newCustom/getCitysOptions',
 
-      // 新建客户
-      // addNewCustom: 'newCustom/addNewCustom',
+      // 验证客户名称唯一性
+      vaildName: 'newCustom/vaildName'
 
     }),
 
@@ -470,6 +476,10 @@ export default {
       if(self[type + 'IsError']){
         self[type + 'IsError'] = false
       }
+
+      if(self[type + 'IsHad']){
+        self[type + 'IsHad'] = false
+      }
     },
 
     // 空值验证
@@ -483,7 +493,35 @@ export default {
     },
 
     // 客户名称唯一性验证
-    checkNameIsHad() {
+    checkNameIsHad(name) {
+      let self = this
+
+      if(self.oldCustomName) {
+        if(self.oldCustomName !==self.name) {
+          if(self.name !== '') {
+            self.vaildName({param: {name: self.name}}).then(() => {
+              console.log(self.vaildNameData.data)
+              if(self.vaildNameData.data) {
+                self.nameIsHad = false
+              } else {
+                self.nameIsHad = true
+              }
+            })
+          }
+        }
+      } else {
+        if(self.name !== '') {
+          self.vaildName({param: {name: self.name}}).then(() => {
+            console.log(self.vaildNameData.data)
+            if(self.vaildNameData.data) {
+              self.nameIsHad = false
+            } else {
+              self.nameIsHad = true
+            }
+          })
+        }
+      }
+
 
     },
 
@@ -511,7 +549,8 @@ export default {
           !self.cityCodeIsEmpty &&
           !self.phoneIsEmpty &&
           !self.otherContactIsEmpty &&
-          !self.phoneIsError
+          !self.phoneIsError &&
+          !self.nameIsHad
         ) {
 
         self.$emit('getCustomEditorData',{hadValue: true, param: {
