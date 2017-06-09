@@ -213,8 +213,8 @@ let actions = {
     dispatch('getList')
   },
   async getPoolList({ dispatch, state, commit }, param) {
-    let data = await Vue.wGet('/crm/custom_pool/list.do',{page: 1})
-    await commit (types.COMMON_TABLE_GET_POOLLIST, data.data.records)
+    let data = await Vue.wGet('/crm/custom_pool/list_option.do',{page: 1})
+    await commit (types.COMMON_TABLE_GET_POOLLIST, data.data)
     dispatch('getList')
 
   },

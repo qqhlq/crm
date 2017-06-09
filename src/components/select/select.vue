@@ -1,6 +1,6 @@
 <template>
   <div :class="['b-select',list.head]">
-    <el-select v-model="list.value" :placeholder="list.placeholder" @change="changeSelect">
+    <el-select v-model="list.value" :placeholder="list.placeholder" clearable @change="changeSelect">
     <el-option
       v-for="item in list.searchList"
       :key="item.value"
