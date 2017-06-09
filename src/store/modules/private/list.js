@@ -150,6 +150,8 @@ let actions = {
     for(let i of data.data.records) {
       i.ownertime = (Vue.wFormatTime(i.ownertime))
       i.lastUpdatetime = (Vue.wFormatTime(i.lastUpdatetime))
+      i.lastUpdateMemo = i.lastUpdateMemo || '暂无具体跟进纪录'
+
     }
     commit(types.PRIVATE_TABLE_CHANG, data.data)
 
@@ -169,7 +171,7 @@ let actions = {
     let url
     switch (param.head) {
       case 'productName':
-        url = '/crm/custom/custom_name_option.do'
+        url = '/crm/custom/self_custom_name_option.do'
         break
       case 'ownerName':
         url = '/crm/custom/onwer_option.do'

@@ -18,10 +18,10 @@
       <div v-if="choosed.length === 0 && role===0" class="b-poollist">
         <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
-            {{poolList.value.name}}<i class="el-icon-caret-bottom el-icon--right"></i>
+            {{poolList.value.text}}<i class="el-icon-caret-bottom el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item v-for="item of poolList.list" :command="item.id.toString()" :key="item.id">{{item.name}}</el-dropdown-item>
+            <el-dropdown-item v-for="item of poolList.list" :command="item.id.toString()" :key="item.id">{{item.text}}</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>

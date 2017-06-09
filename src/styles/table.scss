@@ -80,6 +80,7 @@
   }
   td {
     height: 60px;
+    background-clip: inherit !important;
   }
 
   tr {
@@ -310,5 +311,17 @@
 
   span {
     color: #525666
+  }
+}
+.el-dropdown-link {
+  cursor: pointer;
+}
+.b-table-link {
+  color: #525666;
+  text-decoration: none;
+  display: block;
+
+  &:hover {
+    color: #29cc29;
   }
 }
