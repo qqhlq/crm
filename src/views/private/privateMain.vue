@@ -11,9 +11,11 @@
       <!-- 客户产品名列 -->
       <el-table-column
         fixed
-        prop="name"
         min-width="235px"
         label="客户产品名">
+        <template scope="scope">
+          <a class="b-table-link" :href="`/crm/customerDetail?id=${scope.row.id}&type=private`">{{scope.row.name}}</a>
+        </template>
       </el-table-column>
 
       <!-- 客户所有人列 -->

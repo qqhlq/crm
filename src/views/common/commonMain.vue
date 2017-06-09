@@ -3,33 +3,35 @@
     <el-table :data="data" style="width: 100%" max-height="600" @selection-change="handleSelectionChange">
       <el-table-column
         type="selection"
-        width="55px"
-      ></el-table-column>
+        width="55px">
+      </el-table-column>
       <el-table-column
-        prop="name"
         min-width="256px"
-        label="客户产品名"
-      ></el-table-column>
+        label="客户产品名">
+        <template scope="scope">
+          <a class="b-table-link" :href="`/crm/customerDetail?id=${scope.row.id}&type=common`">{{scope.row.name}}</a>
+        </template>
+      </el-table-column>
       <el-table-column
         prop="ownerName"
         min-width="120px"
         label="客户所有人">
-      ></el-table-column>
+      </el-table-column>
       <el-table-column
         prop="tradeName"
         min-width="160px"
-        label="行业"
-      ></el-table-column>
+        label="行业">
+      </el-table-column>
       <el-table-column
         prop="cityName"
         min-width="120px"
-        label="城市"
-      ></el-table-column>
+        label="城市">
+      </el-table-column>
       <el-table-column
         prop="lastUpdatetime"
         min-width="140px"
-        label="最新动态时间"
-      ></el-table-column>
+        label="最新动态时间">
+      </el-table-column>
       <el-table-column
         label="最新动态记录"
         min-width="320px">
