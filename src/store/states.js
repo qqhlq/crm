@@ -1,6 +1,13 @@
 export default {
-  isStationMailOut: false,
   menusData: {},
   role: -1,
-  checkCustomsLimitData: {}
+  checkCustomsLimitData: {},
+
+
+  isStationMailOut: false,
+  stationmailGetBlacklogData: {},
+  stationmailGetRemindData: {},
+  stationmailGetListreadData: {},
+  stationmailDelRemindData: {},
+  stationmailReadRemindData: {},
 }

@@ -141,19 +141,24 @@
 
           span.date {
             float: left;
-            color: $color-green;
+            color: $color-font-grey;
             font-size: 13px;
             display: inline-block;
             line-height: 22px;
+            vertical-align: middle;
           }
 
           button {
             float: right;
-            color: $color-green;
+            color: $color-font-grey;
             font-size: 13px;
             border: none;
             background: inherit;
             outline: none;
+            vertical-align: middle;
+            height: 22px;
+            cursor: pointer;
+            font-family: inherit;
           }
         }
       }
@@ -174,11 +179,11 @@
       float: left;
       height: 30px;
       line-height: 30px;
-      display: none;
 
       a {
         font-size: 13px;
         color: $color-font-grey;
+        text-decoration: none;
 
         &:hover,
         &:active {

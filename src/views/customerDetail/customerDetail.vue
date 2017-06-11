@@ -189,11 +189,12 @@
               </el-option>
             </el-select>
           </div>
-          <div class="cd-dynamic-textarea">
+          <div class="cd-dynamic-textarea error">
             <textarea v-model="dynamicText" placeholder="请输入跟进记录(50个字以内)"></textarea>
-            <span v-if="(dynamicText.replace(/[^\x00-\xff]/g, '__').length - 100) > 0">超出{{Math.ceil((dynamicText.replace(/[^\x00-\xff]/g, '__').length - 100)/2)}}个字</span>
+            <!--<span v-if="(dynamicText.replace(/[^\x00-\xff]/g, '__').length - 100) > 0">超出{{Math.ceil((dynamicText.replace(/[^\x00-\xff]/g, '__').length - 100)/2)}}个字</span>-->
+            <div class="errortips openTips" >请输入客户产品名</div>
+            <!--:class="(name === '') && nameIsEmpty ? 'openTips': 'closeTips'"-->
           </div>
-          <!--<textarea v-model="dynamicText"></textarea>-->
           <div @click="releaseFollowDynamicConfirm" class="cd-dynamic-submit"><button>发布</button></div>
         </div>
         <div class="cd-dynamic-content">

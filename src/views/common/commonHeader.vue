@@ -25,7 +25,7 @@
           </el-dropdown-menu>
         </el-dropdown>
       </div>
-      <span v-if="role===3||role===2||role===1">{{role}}</span>
+      <span v-if="role===3||role===2||role===1">{{customPoolName}}</span>
       <div @click="openAddnewCustomModal" class="btn-green-mid">
         新建客户
       </div>

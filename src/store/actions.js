@@ -100,5 +100,37 @@ export default {
   async checkCustomLimit({dispatch, commit}, payload) {
     let param = await dispatch('isParamUndefind', payload)
     commit(types.CHECK_CUSTOMS_LIMIT, await Vue.wPost('/crm/custom/vaild_count_limit.do', param))
-  }
+  },
+
+
+  // 获取待办列表
+  async stationmailGetBlacklog({dispatch, commit}, payload) {
+    let param = await dispatch('isParamUndefind', payload)
+    commit(types.STATIONMAIL_GET_BACKLOG, await Vue.wPost('/admin/letter/backlog.do', param))
+  },
+
+
+  // 获取已读提醒列表
+  async stationmailGetRemind({dispatch, commit}, payload) {
+    let param = await dispatch('isParamUndefind', payload)
+    commit(types.STATIONMAIL_GET_LISTREAD, await Vue.wPost('/admin/letter/remind.do', param))
+  },
+
+  // 获取未读提醒列表
+  async stationmailGetListread({dispatch, commit}, payload) {
+    let param = await dispatch('isParamUndefind', payload)
+    commit(types.STATIONMAIL_GET_REMIND, await Vue.wPost('/admin/letter/list_read.do', param))
+  },
+
+  // 删除提醒
+  async stationmailDelRemind({dispatch, commit}, payload) {
+    let param = await dispatch('isParamUndefind', payload)
+    commit(types.STATIONMAIL_DEL_REMIND, await Vue.wPost('/admin/letter/delRemind.do', param))
+  },
+
+  // 标注已读
+  async stationmailReadRemind({dispatch, commit}, payload) {
+    let param = await dispatch('isParamUndefind', payload)
+    commit(types.STATIONMAIL_READ_REMIND, await Vue.wPost(' /admin/letter/read.do', param))
+  },
 }

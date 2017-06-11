@@ -10,5 +10,11 @@ export default {
     }
     return navContentUlInOutGetter
   },
-  checkCustomsLimitData: state=> state.checkCustomsLimitData
+  checkCustomsLimitData: state=> state.checkCustomsLimitData,
+
+  stationmailGetBlacklogData: state=> state.stationmailGetBlacklogData,
+  stationmailGetRemindData:   state=> state.stationmailGetRemindData,
+  stationmailGetListreadData: state=> state.stationmailGetListreadData,
+  stationmailDelRemindData:   state=> state.stationmailDelRemindData,
+  stationmailReadRemindData:  state=> state.stationmailReadRemindData,
 }
